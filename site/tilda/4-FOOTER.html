@@ -1,0 +1,701 @@
+<!-- ============================================================
+     «ПУШКИН. ЖИВОЙ» — скрипты
+     Tilda: Настройки сайта → Ещё → HTML-код для вставки
+     перед закрывающим тегом </BODY>
+     ------------------------------------------------------------
+     Всё внутри одной функции, ничего не пишется в window,
+     кроме window.PZH — точки подстановки картинок (см. ниже).
+     ============================================================ -->
+
+<script>
+(function () {
+  "use strict";
+
+  var root = document.getElementById("pzh");
+  if (!root) return;
+
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ==========================================================
+     ПОДСТАНОВКА КАРТИНОК ИЗ HIGGSFIELD
+     ----------------------------------------------------------
+     Пока картинок нет, экраны рисуются процедурно.
+     Чтобы поставить настоящие кадры — заполните window.PZH.images:
+
+       window.PZH = { images: {
+         0: { left: "https://...", main: "https://...", right: "https://..." },
+         1: { left: "https://...", right: "https://..." },
+         ...
+         9: { left: "https://...", right: "https://..." }
+       }};
+
+     Ключ — номер эпизода (0 = пролог, 9 = финал).
+     Видео вместо картинки: укажите ссылку на .mp4 — подставится
+     <video autoplay muted loop playsinline>.
+     ========================================================== */
+  var PZH = (window.PZH = window.PZH || {});
+  var IMG = PZH.images || {};
+
+  /* ==========================================================
+     ДАННЫЕ ФИЛЬМА — из съёмочного сценария
+     sec — реальный хронометраж эпизода
+     ========================================================== */
+  var EPISODES = [
+    { no: "0", label: "Пролог", name: "Мгновение до выстрела", years: "1837", sec: 30,
+      pal: ["#131a2e", "#07090f"],
+      left: "левый экран · внутри экипажа — рука в перчатке, едва заметная дрожь ткани",
+      right: "правый экран · тёмный экипаж по зимнему Петербургу: колесо, обледенелый бок, рывок лошади" },
+    { no: "1", label: "Эпизод 1", name: "Детство. Москва", years: "1799—1811", sec: 210,
+      pal: ["#2a2318", "#0b0906"],
+      left: "перо выводит линию по молочно-тёплой бумаге — графика Нади Рушевой",
+      right: "Москва рубежа веков по панорамам Фёдора Алексеева: Красная площадь, Спасские ворота" },
+    { no: "2", label: "Эпизод 2", name: "Юность. Лицейское братство", years: "1811—1817", sec: 330,
+      pal: ["#1b2a2b", "#070c0d"],
+      left: "серо-бежевая дорога, карета въезжает слева и уходит вправо — Пушкина привозят в Царское Село",
+      right: "акварели Эдуарда Гау и Луиджи Премацци: Малиновая гостиная, опочивальня Александра I" },
+    { no: "3", label: "Эпизод 3", name: "Петербург цитирует Пушкина", years: "1817—1820", sec: 240,
+      pal: ["#1c2438", "#080b12"],
+      left: "ИИ-реконструкция: комната поэта на Фонтанке, семь часов утра",
+      right: "акварели В. С. Садовникова: Нева, Казанский собор, площадь у Адмиралтейства" },
+    { no: "4", label: "Эпизод 4", name: "Юг. Изгнание как свобода", years: "1820—1824", sec: 210,
+      pal: ["#12303a", "#050f14"],
+      left: "страница рукописи «Кавказского пленника» крупно — почерк, зачёркнутые строки",
+      right: "Айвазовский: «Пушкин на берегу Чёрного моря», «Гурзуф», «Вид Тифлиса»" },
+    { no: "5", label: "Эпизод 5", name: "Михайловское", years: "1824—1826", sec: 240,
+      pal: ["#20291b", "#080a06"],
+      left: "рассвет, туман над соснами, камера подходит к окну; внутри — огонёк свечи",
+      right: "Врубель: Царевна-Лебедь, Город Леденец, тридцать три богатыря — оживают сказки" },
+    { no: "6", label: "Эпизод 6", name: "Возвращение. Поэт и император", years: "1826—1830", sec: 240,
+      pal: ["#2b1d24", "#0c0709"],
+      left: "почтовая кибитка летит по осенней дороге: грязь, брызги, огни вдали",
+      right: "Кипренский, портрет 1827 года · Джордж Доу: Николай Павлович и Бенкендорф" },
+    { no: "7", label: "Эпизод 7", name: "Болдино", years: "1830", sec: 180,
+      pal: ["#33260f", "#0d0904"],
+      left: "рукописная страница: «Повести покойного Ивана Петровича Белкина»",
+      right: "Пластов «Пушкин в Болдине» · Левитан «Золотая осень» · болдинские акварели" },
+    { no: "8", label: "Эпизод 8", name: "Натали", years: "1830—1836", sec: 420,
+      pal: ["#2c2030", "#0a070c"],
+      left: "рисунок Пушкина «Натали» на полях рукописи",
+      right: "А. П. Брюллов, акварельный портрет Н. Н. Пушкиной · Надя Рушева, «Папа, пойдём играть!»" },
+    { no: "9", label: "Эпизод 9", name: "Финал", years: "1837", sec: 240,
+      pal: ["#2a1210", "#0a0403"], finale: true,
+      left: "ИИ-реконструкция пасквиля — «шутовской диплом» на отпечатанном бланке",
+      right: "часы в доме Пушкиных, как будто перемотка времени назад" }
+  ];
+
+  var TOTAL_SEC = EPISODES.reduce(function (s, e) { return s + e.sec; }, 0);
+  var DWELL = 7000; /* сколько держим один эпизод при автопрокрутке */
+
+  function mmss(s) {
+    var m = Math.floor(s / 60), r = s % 60;
+    return m + ":" + (r < 10 ? "0" : "") + r;
+  }
+
+  /* ==========================================================
+     1. МЕТЕЛЬ В ПРОЛОГЕ
+     ========================================================== */
+  (function blizzard() {
+    var cv = root.querySelector(".pzh-blizzard");
+    if (!cv || reduced) return;
+    var ctx = cv.getContext("2d");
+    var flakes = [], w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    function size() {
+      var r = cv.getBoundingClientRect();
+      w = r.width; h = r.height;
+      cv.width = Math.round(w * dpr);
+      cv.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var target = Math.round(Math.min(260, w * h / 5200));
+      flakes.length = 0;
+      for (var i = 0; i < target; i++) flakes.push(mk(true));
+    }
+    function mk(anywhere) {
+      var d = Math.random();
+      return {
+        x: Math.random() * w,
+        y: anywhere ? Math.random() * h : -12,
+        z: d,
+        r: 0.5 + d * 1.9,
+        vy: 14 + d * 46,
+        vx: -9 - d * 22,
+        ph: Math.random() * 6.283
+      };
+    }
+    var last = 0, raf;
+    function frame(t) {
+      var dt = Math.min((t - last) / 1000, 0.05); last = t;
+      ctx.clearRect(0, 0, w, h);
+      for (var i = 0; i < flakes.length; i++) {
+        var f = flakes[i];
+        f.y += f.vy * dt;
+        f.x += (f.vx + Math.sin(t / 900 + f.ph) * 11) * dt;
+        if (f.y > h + 14 || f.x < -20) { flakes[i] = mk(false); continue; }
+        ctx.globalAlpha = 0.1 + f.z * 0.5;
+        ctx.fillStyle = "#eae6db";
+        ctx.beginPath();
+        ctx.arc(f.x, f.y, f.r, 0, 6.284);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      raf = requestAnimationFrame(frame);
+    }
+    size();
+    window.addEventListener("resize", size, { passive: true });
+    raf = requestAnimationFrame(frame);
+
+    /* не жжём батарею, когда пролог за кадром */
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting) { if (!raf) { last = performance.now(); raf = requestAnimationFrame(frame); } }
+          else if (raf) { cancelAnimationFrame(raf); raf = 0; }
+        });
+      }, { threshold: 0 }).observe(cv);
+    }
+  })();
+
+  /* ==========================================================
+     2. ОТСЧЁТ ДО ПЕРВОГО СЕАНСА
+     ========================================================== */
+  (function countdown() {
+    var box = document.getElementById("pzh-cd");
+    if (!box) return;
+    var cells = {
+      d: box.querySelector('[data-cd="d"]'),
+      h: box.querySelector('[data-cd="h"]'),
+      m: box.querySelector('[data-cd="m"]'),
+      s: box.querySelector('[data-cd="s"]')
+    };
+    var opens = new Date("2026-10-05T11:10:00+05:00").getTime();
+    var closes = new Date("2026-11-29T19:50:00+05:00").getTime();
+    var label = box.parentNode.querySelector(".pzh-cd-label");
+
+    function pad(n) { return (n < 10 ? "0" : "") + n; }
+    function tick() {
+      var now = Date.now(), left = opens - now;
+      if (left <= 0) {
+        if (now <= closes) {
+          if (label) label.textContent = "Выставка идёт · сеансы каждые 40 минут с 11:10";
+          left = closes - now;
+        } else {
+          if (label) label.textContent = "Выставка завершилась 29 ноября 2026";
+          left = 0;
+        }
+      }
+      var s = Math.floor(left / 1000);
+      cells.d.textContent = Math.floor(s / 86400);
+      cells.h.textContent = pad(Math.floor(s % 86400 / 3600));
+      cells.m.textContent = pad(Math.floor(s % 3600 / 60));
+      cells.s.textContent = pad(s % 60);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  /* ==========================================================
+     3. ТРИПТИХ-ПЛЕЕР
+     ========================================================== */
+  (function player() {
+    var stage = document.getElementById("pzh-stage");
+    var rail = document.getElementById("pzh-rail");
+    var index = document.getElementById("pzh-index");
+    var now = document.getElementById("pzh-now");
+    var playBtn = document.getElementById("pzh-play");
+    if (!stage || !rail || !index) return;
+
+    var mains = stage.querySelectorAll('.pzh-screen--main .pzh-layer');
+    var sideL = document.getElementById("pzh-side-l");
+    var sideR = document.getElementById("pzh-side-r");
+    var cur = 0, playing = !reduced, timer = 0, buf = 0;
+
+    /* --- разметка боковых экранов --- */
+    function media(url) {
+      if (/\.(mp4|webm)(\?|$)/i.test(url)) {
+        return '<video src="' + url + '" autoplay muted loop playsinline></video>';
+      }
+      return '<img src="' + url + '" alt="" loading="lazy" decoding="async">';
+    }
+    function plate(ep, side) {
+      var pic = IMG[ep.no] && IMG[ep.no][side];
+      if (pic) return media(pic);
+      return '<div class="pzh-plate" style="--pl-a:' + ep.pal[0] + '; --pl-b:' + ep.pal[1] + '">' +
+             '<b>' + (ep.no === "0" ? "0" : ep.no) + '</b>' +
+             '<i>' + ep[side] + "</i></div>";
+    }
+    function paintSides(i) {
+      var ep = EPISODES[i], next = buf ? "a" : "b";
+      [[sideL, "left"], [sideR, "right"]].forEach(function (pair) {
+        var host = pair[0];
+        if (!host) return;
+        var incoming = host.querySelector('[data-buf="' + next + '"]');
+        var outgoing = host.querySelector('[data-buf="' + (next === "a" ? "b" : "a") + '"]');
+        incoming.innerHTML = plate(ep, pair[1]);
+        incoming.setAttribute("data-on", "1");
+        outgoing.removeAttribute("data-on");
+      });
+      buf = buf ? 0 : 1;
+    }
+
+    /* --- линейка: ширина = реальный хронометраж --- */
+    var ticks = [], fills = [], acc = 0;
+    EPISODES.forEach(function (ep, i) {
+      var from = acc; acc += ep.sec;
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "pzh-tick" + (ep.finale ? " pzh-tick--finale" : "");
+      b.style.flexBasis = (ep.sec / TOTAL_SEC * 100) + "%";
+      b.setAttribute("role", "tab");
+      b.setAttribute("aria-label", ep.label + ". " + ep.name + ". " + mmss(from) + "—" + mmss(acc));
+      b.innerHTML = '<span class="pzh-tick-lab">' + (ep.no === "0" ? "Пролог" : ep.no + " · " + ep.name) + "</span>" +
+                    '<span class="pzh-tick-bar"><span class="pzh-tick-fill"></span></span>';
+      b.addEventListener("click", function () { stop(); go(i); });
+      rail.appendChild(b);
+      ticks.push(b);
+      fills.push(b.querySelector(".pzh-tick-fill"));
+      ep._from = from; ep._to = acc;
+    });
+
+    /* --- индекс --- */
+    EPISODES.forEach(function (ep, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "pzh-index-item";
+      b.innerHTML = '<span class="pzh-index-no"><span>' + (ep.no === "0" ? "Пролог" : "Эпизод " + ep.no) +
+                    "</span><span>" + mmss(ep.sec) + "</span></span>" +
+                    '<span class="pzh-index-name">' + ep.name + "</span>" +
+                    '<span class="pzh-index-years">' + ep.years + "</span>";
+      b.addEventListener("click", function () { stop(); go(i); });
+      index.appendChild(b);
+    });
+    var items = index.querySelectorAll(".pzh-index-item");
+
+    /* --- переключение --- */
+    function go(i) {
+      cur = (i + EPISODES.length) % EPISODES.length;
+      var ep = EPISODES[cur];
+      for (var k = 0; k < mains.length; k++) {
+        if (k === cur) mains[k].setAttribute("data-on", "1");
+        else mains[k].removeAttribute("data-on");
+      }
+      paintSides(cur);
+      ticks.forEach(function (t, k) {
+        t.setAttribute("aria-current", k === cur ? "true" : "false");
+        fills[k].style.transition = "none";
+        fills[k].style.width = k < cur ? "100%" : "0%";
+      });
+      items.forEach(function (t, k) { t.setAttribute("aria-current", k === cur ? "true" : "false"); });
+      if (now) now.textContent = (ep.no === "0" ? "Пролог" : "Эпизод " + ep.no) + " · " + mmss(ep._from) + " — " + mmss(ep._to);
+      if (playing) sweep();
+      if (playing) schedule();
+    }
+    function sweep() {
+      var f = fills[cur];
+      /* два кадра, чтобы браузер применил width:0 до анимации */
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          f.style.transition = "width " + DWELL + "ms linear";
+          f.style.width = "100%";
+        });
+      });
+    }
+    function schedule() {
+      clearTimeout(timer);
+      timer = setTimeout(function () { go(cur + 1); }, DWELL);
+    }
+    function stop() {
+      playing = false;
+      clearTimeout(timer);
+      fills.forEach(function (f, k) {
+        f.style.transition = "none";
+        f.style.width = k <= cur ? (k < cur ? "100%" : "100%") : "0%";
+      });
+      if (playBtn) {
+        playBtn.setAttribute("aria-pressed", "false");
+        playBtn.querySelector("[data-play-label]").textContent = "Смотреть";
+      }
+    }
+    function start() {
+      playing = true;
+      if (playBtn) {
+        playBtn.setAttribute("aria-pressed", "true");
+        playBtn.querySelector("[data-play-label]").textContent = "Пауза";
+      }
+      go(cur);
+    }
+    if (playBtn) {
+      playBtn.addEventListener("click", function () { playing ? stop() : start(); });
+    }
+
+    /* стартовое состояние — пролог, уже видно без скролла */
+    paintSides(0);
+    go(0);
+    if (reduced) stop();
+
+    /* играем только пока сцена в кадре */
+    if (!reduced && "IntersectionObserver" in window) {
+      var wasPlaying = true;
+      new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting) { if (wasPlaying && !playing) start(); }
+          else { wasPlaying = playing; if (playing) { clearTimeout(timer); playing = false; } }
+        });
+      }, { threshold: 0.25 }).observe(stage);
+    }
+  })();
+
+  /* ==========================================================
+     4. КАРТА ЖИЗНИ
+     ========================================================== */
+  (function map() {
+    var svg = document.getElementById("pzh-map");
+    if (!svg) return;
+    var W = 1000, H = 560;
+    var LON0 = 26.5, LON1 = 62.5, LAT0 = 42.5, LAT1 = 61.5;
+    var PAD = 46;
+
+    function px(lon) { return PAD + (lon - LON0) / (LON1 - LON0) * (W - PAD * 2); }
+    function py(lat) { return H - PAD - (lat - LAT0) / (LAT1 - LAT0) * (H - PAD * 2); }
+
+    /* stops — в хронологическом порядке, с повторами */
+    var STOPS = [
+      { k: "msk",  lat: 55.75, lon: 37.62, name: "Москва",         yr: "1799", show: 1, lx: 10, ly: -10,
+        txt: "Родился 26 мая (6 июня) 1799 года. Город живой, шумный, немного провинциальный — не Петербург. Первый эпизод собран из панорам Фёдора Алексеева и графики Нади Рушевой." },
+      { k: "cs",   lat: 59.72, lon: 30.40, name: "Царское Село",   yr: "1811", show: 1, lx: 14, ly: 26, lead: 1,
+        txt: "Двенадцатилетний мальчик въезжает в Царское Село. Шесть лет Лицея: подъём в шесть, молитва, занятия, обязательная прогулка в любую погоду. Здесь он впервые понимает, что он — поэт." },
+      { k: "spb",  lat: 59.94, lon: 30.31, name: "Петербург",      yr: "1817", show: 1, lx: 16, ly: 4,
+        txt: "Коллегия иностранных дел, коллежский секретарь десятого класса, жалованье семьсот рублей в год. В присутствие — дважды в неделю. Остальное время его: театр, карты, стихи." },
+      { k: "ekat", lat: 48.46, lon: 35.05, name: "Екатеринослав",  yr: "1820", show: 1, lx: 12, ly: -8,
+        txt: "Май 1820 года, начало южной ссылки. Купался в Днепре и сильно заболел. Мимо проездом оказался генерал Раевский с семьёй — и забрал поэта с собой на воды." },
+      { k: "pyat", lat: 44.05, lon: 43.06, name: "Кавказские воды", yr: "1820", show: 1, lx: 12, ly: 6,
+        txt: "Лечение на Кавказских минеральных водах вместе с семьёй Раевских. По пути — Мариуполь, Таганрог, Ростов, Новочеркасск, Ставрополь. Здесь начинается «Кавказский пленник»." },
+      { k: "gur",  lat: 44.55, lon: 34.28, name: "Гурзуф",         yr: "1820", show: 1, lx: -12, ly: 22, anchor: "end",
+        txt: "Крым. Море, горы, кипарисы. Айвазовский позже напишет «Пушкин на берегу Чёрного моря» — этот кадр в фильме держится дольше остальных." },
+      { k: "kis",  lat: 47.01, lon: 28.86, name: "Кишинёв",        yr: "1820", show: 1, lx: -12, ly: -8, anchor: "end",
+        txt: "Ночь в Кишинёве: маленькая комната, свеча, Пушкин пишет. За окном — степь и цикады. Три года службы при наместнике Бессарабии." },
+      { k: "ods",  lat: 46.48, lon: 30.73, name: "Одесса",         yr: "1823", show: 1, lx: 12, ly: 20,
+        txt: "Одесса, море и театр. Отсюда его отправят дальше — в псковскую глушь, под надзор собственного отца." },
+      { k: "mih",  lat: 57.06, lon: 28.92, name: "Михайловское",   yr: "1824", show: 1, lx: -12, ly: 4, anchor: "end",
+        txt: "Триста вёрст от Петербурга. Ни столицы, ни моря, ни друзей — только сосны, няня и работа. Здесь написаны главы III—VI «Онегина», «Борис Годунов», «Пророк», «Я помню чудное мгновенье…»." },
+      { k: "msk",  lat: 55.75, lon: 37.62, yr: "1826", show: 0 },
+      { k: "bol",  lat: 55.00, lon: 45.31, name: "Болдино",        yr: "1830", show: 1, lx: 12, ly: -8,
+        txt: "Выехал на три недели — оформить документы и заложить землю на свадьбу. По России шла холера, карантины перекрыли дороги. Заперт в Болдине он написал «Повести Белкина», «маленькие трагедии» и последние главы «Онегина»." },
+      { k: "spb",  lat: 59.94, lon: 30.31, yr: "1831", show: 0 },
+      { k: "chr",  lat: 59.99, lon: 30.30, name: "Чёрная речка",   yr: "1837", show: 1, lx: -14, ly: -26, anchor: "end", lead: 1, finale: 1,
+        txt: "27 января 1837 года. Из дома выехал в 15:30, к Комендантской даче прибыл к 16:30. Метель. Снег превращается в холст — и на белом появляется капля чернил." }
+    ];
+    var HERE = { lat: 56.84, lon: 60.61, name: "Екатеринбург", yr: "2026", lx: -12, ly: 26, anchor: "end",
+      txt: "Здесь и сейчас: просп. Ленина, 50Ж, Свердловская киностудия. 5 октября — 29 ноября 2026, тринадцать сеансов в день. Сорок минут — и вся эта карта проходит перед вами." };
+
+    /* --- гладкий путь через точки (Catmull-Rom → кубика) --- */
+    function smooth(pts) {
+      if (pts.length < 2) return "";
+      var d = "M" + pts[0][0].toFixed(1) + " " + pts[0][1].toFixed(1);
+      for (var i = 0; i < pts.length - 1; i++) {
+        var p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2;
+        var t = 0.22;
+        d += " C" + (p1[0] + (p2[0] - p0[0]) * t).toFixed(1) + " " + (p1[1] + (p2[1] - p0[1]) * t).toFixed(1) +
+             " " + (p2[0] - (p3[0] - p1[0]) * t).toFixed(1) + " " + (p2[1] - (p3[1] - p1[1]) * t).toFixed(1) +
+             " " + p2[0].toFixed(1) + " " + p2[1].toFixed(1);
+      }
+      return d;
+    }
+
+    var parts = [];
+
+    /* сетка меридианов и параллелей — координатная канва, не украшение */
+    for (var lo = 30; lo <= 60; lo += 10) {
+      parts.push('<line class="pzh-grat" x1="' + px(lo).toFixed(1) + '" y1="' + PAD + '" x2="' + px(lo).toFixed(1) + '" y2="' + (H - PAD) + '"/>');
+      parts.push('<text class="pzh-yr" x="' + (px(lo) + 4).toFixed(1) + '" y="' + (H - PAD + 14) + '">' + lo + "°в.д.</text>");
+    }
+    for (var la = 45; la <= 60; la += 5) {
+      parts.push('<line class="pzh-grat" x1="' + PAD + '" y1="' + py(la).toFixed(1) + '" x2="' + (W - PAD) + '" y2="' + py(la).toFixed(1) + '"/>');
+      parts.push('<text class="pzh-yr" x="' + (PAD - 34) + '" y="' + (py(la) - 4).toFixed(1) + '">' + la + "°с.ш.</text>");
+    }
+
+    /* маршрут */
+    var pts = STOPS.map(function (s) { return [px(s.lon), py(s.lat)]; });
+    parts.push('<path class="pzh-route" d="' + smooth(pts) + '"/>');
+
+    /* пунктир от Чёрной речки к Екатеринбургу — 189 лет */
+    var lastP = pts[pts.length - 1], herePt = [px(HERE.lon), py(HERE.lat)];
+    parts.push('<path class="pzh-route pzh-route--future" d="M' + lastP[0].toFixed(1) + " " + lastP[1].toFixed(1) +
+               " Q" + ((lastP[0] + herePt[0]) / 2).toFixed(1) + " " + (Math.min(lastP[1], herePt[1]) - 78).toFixed(1) +
+               " " + herePt[0].toFixed(1) + " " + herePt[1].toFixed(1) + '"/>');
+    parts.push('<text class="pzh-yr" x="' + ((lastP[0] + herePt[0]) / 2).toFixed(1) + '" y="' +
+               (Math.min(lastP[1], herePt[1]) - 46).toFixed(1) + '" text-anchor="middle">189 лет спустя</text>');
+
+    /* узлы */
+    function node(s, cls) {
+      var x = px(s.lon), y = py(s.lat);
+      var lx = x + (s.lx || 10), ly = y + (s.ly || 0);
+      var g = '<g class="pzh-node" data-k="' + s.k + '" tabindex="0" role="button" aria-label="' + s.name + ", " + s.yr + '">';
+      if (s.lead) {
+        g += '<line class="pzh-grat" x1="' + x.toFixed(1) + '" y1="' + y.toFixed(1) + '" x2="' + lx.toFixed(1) + '" y2="' + (ly - 4).toFixed(1) + '"/>';
+      }
+      g += '<circle class="pzh-dot ' + cls + '" cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="4.5"/>';
+      g += '<text class="pzh-lab" x="' + lx.toFixed(1) + '" y="' + ly.toFixed(1) + '"' +
+           (s.anchor ? ' text-anchor="' + s.anchor + '"' : "") + ">" + s.name + "</text>";
+      g += '<text class="pzh-yr" x="' + lx.toFixed(1) + '" y="' + (ly + 12).toFixed(1) + '"' +
+           (s.anchor ? ' text-anchor="' + s.anchor + '"' : "") + ">" + s.yr + "</text>";
+      return g + "</g>";
+    }
+    STOPS.forEach(function (s) { if (s.show) parts.push(node(s, s.finale ? "pzh-dot--finale" : "")); });
+
+    /* Екатеринбург — «вы здесь» */
+    parts.push('<circle class="pzh-hereglow" cx="' + herePt[0].toFixed(1) + '" cy="' + herePt[1].toFixed(1) + '" r="22"/>');
+    HERE.k = "here";
+    parts.push(node(HERE, "pzh-dot--here"));
+
+    svg.innerHTML = parts.join("");
+
+    /* --- подпись под картой --- */
+    var elY = document.getElementById("pzh-map-year");
+    var elP = document.getElementById("pzh-map-place");
+    var elT = document.getElementById("pzh-map-text");
+    var byKey = {};
+    STOPS.concat([HERE]).forEach(function (s) { if (s.txt) byKey[s.k] = s; });
+
+    function show(k) {
+      var s = byKey[k];
+      if (!s || !elY) return;
+      elY.textContent = s.yr;
+      elP.textContent = s.name;
+      elT.textContent = s.txt;
+      svg.querySelectorAll(".pzh-node").forEach(function (n) {
+        if (n.getAttribute("data-k") === k) n.setAttribute("data-on", "1");
+        else n.removeAttribute("data-on");
+      });
+    }
+    svg.querySelectorAll(".pzh-node").forEach(function (n) {
+      var k = n.getAttribute("data-k");
+      n.addEventListener("mouseenter", function () { show(k); });
+      n.addEventListener("focus", function () { show(k); });
+      n.addEventListener("click", function () { show(k); });
+    });
+    show("msk");
+  })();
+
+  /* ==========================================================
+     5. РАСПИСАНИЕ И КАЛЬКУЛЯТОР
+     ========================================================== */
+  var SLOTS = ["11:10", "11:50", "12:30", "13:10", "13:50", "14:30", "15:10",
+               "15:50", "16:30", "17:10", "17:50", "18:30", "19:10"];
+  var HAPPY_SLOTS = ["11:10", "19:10"];   /* первый и последний */
+  var HAPPY_DAYS = [1, 2];                /* понедельник, вторник */
+
+  (function sessions() {
+    var box = document.getElementById("pzh-sessions");
+    if (!box) return;
+    box.innerHTML = SLOTS.map(function (t, i) {
+      var happy = HAPPY_SLOTS.indexOf(t) !== -1;
+      return '<div class="pzh-session' + (happy ? " pzh-session--happy" : "") + '">' +
+             "<b>" + t + "</b><span>сеанс " + (i < 9 ? "0" : "") + (i + 1) +
+             (happy ? " · счастливый" : "") + "</span></div>";
+    }).join("");
+  })();
+
+  (function calc() {
+    var host = document.getElementById("pzh-calc");
+    if (!host) return;
+    var daysBox = document.getElementById("pzh-days");
+    var slotsBox = document.getElementById("pzh-slots");
+    var catsBox = document.getElementById("pzh-cats");
+    var totalEl = document.getElementById("pzh-total");
+    var hintEl = document.getElementById("pzh-calc-hint");
+
+    var DAYS = [
+      { i: 1, s: "Пн" }, { i: 2, s: "Вт" }, { i: 3, s: "Ср" }, { i: 4, s: "Чт" },
+      { i: 5, s: "Пт" }, { i: 6, s: "Сб" }, { i: 0, s: "Вс" }
+    ];
+    var CATS = [
+      { k: "full",   n: "Полный",                      wd: 700, we: 800 },
+      { k: "happy",  n: "Счастливый сеанс",            sub: "первый и последний сеанс в пн и вт", wd: 400, we: null, needHappy: 1 },
+      { k: "family", n: "Семейный",                    sub: "от 3 человек, цена за один билет",   wd: 600, we: null, min: 3 },
+      { k: "reduced",n: "Льготный",                    sub: "пенсионеры, инвалиды, школьники 7–14, студенты", wd: 600, we: null },
+      { k: "group",  n: "Экскурсия",                   sub: "организованная или школьная, от 10 человек", wd: 400, we: null, min: 10 },
+      { k: "corp",   n: "Компания или завод",           sub: "специальная цена", wd: 500, we: 600 },
+      { k: "escort", n: "Сопровождающий",              sub: "1 на 10 человек в экскурсии", wd: 0, we: null, per: "group" },
+      { k: "kids",   n: "Дети до 6 лет",                sub: "включительно", wd: 0, we: 0 }
+    ];
+
+    var day = 6, slot = "11:10", qty = { full: 2 };
+
+    function isWeekend() { return day === 0 || day === 6; }
+    function happyOn() { return HAPPY_DAYS.indexOf(day) !== -1 && HAPPY_SLOTS.indexOf(slot) !== -1; }
+    function priceOf(c) { return isWeekend() ? c.we : c.wd; }
+    function available(c) {
+      if (priceOf(c) === null || priceOf(c) === undefined) return false;
+      if (c.needHappy && !happyOn()) return false;
+      return true;
+    }
+    function capOf(c) {
+      if (c.per === "group") return Math.floor((qty.group || 0) / 10);
+      return 40;
+    }
+
+    /* --- чипы дней и сеансов --- */
+    daysBox.innerHTML = DAYS.map(function (d) {
+      return '<button type="button" class="pzh-chip" data-day="' + d.i + '" aria-pressed="' + (d.i === day) + '">' + d.s + "</button>";
+    }).join("");
+    slotsBox.innerHTML = SLOTS.map(function (t) {
+      return '<button type="button" class="pzh-chip" data-slot="' + t + '" aria-pressed="' + (t === slot) + '">' + t + "</button>";
+    }).join("");
+
+    daysBox.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-day]"); if (!b) return;
+      day = +b.getAttribute("data-day");
+      daysBox.querySelectorAll("[data-day]").forEach(function (x) {
+        x.setAttribute("aria-pressed", +x.getAttribute("data-day") === day);
+      });
+      render();
+    });
+    slotsBox.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-slot]"); if (!b) return;
+      slot = b.getAttribute("data-slot");
+      slotsBox.querySelectorAll("[data-slot]").forEach(function (x) {
+        x.setAttribute("aria-pressed", x.getAttribute("data-slot") === slot);
+      });
+      render();
+    });
+
+    /* --- строки категорий --- */
+    catsBox.innerHTML = CATS.map(function (c) {
+      return '<div class="pzh-cat" data-k="' + c.k + '">' +
+        '<span class="pzh-cat-name">' + c.n + (c.sub ? "<em>" + c.sub + "</em>" : "") + "</span>" +
+        '<span class="pzh-cat-price" data-price></span>' +
+        '<span class="pzh-step">' +
+          '<button type="button" data-d="-1" aria-label="Убрать один билет: ' + c.n + '">−</button>' +
+          "<output>0</output>" +
+          '<button type="button" data-d="1" aria-label="Добавить один билет: ' + c.n + '">+</button>' +
+        "</span></div>";
+    }).join("");
+
+    catsBox.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-d]"); if (!b) return;
+      var row = b.closest(".pzh-cat"), k = row.getAttribute("data-k");
+      var c = CATS.filter(function (x) { return x.k === k; })[0];
+      var v = (qty[k] || 0) + (+b.getAttribute("data-d"));
+      qty[k] = Math.max(0, Math.min(capOf(c), v));
+      render();
+    });
+
+    /* --- пересчёт --- */
+    function render() {
+      var total = 0, people = 0, notes = [];
+      var happy = happyOn();
+
+      CATS.forEach(function (c) {
+        var row = catsBox.querySelector('[data-k="' + c.k + '"]');
+        var ok = available(c);
+        var p = priceOf(c);
+        var n = qty[c.k] || 0;
+
+        if (!ok && n) { qty[c.k] = 0; n = 0; }
+        if (c.per === "group") { var cap = capOf(c); if (n > cap) { qty[c.k] = cap; n = cap; } }
+
+        row.setAttribute("data-off", ok ? "0" : "1");
+        row.querySelector("output").textContent = n;
+        row.querySelector("[data-price]").textContent =
+          !ok ? "—" : (p === 0 ? "бесплатно" : p + " ₽");
+        row.querySelectorAll("[data-d]").forEach(function (btn) {
+          btn.disabled = !ok || (btn.getAttribute("data-d") === "1" && n >= capOf(c));
+        });
+
+        if (!ok || !n) return;
+        if (c.min && n < c.min) {
+          notes.push(c.n.toLowerCase() + " работает от " + c.min + " человек — сейчас " + n);
+          total += (c.k === "family" || c.k === "group" ? CATS[0][isWeekend() ? "we" : "wd"] : p) * n;
+        } else {
+          total += p * n;
+        }
+        people += n;
+      });
+
+      totalEl.textContent = total.toLocaleString("ru-RU") + " ₽";
+
+      /* подсказки: где выгоднее */
+      var hint = "";
+      if (notes.length) {
+        hint = "Внимание: " + notes.join("; ") + ". Пока считаем по полному тарифу.";
+      } else if (!people) {
+        hint = "Добавьте билеты — калькулятор посчитает и подскажет, где выгоднее.";
+      } else if (isWeekend()) {
+        hint = "Выходные: льгот нет. В <b>будни</b> те же " + people + " чел. вышли бы дешевле, а в <b>понедельник или вторник на 11:10 либо 19:10</b> — по 400 ₽ за билет.";
+      } else if (!happy && (qty.full || qty.reduced || qty.family)) {
+        hint = "Возьмите <b>понедельник или вторник, сеанс 11:10 или 19:10</b> — это «Счастливый сеанс», 400 ₽ вместо " +
+               (qty.full ? "700" : "600") + " ₽ за билет.";
+      } else if (happy && qty.happy) {
+        hint = "«Счастливый сеанс» — самая низкая цена на выставке: 400 ₽.";
+      } else if ((qty.full || 0) >= 3) {
+        hint = "От трёх человек в будни работает <b>семейный тариф</b> — 600 ₽ вместо 700 ₽ за билет.";
+      } else if ((qty.group || 0) >= 10) {
+        hint = "Группа от 10 человек: <b>" + Math.floor(qty.group / 10) + " сопровождающих проходят бесплатно</b>. Оставьте заявку в разделе «Школам и компаниям».";
+      } else {
+        hint = "Итого на " + people + " чел., " + (isWeekend() ? "выходной" : "будний") + " день, сеанс " + slot + ".";
+      }
+      hintEl.innerHTML = hint;
+    }
+    render();
+  })();
+
+  /* ==========================================================
+     6. ЗАЯВКА ДЛЯ ГРУПП
+     ----------------------------------------------------------
+     Без бэкенда: собирает письмо. Если подключите форму Tilda,
+     удалите этот блок и вставьте на место <form id="pzh-form">
+     блок T-формы с настроенным приёмщиком.
+     ========================================================== */
+  (function form() {
+    var f = document.getElementById("pzh-form");
+    if (!f) return;
+    var note = document.getElementById("pzh-form-note");
+    f.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var need = ["org", "name", "phone", "count", "date"], missing = [];
+      need.forEach(function (k) {
+        var el = f.elements[k];
+        if (!el.value.trim()) { missing.push(el.previousElementSibling.textContent.toLowerCase()); }
+      });
+      if (missing.length) {
+        note.innerHTML = "Заполните: " + missing.join(", ") + ".";
+        f.elements[need.find(function (k) { return !f.elements[k].value.trim(); })].focus();
+        return;
+      }
+      var v = function (k) { return f.elements[k].value.trim(); };
+      var body =
+        "Заявка на групповое посещение выставки «Пушкин. Живой»\n\n" +
+        "Организация: " + v("org") + "\n" +
+        "Контактное лицо: " + v("name") + "\n" +
+        "Телефон: " + v("phone") + "\n" +
+        "Количество человек: " + v("count") + "\n" +
+        "Желаемая дата: " + v("date") + "\n" +
+        "Тариф: " + v("kind") + "\n" +
+        "Комментарий: " + (v("note") || "—") + "\n";
+      window.location.href = "mailto:info@пушкин-живой.рф" +
+        "?subject=" + encodeURIComponent("Заявка на группу — Пушкин. Живой") +
+        "&body=" + encodeURIComponent(body);
+      note.innerHTML = "Открываем письмо в вашей почтовой программе. Если не открылось — напишите на <a href='mailto:info@пушкин-живой.рф'>info@пушкин-живой.рф</a>.";
+    });
+  })();
+
+  /* ==========================================================
+     7. ПЛАВНЫЙ ПЕРЕХОД ПО ССЫЛКАМ С УЧЁТОМ ЛИПКОЙ ШАПКИ
+     ========================================================== */
+  (function anchors() {
+    var bar = root.querySelector(".pzh-bar");
+    root.addEventListener("click", function (e) {
+      var a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var id = a.getAttribute("href").slice(1);
+      var t = id ? document.getElementById(id) : root;
+      if (!t) return;
+      e.preventDefault();
+      var off = bar ? bar.getBoundingClientRect().height + 10 : 0;
+      var y = t.getBoundingClientRect().top + window.pageYOffset - off;
+      window.scrollTo({ top: y, behavior: reduced ? "auto" : "smooth" });
+    });
+  })();
+
+})();
+</script>
