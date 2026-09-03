@@ -3,27 +3,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Пушкин. Живой — проверка перед вставкой в Tilda</title>
 <!-- ============================================================
-     ПУШКИН. ЖИВОЙ — блок для HEAD (Tilda: Настройки сайта → Ещё → HTML-код для HEAD)
+     ПУШКИН. ЖИВОЙ — блок для HEAD
+     Tilda: Настройки сайта → Ещё → HTML-код внутрь HEAD
+
+     ВАЖНО: заголовок, описание и картинку для соцсетей здесь НЕ ставим.
+     Их выдаёт сама Tilda из настроек страницы, и если продублировать
+     их тут, в шапке окажутся два разных og:title. Первый выигрывает —
+     то есть тот, что стоит в настройках Tilda. Заполняйте их там:
+     Настройки страницы → Facebook и SEO.
      ============================================================ -->
 
-<meta name="description" content="«Пушкин. Живой» — мультимедийная выставка в Екатеринбурге. 5 октября — 29 ноября 2026, Свердловская киностудия. Фильм на трёх экранах: 40 минут, 10 эпизодов, более 100 живописных полотен.">
-<meta name="keywords" content="Пушкин Живой, мультимедийная выставка Екатеринбург, выставка Пушкин, Свердловская киностудия, иммерсивная выставка 2026">
-
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Пушкин. Живой">
-<meta property="og:title" content="Пушкин. Живой — мультимедийная выставка в Екатеринбурге">
-<meta property="og:description" content="40 минут. 10 эпизодов. Три экрана. Более 100 полотен. 5 октября — 29 ноября 2026, Свердловская киностудия.">
-<meta property="og:url" content="https://пушкин-живой.рф/">
-<meta property="og:locale" content="ru_RU">
-<!-- ЗАМЕНИТЬ: загрузите обложку 1200×630 в Tilda и вставьте её адрес -->
-<meta property="og:image" content="https://пушкин-живой.рф/og-cover.jpg">
-<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#06080F">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Prata&family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
+<!-- Разметка события для Яндекса и Google: даты, площадка, цены.
+     Tilda ничего подобного не отдаёт, конфликта не будет.
+     ЗАМЕНИТЬ адреса, когда прикрутите домен пушкин-живой.рф -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -36,7 +34,7 @@
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "typicalAgeRange": "0-",
   "inLanguage": "ru",
-  "url": "https://пушкин-живой.рф/",
+  "url": "https://pushkinrnd.tilda.ws/",
   "location": {
     "@type": "Place",
     "name": "Свердловская киностудия",
@@ -47,10 +45,15 @@
       "addressCountry": "RU"
     }
   },
+  "organizer": {
+    "@type": "Organization",
+    "name": "Креативное агентство R-ART"
+  },
   "offers": [
-    { "@type": "Offer", "name": "Полный билет, будни", "price": "700", "priceCurrency": "RUB", "availability": "https://schema.org/InStock", "url": "https://пушкин-живой.рф/#bilety" },
-    { "@type": "Offer", "name": "Полный билет, выходные", "price": "800", "priceCurrency": "RUB", "availability": "https://schema.org/InStock", "url": "https://пушкин-живой.рф/#bilety" },
-    { "@type": "Offer", "name": "Льготный, будни", "price": "600", "priceCurrency": "RUB", "availability": "https://schema.org/InStock", "url": "https://пушкин-живой.рф/#bilety" }
+    { "@type": "Offer", "name": "Полный билет, будни", "price": "700", "priceCurrency": "RUB", "availability": "https://schema.org/InStock", "url": "https://pushkinrnd.tilda.ws/#bilety" },
+    { "@type": "Offer", "name": "Полный билет, выходные", "price": "800", "priceCurrency": "RUB", "availability": "https://schema.org/InStock", "url": "https://pushkinrnd.tilda.ws/#bilety" },
+    { "@type": "Offer", "name": "Льготный, будни", "price": "600", "priceCurrency": "RUB", "availability": "https://schema.org/InStock", "url": "https://pushkinrnd.tilda.ws/#bilety" },
+    { "@type": "Offer", "name": "Школьная экскурсия от 10 человек, будни", "price": "400", "priceCurrency": "RUB", "availability": "https://schema.org/InStock", "url": "https://pushkinrnd.tilda.ws/#gruppam" }
   ]
 }
 </script>
