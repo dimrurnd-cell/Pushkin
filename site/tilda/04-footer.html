@@ -124,6 +124,50 @@
       };
       probe.src = src;
     });
+
+    // Оживлённые кадры: где есть mp4, поверх картинки встаёт зацикленное видео.
+    // При «уменьшить движение» видео не подключается — остаётся неподвижный кадр.
+    if (reduced) return;
+    $$('.pj-screen[data-video]').forEach(function (fig) {
+      var src = fig.getAttribute('data-video');
+      if (!src) return;
+      var v = document.createElement('video');
+      v.className = 'pj-screen__img pj-screen__img--gen';
+      // атрибуты до src — иначе автозапуск не разрешат
+      v.setAttribute('muted', '');
+      v.setAttribute('playsinline', '');
+      v.setAttribute('webkit-playsinline', '');
+      v.setAttribute('autoplay', '');
+      v.setAttribute('loop', '');
+      v.setAttribute('preload', 'auto');
+      v.muted = true;
+      v.defaultMuted = true;
+      v.loop = true;
+      v.playsInline = true;
+      v.addEventListener('canplay', function () {
+        v.classList.add('is-in');
+        pjPlay(v);
+      }, { once: true });
+      v.addEventListener('error', function () { v.remove(); });
+      v.src = src;
+      fig.appendChild(v);
+    });
+  })();
+
+  /* мягкий запуск видео: браузер может отказать до первого действия пользователя */
+  function pjPlay(v) {
+    if (!v || !v.paused) return;
+    var p = v.play();
+    if (p && p.catch) p.catch(function () {});
+  }
+  (function retryPlayback() {
+    function kick() { $$('.pj-screen video').forEach(pjPlay); }
+    ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (e) {
+      window.addEventListener(e, kick, { once: true, passive: true });
+    });
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden) kick();
+    });
   })();
 
   /* ---------- 3. Эпизоды: липкая сцена на три экрана ---------- */
@@ -153,47 +197,44 @@
       return b;
     });
 
+    function stacked() { return window.matchMedia("(max-width: 860px)").matches; }
+
     var current = 0;
     function show(i) {
       if (i === current) return;
       current = i;
-      frames.forEach(function (f, n) { f.classList.toggle('is-on', n === i); });
+      frames.forEach(function (f, n) {
+        var on = n === i;
+        f.classList.toggle('is-on', on);
+        // на большом экране видео крутится только в текущем эпизоде;
+        // на мобильном эпизоды идут списком — там играют все
+        if (stacked()) return;
+        $$('video', f).forEach(function (v) { if (on) pjPlay(v); else v.pause(); });
+      });
       dots.forEach(function (d, n) { d.setAttribute('aria-current', n === i ? 'true' : 'false'); });
     }
 
-    function metrics() {
-      var stage = $('.pj-eps__stage', wrap);
-      var top = wrap.getBoundingClientRect().top + window.pageYOffset;
-      var span = wrap.offsetHeight - stage.offsetHeight;
-      return { top: top, span: span > 0 ? span : 1 };
-    }
+    // Каждому эпизоду соответствует своя полоса прокрутки: та, что сейчас
+    // пересекает середину экрана, и задаёт активный эпизод.
+    var steps = $$('.pj-eps__step', wrap);
+    steps.forEach(function (s, i) { s.setAttribute('data-i', String(i)); });
 
     function goTo(i) {
-      var m = metrics();
-      var y = m.top + (m.span * (i + 0.5)) / frames.length;
+      var s = steps[i];
+      if (!s) return;
+      var r = s.getBoundingClientRect();
+      var y = r.top + window.pageYOffset + r.height / 2 - window.innerHeight / 2;
       window.scrollTo({ top: y, behavior: reduced ? 'auto' : 'smooth' });
     }
 
-    var ticking = false;
-    function onScroll() {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(function () {
-        ticking = false;
-        // на мобильном сцена превращается в обычный список — скролл не нужен
-        if (window.matchMedia('(max-width: 860px)').matches) { show(0); return; }
-        var m = metrics();
-        var p = (window.pageYOffset - m.top) / m.span;
-        var i = Math.floor(p * frames.length);
-        if (i < 0) i = 0;
-        if (i > frames.length - 1) i = frames.length - 1;
-        show(i);
-      });
+    if ('IntersectionObserver' in window && steps.length === frames.length) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) show(Number(e.target.getAttribute('data-i')));
+        });
+      }, { rootMargin: '-50% 0px -50% 0px', threshold: 0 });
+      steps.forEach(function (s) { io.observe(s); });
     }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    onScroll();
   })();
 
   /* ---------- 4. Карта маршрута ---------- */
