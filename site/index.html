@@ -1,0 +1,1627 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Пушкин. Живой — мультимедийная выставка в Екатеринбурге</title>
+<!-- ============================================================
+     ПУШКИН. ЖИВОЙ — блок для HEAD (Tilda: Настройки сайта → Ещё → HTML-код для HEAD)
+     ============================================================ -->
+
+<meta name="description" content="«Пушкин. Живой» — мультимедийная выставка в Екатеринбурге. 5 октября — 29 ноября 2026, Свердловская киностудия. Фильм на трёх экранах: 40 минут, 10 эпизодов, более 100 живописных полотен.">
+<meta name="keywords" content="Пушкин Живой, мультимедийная выставка Екатеринбург, выставка Пушкин, Свердловская киностудия, иммерсивная выставка 2026">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Пушкин. Живой">
+<meta property="og:title" content="Пушкин. Живой — мультимедийная выставка в Екатеринбурге">
+<meta property="og:description" content="40 минут. 10 эпизодов. Три экрана. Более 100 полотен. 5 октября — 29 ноября 2026, Свердловская киностудия.">
+<meta property="og:url" content="https://пушкин-живой.рф/">
+<meta property="og:locale" content="ru_RU">
+<!-- ЗАМЕНИТЬ: загрузите обложку 1200×630 в Tilda и вставьте её адрес -->
+<meta property="og:image" content="https://пушкин-живой.рф/og-cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#06080F">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ExhibitionEvent",
+  "name": "Пушкин. Живой",
+  "description": "Мультимедийная выставка: фильм на трёх экранах о жизни А. С. Пушкина. 40 минут, 10 эпизодов, более 100 живописных полотен, ИИ-реконструкции.",
+  "startDate": "2026-10-05T11:10:00+05:00",
+  "endDate": "2026-11-29T19:50:00+05:00",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "typicalAgeRange": "0-",
+  "inLanguage": "ru",
+  "url": "https://пушкин-живой.рф/",
+  "location": {
+    "@type": "Place",
+    "name": "Свердловская киностудия",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "просп. Ленина, 50Ж",
+      "addressLocality": "Екатеринбург",
+      "addressCountry": "RU"
+    }
+  },
+  "offers": [
+    { "@type": "Offer", "name": "Полный билет, будни", "price": "700", "priceCurrency": "RUB", "availability": "https://schema.org/InStock", "url": "https://пушкин-живой.рф/#bilety" },
+    { "@type": "Offer", "name": "Полный билет, выходные", "price": "800", "priceCurrency": "RUB", "availability": "https://schema.org/InStock", "url": "https://пушкин-живой.рф/#bilety" },
+    { "@type": "Offer", "name": "Льготный, будни", "price": "600", "priceCurrency": "RUB", "availability": "https://schema.org/InStock", "url": "https://пушкин-живой.рф/#bilety" }
+  ]
+}
+</script>
+
+<style>
+/* ============================================================
+   ПУШКИН. ЖИВОЙ — мультимедийная выставка, Екатеринбург
+   Блок CSS для Tilda.  Всё изолировано под классом .pj
+   ============================================================ */
+
+.pj,
+.pj *,
+.pj *::before,
+.pj *::after { box-sizing: border-box; }
+
+.pj {
+  /* — чернильная ночь — */
+  --void:    #06080F;
+  --night:   #0B1020;
+  --panel:   #121A2E;
+  --raise:   #18223A;
+  --line:    #24314D;
+  /* — снег и бумага — */
+  --snow:    #EFEDE4;
+  --dim:     #8E9AB0;
+  --mute:    #5D6880;
+  /* — свеча и сургуч — */
+  --candle:  #D9A441;
+  --candle-d:#8A6520;
+  --surguch: #9E2B20;
+
+  --maxw: 1360px;
+  --pad: clamp(20px, 5vw, 72px);
+  --seam: 2px;
+
+  --f-display: 'Prata', 'Times New Roman', Georgia, serif;
+  --f-body: 'Golos Text', 'Helvetica Neue', Arial, sans-serif;
+  --f-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+
+  position: relative;
+  margin: 0;
+  padding: 0;
+  background: var(--void);
+  color: var(--snow);
+  font-family: var(--f-body);
+  font-size: clamp(15px, 0.55vw + 13px, 17px);
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+.pj img { max-width: 100%; display: block; }
+.pj a { color: inherit; text-decoration: none; }
+.pj p { margin: 0; }
+.pj h1, .pj h2, .pj h3, .pj h4 { margin: 0; font-weight: 400; text-wrap: balance; }
+.pj ul, .pj ol { margin: 0; padding: 0; list-style: none; }
+.pj button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+.pj :focus-visible { outline: 2px solid var(--candle); outline-offset: 3px; border-radius: 2px; }
+
+/* ---------- типографика ---------- */
+.pj-display { font-family: var(--f-display); font-weight: 400; line-height: 0.94; letter-spacing: -0.015em; }
+.pj-h2 { font-family: var(--f-display); font-size: clamp(2rem, 4.4vw, 3.6rem); line-height: 1.02; }
+.pj-h3 { font-family: var(--f-display); font-size: clamp(1.35rem, 2.2vw, 2rem); line-height: 1.12; }
+.pj-lead { font-size: clamp(1.05rem, 1.35vw, 1.3rem); line-height: 1.55; color: #D5D2C8; max-width: 62ch; }
+.pj-body { max-width: 66ch; color: #C6C4BC; }
+.pj-dim { color: var(--dim); }
+
+/* метка в духе шапки съёмочной таблицы: КАДР № / ХРОНО / ТИТРЫ */
+.pj-slug {
+  font-family: var(--f-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--candle);
+}
+.pj-slug--dim { color: var(--mute); }
+
+.pj-num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+
+/* ---------- каркас ---------- */
+.pj-wrap { max-width: var(--maxw); margin: 0 auto; padding-inline: var(--pad); }
+.pj-sec { position: relative; padding-block: clamp(72px, 10vw, 148px); }
+.pj-sec--tight { padding-block: clamp(56px, 7vw, 104px); }
+.pj-rule { height: 1px; background: linear-gradient(90deg, transparent, var(--line) 15%, var(--line) 85%, transparent); }
+
+.pj-sechead { display: flex; flex-direction: column; gap: 14px; margin-bottom: clamp(32px, 4vw, 56px); }
+.pj-sechead__row { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+
+/* ---------- триптих: три экрана ---------- */
+.pj-tri {
+  display: grid;
+  grid-template-columns: 1fr 1.86fr 1fr;
+  gap: var(--seam);
+  align-items: stretch;
+}
+.pj-screen {
+  position: relative;
+  overflow: hidden;
+  background: var(--night);
+  isolation: isolate;
+}
+.pj-screen::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: var(--grain);
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+.pj-screen__img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: saturate(0.62) contrast(1.06) brightness(0.72);
+  transform: scale(1.06);
+}
+/* процедурная заливка, пока нет фотографии */
+.pj-screen__wash {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(90% 70% at var(--wx, 30%) var(--wy, 25%), var(--washA, rgba(217,164,65,0.16)), transparent 62%),
+    radial-gradient(80% 90% at var(--wx2, 78%) var(--wy2, 82%), var(--washB, rgba(60,96,168,0.22)), transparent 66%),
+    linear-gradient(168deg, var(--raise), var(--night) 70%);
+}
+.pj-screen__cap {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 14px 14px 12px;
+  font-family: var(--f-mono);
+  font-size: 0.625rem;
+  line-height: 1.45;
+  letter-spacing: 0.04em;
+  color: #B9BCC4;
+  background: linear-gradient(transparent, rgba(6,8,15,0.9) 55%);
+}
+.pj-screen__tag {
+  position: absolute; top: 12px; left: 12px;
+  font-family: var(--f-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+/* ---------- ПРОЛОГ / первый экран ---------- */
+.pj-hero { position: relative; padding-top: clamp(28px, 5vw, 64px); padding-bottom: clamp(48px, 6vw, 88px); }
+.pj-hero__snow { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.5; }
+.pj-hero__inner { position: relative; z-index: 1; }
+
+.pj-hero__top {
+  display: flex; gap: 12px 26px; flex-wrap: wrap; align-items: baseline;
+  padding-bottom: 20px; border-bottom: 1px solid var(--line);
+}
+
+.pj-title { position: relative; margin: clamp(28px, 5vw, 56px) 0 0; }
+.pj-title__l1, .pj-title__l2 {
+  display: block;
+  font-family: var(--f-display);
+  font-size: clamp(3.2rem, 15.5vw, 12.5rem);
+  line-height: 0.82;
+  letter-spacing: -0.02em;
+}
+.pj-title__l2 { color: var(--candle); padding-left: 0.06em; }
+.pj-title__ink { display: block; width: min(100%, 640px); height: auto; margin-top: 6px; overflow: visible; }
+.pj-title__ink path { fill: none; stroke: var(--surguch); stroke-width: 3; stroke-linecap: round; }
+
+.pj-hero__sub {
+  display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: baseline;
+  margin-top: clamp(20px, 3vw, 34px);
+}
+.pj-hero__dates { font-family: var(--f-display); font-size: clamp(1.25rem, 2.4vw, 2rem); }
+
+.pj-hero__stage { margin-top: clamp(28px, 4vw, 48px); }
+.pj-hero__stage .pj-screen { aspect-ratio: auto; }
+.pj-hero__stage .pj-screen--c { aspect-ratio: 16 / 10; }
+
+.pj-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(126px, 1fr));
+  gap: 1px;
+  margin-top: var(--seam);
+  background: var(--line);
+}
+.pj-fact { background: var(--night); padding: 18px 16px 16px; }
+.pj-fact__n { font-family: var(--f-display); font-size: clamp(1.6rem, 2.6vw, 2.4rem); line-height: 1; display: block; }
+.pj-fact__l { margin-top: 6px; display: block; font-family: var(--f-mono); font-size: 0.625rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mute); }
+
+.pj-cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: clamp(26px, 3.5vw, 40px); }
+.pj-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 15px 26px;
+  font-family: var(--f-mono); font-size: 0.75rem; font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  border: 1px solid var(--candle);
+  color: var(--candle);
+  transition: background-color .25s, color .25s, border-color .25s;
+}
+.pj-btn:hover { background: var(--candle); color: var(--void); }
+.pj-btn--solid { background: var(--candle); color: var(--void); }
+.pj-btn--solid:hover { background: var(--snow); border-color: var(--snow); color: var(--void); }
+.pj-btn--ghost { border-color: var(--line); color: var(--snow); }
+.pj-btn--ghost:hover { border-color: var(--snow); background: transparent; color: var(--snow); }
+
+/* обратный отсчёт */
+.pj-count { display: flex; gap: 1px; margin-top: clamp(26px, 3.5vw, 40px); background: var(--line); width: fit-content; max-width: 100%; flex-wrap: wrap; }
+.pj-count__u { background: var(--night); padding: 14px 20px; min-width: 84px; }
+.pj-count__v { display: block; font-family: var(--f-mono); font-size: clamp(1.4rem, 2.4vw, 2rem); font-variant-numeric: tabular-nums; line-height: 1; color: var(--snow); }
+.pj-count__l { display: block; margin-top: 6px; font-family: var(--f-mono); font-size: 0.5625rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute); }
+
+/* ---------- О выставке ---------- */
+.pj-about { display: grid; grid-template-columns: 1fr; gap: clamp(28px, 4vw, 56px); }
+@media (min-width: 900px) { .pj-about { grid-template-columns: 1.15fr 1fr; align-items: start; } }
+.pj-about__voices { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.pj-voice { background: var(--night); padding: 18px 20px; display: grid; gap: 6px; }
+.pj-voice__n { font-family: var(--f-display); font-size: 1.15rem; }
+.pj-voice__d { font-size: 0.875rem; color: var(--dim); }
+
+/* ---------- ЭПИЗОДЫ: липкая сцена ---------- */
+.pj-eps { position: relative; }
+.pj-eps__stage { position: sticky; top: 0; z-index: 1; height: 100svh; min-height: 620px; display: flex; flex-direction: column; justify-content: center; padding-block: 28px; }
+.pj-eps__steps { position: relative; z-index: 2; margin-top: -100svh; pointer-events: none; }
+.pj-eps__step { height: 82svh; }
+
+/* все эпизоды лежат в одной ячейке грида: контейнер берёт высоту
+   самого высокого, показан всегда ровно один */
+.pj-eps__frames { display: grid; }
+.pj-ep {
+  grid-area: 1 / 1;
+  opacity: 0; visibility: hidden;
+  transition: opacity .55s ease, visibility .55s;
+  display: grid; gap: clamp(14px, 2vw, 24px);
+  align-content: center;
+}
+.pj-ep.is-on { opacity: 1; visibility: visible; }
+.pj-ep__head { display: flex; align-items: baseline; gap: 14px 22px; flex-wrap: wrap; }
+.pj-ep__years { font-family: var(--f-mono); font-size: 0.8125rem; letter-spacing: 0.1em; color: var(--candle); font-variant-numeric: tabular-nums; }
+.pj-ep__t { font-family: var(--f-display); font-size: clamp(1.5rem, 3.4vw, 2.9rem); line-height: 1.03; }
+.pj-ep__tri .pj-screen { aspect-ratio: auto; }
+.pj-ep__tri .pj-screen--c { aspect-ratio: 16 / 10; }
+.pj-ep__quote {
+  display: grid; gap: 8px;
+  border-left: 2px solid var(--surguch);
+  padding-left: 18px;
+  max-width: 78ch;
+}
+.pj-ep__q { font-family: var(--f-display); font-size: clamp(1.05rem, 1.7vw, 1.5rem); line-height: 1.35; color: #E4E1D6; }
+.pj-ep__who { font-family: var(--f-mono); font-size: 0.625rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mute); }
+
+/* линейка времени 1799 → 1837 */
+.pj-rail { display: flex; align-items: center; gap: 10px; margin-top: clamp(16px, 2vw, 26px); }
+.pj-rail__y { font-family: var(--f-mono); font-size: 0.625rem; letter-spacing: 0.12em; color: var(--mute); font-variant-numeric: tabular-nums; }
+.pj-rail__track { position: relative; flex: 1; display: flex; align-items: center; gap: 0; height: 26px; }
+.pj-rail__track::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: var(--line); }
+.pj-rail__dot { position: relative; flex: 1; height: 26px; display: grid; place-items: center; }
+.pj-rail__dot::after {
+  content: ''; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--mute); transition: background-color .3s, transform .3s, box-shadow .3s;
+}
+.pj-rail__dot[aria-current="true"]::after { background: var(--candle); transform: scale(1.7); box-shadow: 0 0 0 4px rgba(217,164,65,0.14); }
+.pj-rail__dot:hover::after { background: var(--snow); }
+
+/* ---------- Карта маршрута ---------- */
+.pj-map { display: grid; gap: clamp(20px, 3vw, 36px); }
+@media (min-width: 980px) { .pj-map { grid-template-columns: 1.55fr 1fr; align-items: start; } }
+.pj-map__fig { position: relative; border: 1px solid var(--line); background: linear-gradient(160deg, var(--night), var(--void)); }
+.pj-map__svg { display: block; width: 100%; height: auto; }
+.pj-map__grid line { stroke: var(--line); stroke-width: 0.6; opacity: 0.55; }
+.pj-map__route { fill: none; stroke: var(--candle-d); stroke-width: 1.4; stroke-dasharray: 5 5; opacity: 0.75; }
+.pj-map__pt circle { fill: var(--night); stroke: var(--mute); stroke-width: 1.6; transition: stroke .25s, fill .25s, r .25s; }
+.pj-map__pt text { fill: var(--dim); font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.04em; transition: fill .25s; }
+.pj-map__pt { cursor: pointer; }
+.pj-map__pt:hover circle, .pj-map__pt.is-on circle { fill: var(--candle); stroke: var(--candle); }
+.pj-map__pt:hover text, .pj-map__pt.is-on text { fill: var(--snow); }
+.pj-map__pt--end circle { stroke: var(--surguch); }
+.pj-map__info { border: 1px solid var(--line); background: var(--night); padding: clamp(20px, 2.6vw, 30px); display: grid; gap: 12px; align-content: start; min-height: 220px; }
+.pj-map__info-y { font-family: var(--f-mono); font-size: 0.75rem; letter-spacing: 0.14em; color: var(--candle); }
+.pj-map__info-t { font-family: var(--f-display); font-size: clamp(1.4rem, 2.4vw, 2rem); line-height: 1.06; }
+.pj-map__info-d { color: #C6C4BC; }
+
+/* ---------- Технология ---------- */
+.pj-tech { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.pj-tech__i { background: var(--night); padding: clamp(22px, 2.6vw, 32px); display: grid; gap: 10px; align-content: start; }
+.pj-tech__n { font-family: var(--f-mono); font-size: 0.625rem; letter-spacing: 0.2em; color: var(--candle); }
+.pj-tech__t { font-family: var(--f-display); font-size: 1.3rem; }
+.pj-tech__d { font-size: 0.9375rem; color: var(--dim); }
+
+/* ---------- Галерея ---------- */
+.pj-gal { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--seam); }
+.pj-gal__i { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--night); cursor: zoom-in; }
+.pj-gal__i img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(0.66) brightness(0.78); transition: transform .6s cubic-bezier(.2,.7,.3,1), filter .5s; }
+.pj-gal__i:hover img { transform: scale(1.05); filter: saturate(0.9) brightness(0.95); }
+.pj-gal__i:nth-child(1), .pj-gal__i:nth-child(8) { grid-column: span 2; aspect-ratio: 8 / 3; }
+@media (max-width: 640px) { .pj-gal__i:nth-child(1), .pj-gal__i:nth-child(8) { grid-column: span 1; aspect-ratio: 4 / 3; } }
+
+.pj-lb { position: fixed; inset: 0; z-index: 9999; background: rgba(4,5,10,0.94); display: none; place-items: center; padding: 4vw; }
+.pj-lb.is-on { display: grid; }
+.pj-lb img { max-width: 100%; max-height: 88vh; width: auto; object-fit: contain; }
+.pj-lb__x { position: absolute; top: 18px; right: 22px; font-family: var(--f-mono); font-size: 0.75rem; letter-spacing: 0.16em; color: var(--dim); }
+.pj-lb__x:hover { color: var(--snow); }
+
+/* ---------- Билеты ---------- */
+.pj-tick { display: grid; gap: clamp(24px, 3.4vw, 44px); }
+@media (min-width: 1000px) { .pj-tick { grid-template-columns: 1.35fr 1fr; align-items: start; } }
+
+.pj-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.pj-table th, .pj-table td { text-align: left; padding: 14px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.pj-table thead th { font-family: var(--f-mono); font-size: 0.625rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute); font-weight: 500; border-bottom-color: var(--mute); }
+.pj-table td:nth-child(2), .pj-table td:nth-child(3),
+.pj-table th:nth-child(2), .pj-table th:nth-child(3) { text-align: right; width: 108px; white-space: nowrap; }
+.pj-table__name { display: block; }
+.pj-table__note { display: block; margin-top: 4px; font-size: 0.8125rem; color: var(--mute); }
+.pj-table__p { font-family: var(--f-mono); font-size: 1.05rem; color: var(--snow); }
+.pj-table__na { font-family: var(--f-mono); font-size: 0.75rem; color: var(--mute); }
+.pj-table__free { color: var(--candle); }
+.pj-tablewrap { overflow-x: auto; }
+
+.pj-calc { border: 1px solid var(--line); background: var(--night); padding: clamp(22px, 2.8vw, 32px); display: grid; gap: 18px; align-content: start; }
+.pj-field { display: grid; gap: 8px; }
+.pj-field > label { font-family: var(--f-mono); font-size: 0.625rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute); }
+.pj-seg { display: flex; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.pj-seg button { flex: 1; padding: 11px 8px; background: var(--panel); font-family: var(--f-mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); transition: background-color .2s, color .2s; }
+.pj-seg button[aria-pressed="true"] { background: var(--candle); color: var(--void); }
+.pj-select, .pj-input, .pj-textarea {
+  width: 100%; padding: 12px 14px;
+  background: var(--panel); border: 1px solid var(--line); color: var(--snow);
+  font-family: var(--f-body); font-size: 0.9375rem; border-radius: 0;
+  appearance: none;
+}
+.pj-select { background-image: linear-gradient(45deg, transparent 50%, var(--dim) 50%), linear-gradient(135deg, var(--dim) 50%, transparent 50%); background-position: right 18px center, right 12px center; background-size: 6px 6px, 6px 6px; background-repeat: no-repeat; padding-right: 40px; }
+.pj-input::placeholder, .pj-textarea::placeholder { color: var(--mute); }
+.pj-stepper { display: flex; align-items: stretch; border: 1px solid var(--line); width: fit-content; }
+.pj-stepper button { width: 44px; background: var(--panel); font-family: var(--f-mono); font-size: 1.1rem; color: var(--dim); }
+.pj-stepper button:hover { color: var(--candle); }
+.pj-stepper output { min-width: 62px; display: grid; place-items: center; font-family: var(--f-mono); font-size: 1.05rem; font-variant-numeric: tabular-nums; background: var(--night); }
+.pj-calc__out { border-top: 1px solid var(--line); padding-top: 16px; display: grid; gap: 8px; }
+.pj-calc__sum { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.pj-calc__sum b { font-family: var(--f-display); font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 400; color: var(--candle); font-variant-numeric: tabular-nums; }
+.pj-calc__hint { font-size: 0.875rem; color: var(--dim); min-height: 2.6em; }
+.pj-calc__hint b { color: var(--candle); font-weight: 500; }
+
+.pj-widget { border: 1px dashed var(--line); padding: clamp(20px, 2.6vw, 28px); margin-top: 22px; display: grid; gap: 10px; }
+
+/* ---------- Расписание ---------- */
+.pj-ses { display: grid; grid-template-columns: repeat(auto-fit, minmax(104px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.pj-ses__i { background: var(--night); padding: 16px 12px; display: grid; gap: 5px; }
+.pj-ses__t { font-family: var(--f-mono); font-size: 1.1rem; font-variant-numeric: tabular-nums; }
+.pj-ses__n { font-family: var(--f-mono); font-size: 0.5625rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mute); }
+.pj-ses__i--lucky { background: var(--panel); }
+.pj-ses__i--lucky .pj-ses__t { color: var(--candle); }
+.pj-ses__i--lucky .pj-ses__n { color: var(--candle-d); }
+
+/* ---------- Заявка ---------- */
+.pj-form { display: grid; gap: 16px; }
+.pj-form__row { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.pj-form__note { font-size: 0.8125rem; color: var(--mute); }
+.pj-groups { display: grid; gap: clamp(24px, 3.4vw, 44px); }
+@media (min-width: 940px) { .pj-groups { grid-template-columns: 1fr 1.1fr; align-items: start; } }
+
+/* ---------- FAQ ---------- */
+.pj-faq { border-top: 1px solid var(--line); }
+.pj-faq details { border-bottom: 1px solid var(--line); }
+.pj-faq summary { list-style: none; cursor: pointer; padding: 20px 44px 20px 0; position: relative; font-family: var(--f-display); font-size: clamp(1.05rem, 1.7vw, 1.35rem); }
+.pj-faq summary::-webkit-details-marker { display: none; }
+.pj-faq summary::after { content: '+'; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-family: var(--f-mono); font-size: 1.2rem; color: var(--candle); transition: transform .25s; }
+.pj-faq details[open] summary::after { content: '−'; }
+.pj-faq__a { padding: 0 0 22px; color: #C6C4BC; max-width: 72ch; }
+
+/* ---------- Контакты / подвал ---------- */
+.pj-place { display: grid; gap: clamp(22px, 3vw, 40px); }
+@media (min-width: 900px) { .pj-place { grid-template-columns: 1fr 1fr; } }
+.pj-place__card { border: 1px solid var(--line); background: var(--night); padding: clamp(22px, 2.8vw, 34px); display: grid; gap: 14px; align-content: start; }
+.pj-dl { display: grid; gap: 14px; }
+.pj-dl__i { display: grid; gap: 4px; }
+.pj-dl__k { font-family: var(--f-mono); font-size: 0.625rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute); }
+.pj-dl__v { font-size: 1.0625rem; }
+
+.pj-foot { border-top: 1px solid var(--line); padding-block: clamp(36px, 4vw, 56px) clamp(28px, 3vw, 44px); }
+.pj-foot__grid { display: flex; flex-wrap: wrap; gap: 24px 48px; justify-content: space-between; align-items: flex-end; }
+.pj-foot__legal { font-size: 0.8125rem; color: var(--mute); max-width: 56ch; }
+
+/* ---------- навигация ---------- */
+.pj-nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(6,8,15,0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: border-color .3s, background-color .3s;
+}
+.pj-nav.is-stuck { border-bottom-color: var(--line); }
+.pj-nav__in { max-width: var(--maxw); margin: 0 auto; padding: 12px var(--pad); display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.pj-nav__brand { font-family: var(--f-display); font-size: 1.05rem; letter-spacing: 0.01em; white-space: nowrap; }
+.pj-nav__brand span { color: var(--candle); }
+.pj-nav__links { display: none; gap: 26px; }
+@media (min-width: 940px) { .pj-nav__links { display: flex; } }
+.pj-nav__links a { font-family: var(--f-mono); font-size: 0.6875rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); transition: color .2s; }
+.pj-nav__links a:hover { color: var(--candle); }
+.pj-nav__btn { padding: 10px 18px; font-size: 0.6875rem; }
+
+/* ---------- адаптив ---------- */
+@media (max-width: 860px) {
+  .pj-tri { grid-template-columns: 1fr; }
+  .pj-hero__stage .pj-screen, .pj-ep__tri .pj-screen { aspect-ratio: 16 / 10; }
+  .pj-hero__stage .pj-screen--l, .pj-hero__stage .pj-screen--r { display: none; }
+
+  /* эпизоды разворачиваются в обычный список — скролл-сцена только на большом экране */
+  .pj-eps__stage { position: static; height: auto; min-height: 0; padding-block: 0; }
+  .pj-eps__steps { display: none; }
+  .pj-eps__frames { gap: 56px; }
+  .pj-ep { grid-area: auto; opacity: 1; visibility: visible; }
+  .pj-rail { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pj *, .pj *::before, .pj *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .pj-hero__snow { display: none; }
+}
+
+/* ---------- анимация входа: чернила и подпись ---------- */
+@keyframes pj-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes pj-draw { to { stroke-dashoffset: 0; } }
+
+.pj-anim { animation: pj-rise .9s cubic-bezier(.2,.7,.3,1) both; }
+.pj-anim--1 { animation-delay: .05s; }
+.pj-anim--2 { animation-delay: .16s; }
+.pj-anim--3 { animation-delay: .28s; }
+.pj-anim--4 { animation-delay: .4s; }
+.pj-title__ink path { stroke-dasharray: 700; stroke-dashoffset: 700; animation: pj-draw 1.8s .5s cubic-bezier(.4,.1,.2,1) forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pj-anim { animation: none; }
+  .pj-title__ink path { stroke-dashoffset: 0; animation: none; }
+}
+
+</style>
+</head>
+<body style="margin:0;background:#06080F">
+<!-- ============================================================
+     ПУШКИН. ЖИВОЙ — блок BODY (Tilda: блок T123 «HTML-код»)
+     Всё содержимое обёрнуто в .pj, чтобы стили Tilda не пересекались.
+     ============================================================ -->
+
+<div class="pj" id="pj">
+
+  <!-- ══════════ НАВИГАЦИЯ ══════════ -->
+  <nav class="pj-nav" id="pj-nav" aria-label="Разделы страницы">
+    <div class="pj-nav__in">
+      <a class="pj-nav__brand" href="#pj">Пушкин.&nbsp;<span>Живой</span></a>
+      <div class="pj-nav__links">
+        <a href="#o-vystavke">Выставка</a>
+        <a href="#epizody">Эпизоды</a>
+        <a href="#marshrut">Маршрут</a>
+        <a href="#zal">Зал</a>
+        <a href="#bilety">Билеты</a>
+        <a href="#seansy">Расписание</a>
+        <a href="#gruppam">Группам</a>
+        <a href="#kak-dobratsya">Как дойти</a>
+      </div>
+      <a class="pj-btn pj-btn--solid pj-nav__btn" href="#bilety">Билеты</a>
+    </div>
+  </nav>
+
+  <!-- ══════════ ПРОЛОГ ══════════ -->
+  <header class="pj-hero pj-wrap">
+    <canvas class="pj-hero__snow" id="pj-snow" aria-hidden="true"></canvas>
+
+    <div class="pj-hero__inner">
+      <div class="pj-hero__top pj-anim pj-anim--1">
+        <span class="pj-slug">Екатеринбург · Свердловская киностудия</span>
+        <span class="pj-slug pj-slug--dim">Мультимедийная выставка</span>
+        <span class="pj-slug pj-slug--dim">0+</span>
+      </div>
+
+      <h1 class="pj-title pj-anim pj-anim--2">
+        <span class="pj-title__l1">Пушкин.</span>
+        <span class="pj-title__l2">Живой</span>
+        <svg class="pj-title__ink" viewBox="0 0 640 40" aria-hidden="true" focusable="false">
+          <path d="M4 26 C 88 8, 172 34, 258 20 S 424 6, 512 24 S 604 34, 636 18" />
+        </svg>
+      </h1>
+
+      <div class="pj-hero__sub pj-anim pj-anim--3">
+        <span class="pj-hero__dates">5 октября — 29 ноября 2026</span>
+        <span class="pj-slug pj-slug--dim">56 дней · 13 сеансов ежедневно</span>
+      </div>
+
+      <p class="pj-lead pj-anim pj-anim--3" style="margin-top:20px">
+        Сорок минут между 1799 и 1837 годом. Фильм идёт сразу на трёх экранах:
+        то, что герой видит, то, что он вспоминает, и то, о чём он молчит.
+      </p>
+
+      <!-- три экрана -->
+      <div class="pj-hero__stage pj-tri pj-anim pj-anim--4">
+        <figure class="pj-screen pj-screen--l">
+          <img class="pj-screen__img" src="assets/hall/13.webp" alt="Левый экран зала мультимедийной выставки" loading="eager" decoding="async">
+          <span class="pj-screen__tag">Левый экран</span>
+        </figure>
+        <figure class="pj-screen pj-screen--c">
+          <img class="pj-screen__img" src="assets/hall/22.webp" alt="Центральный экран: проекция во весь зал" loading="eager" decoding="async">
+          <span class="pj-screen__tag">Центр</span>
+          <figcaption class="pj-screen__cap">Три проекции идут одновременно. Персонажи переходят с экрана на экран.</figcaption>
+        </figure>
+        <figure class="pj-screen pj-screen--r">
+          <img class="pj-screen__img" src="assets/hall/10.webp" alt="Правый экран зала мультимедийной выставки" loading="eager" decoding="async">
+          <span class="pj-screen__tag">Правый экран</span>
+        </figure>
+      </div>
+
+      <div class="pj-facts">
+        <div class="pj-fact"><span class="pj-fact__n">40</span><span class="pj-fact__l">минут фильма</span></div>
+        <div class="pj-fact"><span class="pj-fact__n">10</span><span class="pj-fact__l">эпизодов</span></div>
+        <div class="pj-fact"><span class="pj-fact__n">3</span><span class="pj-fact__l">экрана</span></div>
+        <div class="pj-fact"><span class="pj-fact__n">100+</span><span class="pj-fact__l">полотен</span></div>
+        <div class="pj-fact"><span class="pj-fact__n">13</span><span class="pj-fact__l">сеансов в день</span></div>
+      </div>
+
+      <div class="pj-cta">
+        <a class="pj-btn pj-btn--solid" href="#bilety">Купить билет</a>
+        <a class="pj-btn pj-btn--ghost" href="#epizody">Смотреть эпизоды</a>
+      </div>
+
+      <div class="pj-count" id="pj-count" aria-label="Обратный отсчёт до открытия">
+        <div class="pj-count__u"><span class="pj-count__v" data-c="d">—</span><span class="pj-count__l">дней</span></div>
+        <div class="pj-count__u"><span class="pj-count__v" data-c="h">—</span><span class="pj-count__l">часов</span></div>
+        <div class="pj-count__u"><span class="pj-count__v" data-c="m">—</span><span class="pj-count__l">минут</span></div>
+        <div class="pj-count__u"><span class="pj-count__v" data-c="s">—</span><span class="pj-count__l">секунд</span></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="pj-wrap"><div class="pj-rule"></div></div>
+
+  <!-- ══════════ О ВЫСТАВКЕ ══════════ -->
+  <section class="pj-sec pj-wrap" id="o-vystavke">
+    <div class="pj-sechead">
+      <span class="pj-slug">Что происходит в зале</span>
+      <h2 class="pj-h2">Не экспозиция.<br>Сорокаминутный фильм,<br>в который вы входите.</h2>
+    </div>
+
+    <div class="pj-about">
+      <div style="display:grid;gap:22px">
+        <p class="pj-lead">
+          Вы садитесь в тёмном зале, и три проекции окружают вас с трёх сторон.
+          На центральном экране идёт основное действие; боковые досказывают его —
+          деталью, рукописью, пейзажем за окном кареты.
+        </p>
+        <p class="pj-body">
+          Фильм собран из более чем ста живописных полотен — Айвазовский, Кипренский,
+          Врубель, Левитан, Куинджи, Садовников, Беггров, — из графики Нади Рушевой
+          и из ИИ-реконструкций тех сцен, которых живопись не сохранила: комната на
+          Фонтанке, ночь в Кишинёве, часы в доме Пушкиных.
+        </p>
+        <p class="pj-body">
+          Пушкин здесь не памятник и не портрет в раме. Он опаздывает, влюбляется,
+          злится, играет в карты, пишет ночами и спорит с императором. Отсюда
+          и название.
+        </p>
+        <div class="pj-cta" style="margin-top:6px">
+          <a class="pj-btn pj-btn--ghost" href="#zal">Посмотреть зал</a>
+        </div>
+      </div>
+
+      <div>
+        <span class="pj-slug pj-slug--dim" style="display:block;margin-bottom:12px">Голоса фильма</span>
+        <div class="pj-about__voices">
+          <div class="pj-voice"><span class="pj-voice__n">Пушкин</span><span class="pj-voice__d">Письма, дневники, стихи — только его собственные слова</span></div>
+          <div class="pj-voice"><span class="pj-voice__n">Натали</span><span class="pj-voice__d">История, рассказанная с другой стороны бального зала</span></div>
+          <div class="pj-voice"><span class="pj-voice__n">Муза</span><span class="pj-voice__d">Голос, который слышит только он</span></div>
+          <div class="pj-voice"><span class="pj-voice__n">Диктор</span><span class="pj-voice__d">Даты, факты, документы — то, что проверяется</span></div>
+          <div class="pj-voice"><span class="pj-voice__n">Хор</span><span class="pj-voice__d">В финале стихотворение читают все — от семилетнего до взрослого</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ ЭПИЗОДЫ ══════════ -->
+  <section class="pj-sec pj-sec--tight" id="epizody">
+    <div class="pj-wrap pj-sechead">
+      <div class="pj-sechead__row">
+        <span class="pj-slug">Хронометраж</span>
+        <span class="pj-slug pj-slug--dim">1799 — 1837 · десять эпизодов</span>
+      </div>
+      <h2 class="pj-h2">Из чего собран фильм</h2>
+    </div>
+
+    <div class="pj-eps" id="pj-eps">
+      <div class="pj-eps__stage">
+        <div class="pj-wrap" style="width:100%">
+          <div class="pj-eps__frames" id="pj-ep-frames">
+
+            <!-- 00 · ПРОЛОГ -->
+            <article class="pj-ep is-on" data-i="0" style="--washA:rgba(90,130,200,.20);--washB:rgba(158,43,32,.16);--wx:26%;--wy:20%;--wx2:80%;--wy2:84%">
+              <div class="pj-ep__head">
+                <span class="pj-ep__years">Пролог · 27 января 1837</span>
+                <h3 class="pj-ep__t">Мгновение до выстрела</h3>
+              </div>
+              <div class="pj-ep__tri pj-tri">
+                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">ИИ-реконструкция: внутри экипажа — рука в перчатке, едва заметная дрожь ткани</figcaption></figure>
+                <figure class="pj-screen pj-screen--c"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">«Зимний Петербург» · А. К. Беггров · Челябинский музей изобразительных искусств</figcaption></figure>
+                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">«Приезд. Выбор места дуэли» · Д. Белюкин · 2022—2023</figcaption></figure>
+              </div>
+              <blockquote class="pj-ep__quote">
+                <p class="pj-ep__q">«О люди! жалкий род, достойный слёз и смеха! Жрецы минутного, поклонники успеха!»</p>
+                <span class="pj-ep__who">Пушкин · Санкт-Петербург, 15:30</span>
+              </blockquote>
+            </article>
+
+            <!-- 01 · ДЕТСТВО -->
+            <article class="pj-ep" data-i="1" style="--washA:rgba(217,164,65,.20);--washB:rgba(120,90,60,.20);--wx:30%;--wy:26%;--wx2:76%;--wy2:80%">
+              <div class="pj-ep__head">
+                <span class="pj-ep__years">Эпизод 1 · 1799—1811</span>
+                <h3 class="pj-ep__t">Детство. Москва</h3>
+              </div>
+              <div class="pj-ep__tri pj-tri">
+                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">Оживлённая графика пером и тушью по рисункам Нади Рушевой</figcaption></figure>
+                <figure class="pj-screen pj-screen--c"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">Москва рубежа веков: Красная площадь, Спасские ворота · по картинам Ф. Я. Алексеева</figcaption></figure>
+                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">Бабушка Мария Алексеевна Ганнибал · семейная хроника Пушкиных</figcaption></figure>
+              </div>
+              <blockquote class="pj-ep__quote">
+                <p class="pj-ep__q">«Учился я плохо. Но был до книг охотчив. Единственно, кто любили меня без условий, были сестра Оля и няня.»</p>
+                <span class="pj-ep__who">Пушкин</span>
+              </blockquote>
+            </article>
+
+            <!-- 02 · ЛИЦЕЙ -->
+            <article class="pj-ep" data-i="2" style="--washA:rgba(217,164,65,.22);--washB:rgba(70,110,160,.18);--wx:22%;--wy:30%;--wx2:84%;--wy2:74%">
+              <div class="pj-ep__head">
+                <span class="pj-ep__years">Эпизод 2 · 1811—1817</span>
+                <h3 class="pj-ep__t">Юность. Лицейское братство</h3>
+              </div>
+              <div class="pj-ep__tri pj-tri">
+                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">А. А. Тон · «Царское Село. Лицей» · 1822</figcaption></figure>
+                <figure class="pj-screen pj-screen--c"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">Э. Гау · Церковь в Большом Царскосельском дворце · 1860-е · ГМЗ «Царское Село»</figcaption></figure>
+                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">Л. Премацци · Малиновая гостиная в Александровском дворце · 1863</figcaption></figure>
+              </div>
+              <blockquote class="pj-ep__quote">
+                <p class="pj-ep__q">«В те дни, когда в садах Лицея я безмятежно расцветал… являться муза стала мне.»</p>
+                <span class="pj-ep__who">Пушкин · подъём в 6:00, отбой в 22:00, шесть лет</span>
+              </blockquote>
+            </article>
+
+            <!-- 03 · ПЕТЕРБУРГ -->
+            <article class="pj-ep" data-i="3" style="--washA:rgba(120,150,200,.20);--washB:rgba(217,164,65,.14);--wx:34%;--wy:22%;--wx2:72%;--wy2:82%">
+              <div class="pj-ep__head">
+                <span class="pj-ep__years">Эпизод 3 · 1817—1820</span>
+                <h3 class="pj-ep__t">Петербург цитирует Пушкина</h3>
+              </div>
+              <div class="pj-ep__tri pj-tri">
+                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">ИИ-реконструкция: комната поэта на Фонтанке · интерьер в стиле бидермайер</figcaption></figure>
+                <figure class="pj-screen pj-screen--c"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">В. С. Садовников · «Вид Невы и Петропавловской крепости» · 1847</figcaption></figure>
+                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">В. С. Садовников · «Вид Казанского собора»</figcaption></figure>
+              </div>
+              <blockquote class="pj-ep__quote">
+                <p class="pj-ep__q">«Я встаю в семь часов, пишу до обеда. Обедаю поздно. После — театр, или карты, или снова стихи. Я почти счастлив.»</p>
+                <span class="pj-ep__who">Пушкин · коллежский секретарь, жалованье 700 рублей в год</span>
+              </blockquote>
+            </article>
+
+            <!-- 04 · ЮГ -->
+            <article class="pj-ep" data-i="4" style="--washA:rgba(217,164,65,.24);--washB:rgba(40,140,150,.20);--wx:20%;--wy:74%;--wx2:80%;--wy2:24%">
+              <div class="pj-ep__head">
+                <span class="pj-ep__years">Эпизод 4 · 1820—1824</span>
+                <h3 class="pj-ep__t">Юг. Изгнание как свобода</h3>
+              </div>
+              <div class="pj-ep__tri pj-tri">
+                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">А. И. Куинджи · «Днепр утром» · 1881</figcaption></figure>
+                <figure class="pj-screen pj-screen--c"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">И. К. Айвазовский · «Пушкин на берегу Чёрного моря» · 1887</figcaption></figure>
+                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">И. К. Айвазовский · «Гурзуф» · 1859 · Художественный музей, Харьков</figcaption></figure>
+              </div>
+              <blockquote class="pj-ep__quote">
+                <p class="pj-ep__q">«Лети, корабль, неси меня к пределам дальным по грозной прихоти обманчивых морей…»</p>
+                <span class="pj-ep__who">Пушкин · Екатеринослав, Кавказ, Гурзуф, Кишинёв, Одесса</span>
+              </blockquote>
+            </article>
+
+            <!-- 05 · МИХАЙЛОВСКОЕ -->
+            <article class="pj-ep" data-i="5" style="--washA:rgba(150,170,140,.18);--washB:rgba(217,164,65,.18);--wx:28%;--wy:34%;--wx2:78%;--wy2:78%">
+              <div class="pj-ep__head">
+                <span class="pj-ep__years">Эпизод 5 · 1824—1826</span>
+                <h3 class="pj-ep__t">Михайловское</h3>
+              </div>
+              <div class="pj-ep__tri pj-tri">
+                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">П. А. Александров с оригинала И. С. Иванова · «Михайловское. Вид усадьбы» · 1837</figcaption></figure>
+                <figure class="pj-screen pj-screen--c"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">М. А. Врубель · «Царевна-Лебедь» · 1900 · ГТГ — оживают сказки няни</figcaption></figure>
+                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">И. Геллер · «Пушкин и няня»</figcaption></figure>
+              </div>
+              <blockquote class="pj-ep__quote">
+                <p class="pj-ep__q">«Подруга дней моих суровых, голубка дряхлая моя! Одна в глуши лесов сосновых давно, давно ты ждёшь меня…»</p>
+                <span class="pj-ep__who">Пушкин · «Няне», 1826 · триста вёрст от Петербурга</span>
+              </blockquote>
+            </article>
+
+            <!-- 06 · ИМПЕРАТОР -->
+            <article class="pj-ep" data-i="6" style="--washA:rgba(158,43,32,.18);--washB:rgba(217,164,65,.18);--wx:76%;--wy:24%;--wx2:24%;--wy2:80%">
+              <div class="pj-ep__head">
+                <span class="pj-ep__years">Эпизод 6 · 1826—1830</span>
+                <h3 class="pj-ep__t">Возвращение. Поэт и император</h3>
+              </div>
+              <div class="pj-ep__tri pj-tri">
+                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">Дж. Доу · Портрет А. Х. Бенкендорфа · ок. 1819—1820 · Военная галерея Зимнего дворца</figcaption></figure>
+                <figure class="pj-screen pj-screen--c"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">О. А. Кипренский · Портрет А. С. Пушкина · 1827 · холст, масло · ГТГ</figcaption></figure>
+                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">Дж. Доу · Портрет великого князя Николая Павловича · 1821</figcaption></figure>
+              </div>
+              <blockquote class="pj-ep__quote">
+                <p class="pj-ep__q">«Я только что разговаривал с умнейшим человеком России.»</p>
+                <span class="pj-ep__who">Николай I · 8 сентября 1826, сразу после разговора в Кремле</span>
+              </blockquote>
+            </article>
+
+            <!-- 07 · БОЛДИНО -->
+            <article class="pj-ep" data-i="7" style="--washA:rgba(217,164,65,.26);--washB:rgba(140,80,40,.20);--wx:32%;--wy:70%;--wx2:74%;--wy2:26%">
+              <div class="pj-ep__head">
+                <span class="pj-ep__years">Эпизод 7 · осень 1830</span>
+                <h3 class="pj-ep__t">Болдино</h3>
+              </div>
+              <div class="pj-ep__tri pj-tri">
+                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">А. А. Пластов · «Пушкин в Болдине» · 1949 · фонды ГМП</figcaption></figure>
+                <figure class="pj-screen pj-screen--c"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">И. И. Левитан · «Золотая осень» · 1895 · ГТГ</figcaption></figure>
+                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">В. Хазов · Болдинские акварели · холерные карантины перекрыли дороги</figcaption></figure>
+              </div>
+              <blockquote class="pj-ep__quote">
+                <p class="pj-ep__q">«Белкин — мой добрый приятель. Если б нашёлся издатель, я б охотно его сочинениям дал своё имя…»</p>
+                <span class="pj-ep__who">Пушкин · письмо Плетнёву, октябрь 1830</span>
+              </blockquote>
+            </article>
+
+            <!-- 08 · НАТАЛИ -->
+            <article class="pj-ep" data-i="8" style="--washA:rgba(220,190,190,.16);--washB:rgba(217,164,65,.18);--wx:24%;--wy:26%;--wx2:80%;--wy2:76%">
+              <div class="pj-ep__head">
+                <span class="pj-ep__years">Эпизод 8 · 1830—1836</span>
+                <h3 class="pj-ep__t">Натали</h3>
+              </div>
+              <div class="pj-ep__tri pj-tri">
+                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">А. П. Брюллов · Н. Н. Пушкина · 1831—1832 · бумага, акварель</figcaption></figure>
+                <figure class="pj-screen pj-screen--c"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">В. Комаров · «Знакомство Пушкина с Гончаровой» · бал у танцмейстера Йогеля, зима 1828</figcaption></figure>
+                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">Н. Рушева · «Н. Н. Пушкина с детьми» · 1966 · из цикла «Пушкиниана»</figcaption></figure>
+              </div>
+              <blockquote class="pj-ep__quote">
+                <p class="pj-ep__q">«Я влюблён, я очарован, я совсем огончарован!»</p>
+                <span class="pj-ep__who">Пушкин · ему двадцать девять, ей шестнадцать</span>
+              </blockquote>
+            </article>
+
+            <!-- 09 · ФИНАЛ -->
+            <article class="pj-ep" data-i="9" style="--washA:rgba(158,43,32,.22);--washB:rgba(60,80,130,.22);--wx:70%;--wy:78%;--wx2:26%;--wy2:22%">
+              <div class="pj-ep__head">
+                <span class="pj-ep__years">Эпизод 9 · 1837</span>
+                <h3 class="pj-ep__t">Финал</h3>
+              </div>
+              <div class="pj-ep__tri pj-tri">
+                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">ИИ-реконструкция: дневник Пушкина, записи 1—3 ноября 1836 года</figcaption></figure>
+                <figure class="pj-screen pj-screen--c"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">Ю. Г. Чистяков · из серии «А. Пушкин» · бумага, акварель · 1982</figcaption></figure>
+                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">ИИ-реконструкция: часы в доме Пушкиных — время идёт назад</figcaption></figure>
+              </div>
+              <blockquote class="pj-ep__quote">
+                <p class="pj-ep__q">«Требую, чтобы ты не мстил за мою смерть, прощаю ему и хочу умереть христианином.»</p>
+                <span class="pj-ep__who">Пушкин · Чёрная речка, 27 января 1837, 16:30</span>
+              </blockquote>
+            </article>
+
+          </div>
+
+          <div class="pj-rail" aria-hidden="false">
+            <span class="pj-rail__y">1799</span>
+            <div class="pj-rail__track" id="pj-rail" role="tablist" aria-label="Переход к эпизоду"></div>
+            <span class="pj-rail__y">1837</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pj-eps__steps" aria-hidden="true">
+        <div class="pj-eps__step"></div><div class="pj-eps__step"></div><div class="pj-eps__step"></div>
+        <div class="pj-eps__step"></div><div class="pj-eps__step"></div><div class="pj-eps__step"></div>
+        <div class="pj-eps__step"></div><div class="pj-eps__step"></div><div class="pj-eps__step"></div>
+        <div class="pj-eps__step"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pj-wrap"><div class="pj-rule"></div></div>
+
+  <!-- ══════════ МАРШРУТ ══════════ -->
+  <section class="pj-sec pj-wrap" id="marshrut">
+    <div class="pj-sechead">
+      <span class="pj-slug">Схема маршрута</span>
+      <h2 class="pj-h2">Тридцать семь лет на одной карте</h2>
+      <p class="pj-body">Ссылка, к которой он не просился, оказалась дорогой длиной в полжизни. Нажмите точку — она расскажет свой год.</p>
+    </div>
+
+    <div class="pj-map">
+      <figure class="pj-map__fig">
+        <svg class="pj-map__svg" viewBox="0 0 1000 620" role="img" aria-label="Схема мест жизни Пушкина: Москва, Царское Село, Петербург, юг, Михайловское, Болдино, Чёрная речка">
+          <g class="pj-map__grid">
+            <line x1="152" y1="40" x2="152" y2="580"></line>
+            <line x1="316" y1="40" x2="316" y2="580"></line>
+            <line x1="479" y1="40" x2="479" y2="580"></line>
+            <line x1="643" y1="40" x2="643" y2="580"></line>
+            <line x1="807" y1="40" x2="807" y2="580"></line>
+            <line x1="60" y1="150" x2="950" y2="150"></line>
+            <line x1="60" y1="257" x2="950" y2="257"></line>
+            <line x1="60" y1="363" x2="950" y2="363"></line>
+            <line x1="60" y1="470" x2="950" y2="470"></line>
+          </g>
+          <polyline class="pj-map__route" points="545,210 262,122 234,97 439,403 766,523 410,510 185,443 262,457 193,177 545,210 860,230 234,97 200,74"></polyline>
+          <g id="pj-map-pts">
+            <g class="pj-map__pt is-on" tabindex="0" role="button" data-y="1799—1811" data-t="Москва" data-d="Родился 26 мая 1799 года в Немецкой слободе. Учился плохо, читал запоем. Безусловно любили его только сестра Оля и няня."><circle cx="545" cy="210" r="6"></circle><text x="559" y="215">Москва</text></g>
+            <g class="pj-map__pt" tabindex="0" role="button" data-y="1811—1817" data-t="Царское Село" data-d="Двенадцатилетний мальчик въезжает в Царское Село. Подъём в 6:00, отбой в 22:00, шесть лет. Здесь он впервые понимает, что он поэт."><circle cx="262" cy="122" r="6"></circle><text x="276" y="127">Царское Село</text></g>
+            <g class="pj-map__pt" tabindex="0" role="button" data-y="1817—1820" data-t="Петербург" data-d="Коллегия иностранных дел, жалованье 700 рублей в год, присутствие дважды в неделю. Остальное время — театр, карты и стихи."><circle cx="234" cy="97" r="6"></circle><text x="248" y="102">Петербург</text></g>
+            <g class="pj-map__pt" tabindex="0" role="button" data-y="май 1820" data-t="Екатеринослав" data-d="Купался в Днепре и тяжело заболел. Мимо проездом оказался генерал Раевский с семьёй — и забрал поэта с собой на воды."><circle cx="439" cy="403" r="5"></circle><text x="453" y="408">Екатеринослав</text></g>
+            <g class="pj-map__pt" tabindex="0" role="button" data-y="1820" data-t="Кавказ" data-d="Минеральные воды, Военно-Грузинская дорога, аулы в горах. Другой воздух — и другой Пушкин: вольный, пылкий."><circle cx="766" cy="523" r="5"></circle><text x="780" y="528">Кавказ</text></g>
+            <g class="pj-map__pt" tabindex="0" role="button" data-y="1820" data-t="Гурзуф" data-d="Крым, море, кипарисы. Айвазовский напишет его на этом берегу спустя шестьдесят семь лет."><circle cx="410" cy="510" r="5"></circle><text x="424" y="515">Гурзуф</text></g>
+            <g class="pj-map__pt" tabindex="0" role="button" data-y="1820—1823" data-t="Кишинёв" data-d="Маленькая комната, свеча, степь за окном. Ночами пишется «Кавказский пленник»."><circle cx="185" cy="443" r="5"></circle><text x="199" y="448">Кишинёв</text></g>
+            <g class="pj-map__pt" tabindex="0" role="button" data-y="1823—1824" data-t="Одесса" data-d="Порт, опера, море и служба, которая закончится высылкой в псковскую глушь."><circle cx="262" cy="457" r="5"></circle><text x="276" y="462">Одесса</text></g>
+            <g class="pj-map__pt" tabindex="0" role="button" data-y="1824—1826" data-t="Михайловское" data-d="Ни столицы, ни моря, ни друзей. Только сосны, няня и работа: главы «Онегина», «Борис Годунов», «Пророк», «Я помню чудное мгновенье…»"><circle cx="193" cy="177" r="6"></circle><text x="207" y="182">Михайловское</text></g>
+            <g class="pj-map__pt" tabindex="0" role="button" data-y="осень 1830" data-t="Болдино" data-d="Ехал на три недели оформить бумаги под свадьбу — застрял на всю осень из-за холерных карантинов. Так появились «Повести Белкина»."><circle cx="860" cy="230" r="6"></circle><text x="846" y="235" text-anchor="end">Болдино</text></g>
+            <g class="pj-map__pt pj-map__pt--end" tabindex="0" role="button" data-y="27 января 1837" data-t="Чёрная речка" data-d="Близ Комендантской дачи, 16:30. Предсмертные страдания продолжались сорок три часа."><circle cx="200" cy="74" r="6"></circle><text x="186" y="79" text-anchor="end">Чёрная речка</text></g>
+          </g>
+        </svg>
+      </figure>
+
+      <div class="pj-map__info" id="pj-map-info">
+        <span class="pj-map__info-y">1799—1811</span>
+        <h3 class="pj-map__info-t">Москва</h3>
+        <p class="pj-map__info-d">Родился 26 мая 1799 года в Немецкой слободе. Учился плохо, читал запоем. Безусловно любили его только сестра Оля и няня.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ ТЕХНОЛОГИЯ ══════════ -->
+  <section class="pj-sec pj-sec--tight pj-wrap" id="tehnologiya">
+    <div class="pj-sechead">
+      <span class="pj-slug">Как это сделано</span>
+      <h2 class="pj-h2">Новый формат</h2>
+    </div>
+    <div class="pj-tech">
+      <div class="pj-tech__i">
+        <span class="pj-tech__n">01</span>
+        <h3 class="pj-tech__t">Три экрана</h3>
+        <p class="pj-tech__d">Действие идёт одновременно на центральной и двух боковых проекциях. Персонаж уходит с одного экрана и появляется на другом — зритель оказывается внутри сцены, а не перед ней.</p>
+      </div>
+      <div class="pj-tech__i">
+        <span class="pj-tech__n">02</span>
+        <h3 class="pj-tech__t">Более 100 полотен</h3>
+        <p class="pj-tech__d">Айвазовский, Кипренский, Врубель, Левитан, Куинджи, Садовников, Беггров, Пластов, графика Нади Рушевой. Картины движутся: камера входит внутрь холста.</p>
+      </div>
+      <div class="pj-tech__i">
+        <span class="pj-tech__n">03</span>
+        <h3 class="pj-tech__t">ИИ-реконструкция</h3>
+        <p class="pj-tech__d">Сцены, которых живопись не сохранила, восстановлены нейросетями по документам эпохи: комната на Фонтанке, ночь в Кишинёве, кабинет на Мойке, страницы дневника и рукописей.</p>
+      </div>
+      <div class="pj-tech__i">
+        <span class="pj-tech__n">04</span>
+        <h3 class="pj-tech__t">Только подлинные слова</h3>
+        <p class="pj-tech__d">Реплики Пушкина в фильме — цитаты из его писем, дневников и стихов. Ничего не дописано за него.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ ЗАЛ ══════════ -->
+  <section class="pj-sec pj-sec--tight" id="zal">
+    <div class="pj-wrap pj-sechead">
+      <span class="pj-slug">Зал</span>
+      <h2 class="pj-h2">Темнота, в которой всё светится</h2>
+      <p class="pj-body pj-dim">Кадры мультимедийных проектов креативного агентства R-ART. Зал в Екатеринбурге откроется 5 октября 2026 года.</p>
+    </div>
+    <div class="pj-wrap">
+      <div class="pj-gal" id="pj-gal">
+        <button class="pj-gal__i" type="button"><img src="assets/hall/22.webp" alt="Панорама зала с проекцией на стены" loading="lazy"></button>
+        <button class="pj-gal__i" type="button"><img src="assets/hall/9.webp" alt="Зрители в зале мультимедийной выставки" loading="lazy"></button>
+        <button class="pj-gal__i" type="button"><img src="assets/hall/10.webp" alt="Проекция картины на всю стену зала" loading="lazy"></button>
+        <button class="pj-gal__i" type="button"><img src="assets/hall/12.webp" alt="Зал во время сеанса" loading="lazy"></button>
+        <button class="pj-gal__i" type="button"><img src="assets/hall/17.webp" alt="Крупный фрагмент проекции" loading="lazy"></button>
+        <button class="pj-gal__i" type="button"><img src="assets/hall/19.webp" alt="Свет проектора в темноте зала" loading="lazy"></button>
+        <button class="pj-gal__i" type="button"><img src="assets/hall/6.webp" alt="Зрительские места перед экраном" loading="lazy"></button>
+        <button class="pj-gal__i" type="button"><img src="assets/hall/5.webp" alt="Широкая панорама проекционного зала" loading="lazy"></button>
+        <button class="pj-gal__i" type="button"><img src="assets/hall/8.webp" alt="Деталь проекции на стене" loading="lazy"></button>
+        <button class="pj-gal__i" type="button"><img src="assets/hall/16.webp" alt="Зал с трёх сторон окружён изображением" loading="lazy"></button>
+        <button class="pj-gal__i" type="button"><img src="assets/hall/18.webp" alt="Посетители рассматривают проекцию" loading="lazy"></button>
+        <button class="pj-gal__i" type="button"><img src="assets/hall/23.webp" alt="Фрагмент экспозиции в темноте" loading="lazy"></button>
+      </div>
+    </div>
+  </section>
+
+  <div class="pj-wrap"><div class="pj-rule"></div></div>
+
+  <!-- ══════════ БИЛЕТЫ ══════════ -->
+  <section class="pj-sec pj-wrap" id="bilety">
+    <div class="pj-sechead">
+      <div class="pj-sechead__row">
+        <span class="pj-slug">Билеты</span>
+        <span class="pj-slug pj-slug--dim">Будни — пн—пт · Выходные — сб, вс</span>
+      </div>
+      <h2 class="pj-h2">Сколько стоит</h2>
+    </div>
+
+    <div class="pj-tick">
+      <div>
+        <div class="pj-tablewrap">
+          <table class="pj-table">
+            <thead>
+              <tr><th scope="col">Категория</th><th scope="col">Будни</th><th scope="col">Выходные</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pj-table__name">Полный билет</span></td>
+                <td><span class="pj-table__p">700 ₽</span></td>
+                <td><span class="pj-table__p">800 ₽</span></td>
+              </tr>
+              <tr>
+                <td><span class="pj-table__name">Семейный</span><span class="pj-table__note">Цена одного билета при посещении от 3 человек</span></td>
+                <td><span class="pj-table__p">600 ₽</span></td>
+                <td><span class="pj-table__na">не действует</span></td>
+              </tr>
+              <tr>
+                <td><span class="pj-table__name">Льготный</span><span class="pj-table__note">Пенсионеры · инвалиды всех групп · школьники 7—14 лет · студенты</span></td>
+                <td><span class="pj-table__p">600 ₽</span></td>
+                <td><span class="pj-table__na">не действует</span></td>
+              </tr>
+              <tr>
+                <td><span class="pj-table__name">Организованные и школьные экскурсии</span><span class="pj-table__note">От 10 человек</span></td>
+                <td><span class="pj-table__p">400 ₽</span></td>
+                <td><span class="pj-table__na">не действует</span></td>
+              </tr>
+              <tr>
+                <td><span class="pj-table__name">Счастливый сеанс</span><span class="pj-table__note">Первый и последний сеанс в понедельник и вторник — 11:10 и 19:10</span></td>
+                <td><span class="pj-table__p">400 ₽</span></td>
+                <td><span class="pj-table__na">не действует</span></td>
+              </tr>
+              <tr>
+                <td><span class="pj-table__name">Крупные компании и заводы</span><span class="pj-table__note">Специальная цена по коллективной заявке</span></td>
+                <td><span class="pj-table__p">500 ₽</span></td>
+                <td><span class="pj-table__p">600 ₽</span></td>
+              </tr>
+              <tr>
+                <td><span class="pj-table__name">Сопровождающие школьных экскурсий</span><span class="pj-table__note">Один сопровождающий на 10 человек</span></td>
+                <td><span class="pj-table__p pj-table__free">0 ₽</span></td>
+                <td><span class="pj-table__na">не действует</span></td>
+              </tr>
+              <tr>
+                <td><span class="pj-table__name">Дети до 6 лет включительно</span><span class="pj-table__note">Вход свободный в любой день</span></td>
+                <td><span class="pj-table__p pj-table__free">0 ₽</span></td>
+                <td><span class="pj-table__p pj-table__free">0 ₽</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ЗАМЕНИТЬ: сюда вставляется код виджета Яндекс Афиши -->
+        <div class="pj-widget" id="pj-ticket-widget">
+          <span class="pj-slug">Онлайн-продажа</span>
+          <p class="pj-body">Билеты продаются через Яндекс Афишу. Виджет появится здесь, как только откроется продажа.</p>
+          <!-- ВСТАВЬТЕ КОД ВИДЖЕТА ЯНДЕКС АФИШИ НИЖЕ ЭТОЙ СТРОКИ -->
+        </div>
+      </div>
+
+      <!-- калькулятор -->
+      <div class="pj-calc" id="pj-calc">
+        <div>
+          <span class="pj-slug">Калькулятор</span>
+          <h3 class="pj-h3" style="margin-top:8px">Посчитать свой визит</h3>
+        </div>
+
+        <div class="pj-field">
+          <label id="pj-daylabel">Когда идёте</label>
+          <div class="pj-seg" role="group" aria-labelledby="pj-daylabel">
+            <button type="button" data-day="week" aria-pressed="true">Будни</button>
+            <button type="button" data-day="wknd" aria-pressed="false">Выходные</button>
+          </div>
+        </div>
+
+        <div class="pj-field">
+          <label for="pj-cat">Категория</label>
+          <select class="pj-select" id="pj-cat">
+            <option value="full">Полный билет</option>
+            <option value="family">Семейный (от 3 человек)</option>
+            <option value="benefit">Льготный</option>
+            <option value="school">Школьная или организованная экскурсия (от 10)</option>
+            <option value="lucky">Счастливый сеанс (пн, вт — 11:10 и 19:10)</option>
+            <option value="corp">Компания или завод</option>
+            <option value="kid">Ребёнок до 6 лет</option>
+          </select>
+        </div>
+
+        <div class="pj-field">
+          <label for="pj-qty">Сколько человек</label>
+          <div class="pj-stepper">
+            <button type="button" id="pj-minus" aria-label="Убрать одного человека">−</button>
+            <output id="pj-qty" for="pj-minus pj-plus">2</output>
+            <button type="button" id="pj-plus" aria-label="Добавить одного человека">+</button>
+          </div>
+        </div>
+
+        <div class="pj-calc__out">
+          <div class="pj-calc__sum">
+            <span class="pj-slug pj-slug--dim">Итого</span>
+            <b id="pj-total">1 400 ₽</b>
+          </div>
+          <p class="pj-calc__hint" id="pj-hint">На двоих в будний день по полному тарифу.</p>
+        </div>
+
+        <a class="pj-btn pj-btn--solid" href="#pj-ticket-widget" style="justify-content:center">Перейти к покупке</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ РАСПИСАНИЕ ══════════ -->
+  <section class="pj-sec pj-sec--tight pj-wrap" id="seansy">
+    <div class="pj-sechead">
+      <div class="pj-sechead__row">
+        <span class="pj-slug">Расписание</span>
+        <span class="pj-slug pj-slug--dim">Ежедневно · 13 сеансов · фильм 40 минут</span>
+      </div>
+      <h2 class="pj-h2">Сеансы</h2>
+    </div>
+    <div class="pj-ses">
+      <div class="pj-ses__i pj-ses__i--lucky"><span class="pj-ses__t">11:10</span><span class="pj-ses__n">Сеанс 01 · счастливый</span></div>
+      <div class="pj-ses__i"><span class="pj-ses__t">11:50</span><span class="pj-ses__n">Сеанс 02</span></div>
+      <div class="pj-ses__i"><span class="pj-ses__t">12:30</span><span class="pj-ses__n">Сеанс 03</span></div>
+      <div class="pj-ses__i"><span class="pj-ses__t">13:10</span><span class="pj-ses__n">Сеанс 04</span></div>
+      <div class="pj-ses__i"><span class="pj-ses__t">13:50</span><span class="pj-ses__n">Сеанс 05</span></div>
+      <div class="pj-ses__i"><span class="pj-ses__t">14:30</span><span class="pj-ses__n">Сеанс 06</span></div>
+      <div class="pj-ses__i"><span class="pj-ses__t">15:10</span><span class="pj-ses__n">Сеанс 07</span></div>
+      <div class="pj-ses__i"><span class="pj-ses__t">15:50</span><span class="pj-ses__n">Сеанс 08</span></div>
+      <div class="pj-ses__i"><span class="pj-ses__t">16:30</span><span class="pj-ses__n">Сеанс 09</span></div>
+      <div class="pj-ses__i"><span class="pj-ses__t">17:10</span><span class="pj-ses__n">Сеанс 10</span></div>
+      <div class="pj-ses__i"><span class="pj-ses__t">17:50</span><span class="pj-ses__n">Сеанс 11</span></div>
+      <div class="pj-ses__i"><span class="pj-ses__t">18:30</span><span class="pj-ses__n">Сеанс 12</span></div>
+      <div class="pj-ses__i pj-ses__i--lucky"><span class="pj-ses__t">19:10</span><span class="pj-ses__n">Сеанс 13 · счастливый</span></div>
+    </div>
+    <p class="pj-body pj-dim" style="margin-top:18px">
+      «Счастливый сеанс» — первый и последний сеанс по понедельникам и вторникам, билет 400 ₽.
+      Приходите за 10 минут до начала: после старта фильма вход в зал закрывается.
+    </p>
+  </section>
+
+  <div class="pj-wrap"><div class="pj-rule"></div></div>
+
+  <!-- ══════════ ГРУППАМ ══════════ -->
+  <section class="pj-sec pj-wrap" id="gruppam">
+    <div class="pj-sechead">
+      <span class="pj-slug">Школам, вузам и компаниям</span>
+      <h2 class="pj-h2">Прийти всем классом<br>или всем отделом</h2>
+    </div>
+
+    <div class="pj-groups">
+      <div style="display:grid;gap:20px">
+        <p class="pj-body">
+          Фильм идёт 40 минут — ровно один урок. Возрастная маркировка 0+, но содержательно
+          выставка попадает в школьную программу по литературе с 5 по 11 класс.
+        </p>
+        <div class="pj-dl">
+          <div class="pj-dl__i"><span class="pj-dl__k">Школьная экскурсия, от 10 человек</span><span class="pj-dl__v">400 ₽ с человека, будни</span></div>
+          <div class="pj-dl__i"><span class="pj-dl__k">Сопровождающие</span><span class="pj-dl__v">Бесплатно — один на каждые 10 школьников</span></div>
+          <div class="pj-dl__i"><span class="pj-dl__k">Компании и заводы</span><span class="pj-dl__v">500 ₽ в будни, 600 ₽ в выходные</span></div>
+          <div class="pj-dl__i"><span class="pj-dl__k">Пушкинская карта</span><span class="pj-dl__v">К оплате не принимается</span></div>
+        </div>
+      </div>
+
+      <form class="pj-form" id="pj-form">
+        <div class="pj-form__row">
+          <div class="pj-field">
+            <label for="pj-f-org">Школа или компания</label>
+            <input class="pj-input" id="pj-f-org" name="org" type="text" placeholder="МАОУ СОШ № 1" required>
+          </div>
+          <div class="pj-field">
+            <label for="pj-f-name">Контактное лицо</label>
+            <input class="pj-input" id="pj-f-name" name="name" type="text" placeholder="Имя и фамилия" required>
+          </div>
+        </div>
+        <div class="pj-form__row">
+          <div class="pj-field">
+            <label for="pj-f-count">Сколько человек</label>
+            <input class="pj-input" id="pj-f-count" name="count" type="number" min="10" step="1" value="25" required>
+          </div>
+          <div class="pj-field">
+            <label for="pj-f-date">Желаемая дата</label>
+            <input class="pj-input" id="pj-f-date" name="date" type="date" min="2026-10-05" max="2026-11-29" value="2026-10-05" required>
+          </div>
+        </div>
+        <div class="pj-form__row">
+          <div class="pj-field">
+            <label for="pj-f-phone">Телефон</label>
+            <input class="pj-input" id="pj-f-phone" name="phone" type="tel" placeholder="+7 ___ ___-__-__" required>
+          </div>
+          <div class="pj-field">
+            <label for="pj-f-mail">Почта</label>
+            <input class="pj-input" id="pj-f-mail" name="email" type="email" placeholder="school@mail.ru" required>
+          </div>
+        </div>
+        <div class="pj-field">
+          <label for="pj-f-note">Что уточнить</label>
+          <textarea class="pj-textarea" id="pj-f-note" name="note" rows="3" placeholder="Например: два класса подряд, нужен счёт для оплаты по безналу"></textarea>
+        </div>
+        <button class="pj-btn pj-btn--solid" type="submit" style="justify-content:center">Отправить заявку</button>
+        <p class="pj-form__note" id="pj-form__note">Ответим в течение рабочего дня и забронируем сеанс.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ══════════ ВОПРОСЫ ══════════ -->
+  <section class="pj-sec pj-sec--tight pj-wrap" id="voprosy">
+    <div class="pj-sechead">
+      <span class="pj-slug">Вопросы</span>
+      <h2 class="pj-h2">Что спрашивают чаще всего</h2>
+    </div>
+    <div class="pj-faq">
+      <details open>
+        <summary>Сколько длится и когда приходить?</summary>
+        <div class="pj-faq__a">Фильм идёт 40 минут. Сеансы начинаются каждые 40 минут с 11:10 до 19:10. Приходите за 10 минут до начала — после старта вход в зал закрывается.</div>
+      </details>
+      <details>
+        <summary>С какого возраста интересно?</summary>
+        <div class="pj-faq__a">Маркировка 0+. Дети до 6 лет включительно проходят бесплатно в любой день. Школьникам с 7 до 14 лет действует льготный билет в будни.</div>
+      </details>
+      <details>
+        <summary>Можно оплатить Пушкинской картой?</summary>
+        <div class="pj-faq__a">Нет, Пушкинская карта к оплате не принимается. Для школьников действует льготный тариф 600 ₽ в будни, а для организованных групп от 10 человек — 400 ₽.</div>
+      </details>
+      <details>
+        <summary>Что такое «счастливый сеанс»?</summary>
+        <div class="pj-faq__a">Это первый и последний сеанс по понедельникам и вторникам — 11:10 и 19:10. Билет на них стоит 400 ₽ вместо 700 ₽.</div>
+      </details>
+      <details>
+        <summary>Есть ли места для сидения?</summary>
+        <div class="pj-faq__a">Да, зал оборудован местами для зрителей. Проекция идёт на трёх экранах, изображение видно с любой точки зала.</div>
+      </details>
+      <details>
+        <summary>Можно ли фотографировать?</summary>
+        <div class="pj-faq__a">Да, фотографировать без вспышки можно. Вспышка мешает проекции и другим зрителям.</div>
+      </details>
+      <details>
+        <summary>Как попасть большой группой?</summary>
+        <div class="pj-faq__a">Оставьте заявку в разделе «Школам, вузам и компаниям» — мы забронируем отдельный сеанс и выставим счёт для оплаты по безналичному расчёту.</div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ══════════ КАК ДОБРАТЬСЯ ══════════ -->
+  <section class="pj-sec pj-wrap" id="kak-dobratsya">
+    <div class="pj-sechead">
+      <span class="pj-slug">Место</span>
+      <h2 class="pj-h2">Свердловская киностудия</h2>
+    </div>
+    <div class="pj-place">
+      <div class="pj-place__card">
+        <div class="pj-dl">
+          <div class="pj-dl__i"><span class="pj-dl__k">Адрес</span><span class="pj-dl__v">Екатеринбург, просп. Ленина, 50Ж<br>Свердловская киностудия</span></div>
+          <div class="pj-dl__i"><span class="pj-dl__k">Даты</span><span class="pj-dl__v">5 октября — 29 ноября 2026<br>ежедневно, 56 дней</span></div>
+          <div class="pj-dl__i"><span class="pj-dl__k">Сеансы</span><span class="pj-dl__v">с 11:10 до 19:10, каждые 40 минут</span></div>
+          <div class="pj-dl__i"><span class="pj-dl__k">Возраст</span><span class="pj-dl__v">0+</span></div>
+        </div>
+        <div class="pj-cta">
+          <a class="pj-btn pj-btn--ghost" href="https://yandex.ru/maps/?text=Екатеринбург%2C%20проспект%20Ленина%2C%2050Ж" target="_blank" rel="noopener">Открыть в Яндекс Картах</a>
+        </div>
+      </div>
+      <div class="pj-place__card">
+        <div class="pj-dl">
+          <div class="pj-dl__i"><span class="pj-dl__k">Телефон</span><span class="pj-dl__v"><a href="tel:+70000000000">ЗАМЕНИТЬ: телефон кассы</a></span></div>
+          <div class="pj-dl__i"><span class="pj-dl__k">Почта</span><span class="pj-dl__v"><a href="mailto:info@example.ru">ЗАМЕНИТЬ: почта</a></span></div>
+          <div class="pj-dl__i"><span class="pj-dl__k">Группам и школам</span><span class="pj-dl__v"><a href="#gruppam">Оставить заявку</a></span></div>
+          <div class="pj-dl__i"><span class="pj-dl__k">Организатор</span><span class="pj-dl__v">Креативное агентство R-ART</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ ПОДВАЛ ══════════ -->
+  <footer class="pj-foot pj-wrap">
+    <div class="pj-foot__grid">
+      <div style="display:grid;gap:10px">
+        <span class="pj-display" style="font-size:1.6rem">Пушкин. <span style="color:var(--candle)">Живой</span></span>
+        <span class="pj-slug pj-slug--dim">Мультимедийная выставка · Екатеринбург · 2026</span>
+      </div>
+      <p class="pj-foot__legal">
+        Изображения зала — кадры мультимедийных проектов креативного агентства R-ART.
+        Живописные произведения принадлежат собраниям государственных музеев и указаны в титрах фильма.
+      </p>
+    </div>
+  </footer>
+
+  <!-- лайтбокс галереи -->
+  <div class="pj-lb" id="pj-lb" role="dialog" aria-modal="true" aria-label="Просмотр фотографии">
+    <button class="pj-lb__x" type="button" id="pj-lb-x">Закрыть ✕</button>
+    <img id="pj-lb-img" src="" alt="">
+  </div>
+
+</div>
+
+<!-- ============================================================
+     ПУШКИН. ЖИВОЙ — блок FOOTER / скрипты
+     Tilda: Настройки сайта → Ещё → HTML-код для BODY (перед </body>)
+     ============================================================ -->
+<script>
+(function () {
+  'use strict';
+
+  var root = document.getElementById('pj');
+  if (!root) return;
+
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $  = function (s, c) { return (c || root).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || root).querySelectorAll(s)); };
+
+  /* ---------- 1. Обратный отсчёт до открытия ---------- */
+  (function countdown() {
+    var box = document.getElementById('pj-count');
+    if (!box) return;
+    // 5 октября 2026, 11:10 по Екатеринбургу (UTC+5)
+    var target = new Date('2026-10-05T11:10:00+05:00').getTime();
+    var cells = {};
+    $$('[data-c]', box).forEach(function (el) { cells[el.getAttribute('data-c')] = el; });
+
+    function pad(n) { return n < 10 ? '0' + n : String(n); }
+
+    function tick() {
+      var left = target - Date.now();
+      if (left <= 0) {
+        box.innerHTML = '<div class="pj-count__u" style="min-width:auto"><span class="pj-count__v">Выставка открыта</span><span class="pj-count__l">до 29 ноября 2026</span></div>';
+        return;
+      }
+      var s = Math.floor(left / 1000);
+      cells.d.textContent = Math.floor(s / 86400);
+      cells.h.textContent = pad(Math.floor(s / 3600) % 24);
+      cells.m.textContent = pad(Math.floor(s / 60) % 60);
+      cells.s.textContent = pad(s % 60);
+      setTimeout(tick, 1000);
+    }
+    tick();
+  })();
+
+  /* ---------- 2. Метель на первом экране ---------- */
+  (function snow() {
+    var cv = document.getElementById('pj-snow');
+    if (!cv || reduced) return;
+    var ctx = cv.getContext('2d');
+    var flakes = [];
+    var w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var running = true;
+
+    function resize() {
+      var r = cv.getBoundingClientRect();
+      w = r.width; h = r.height;
+      cv.width = Math.round(w * dpr);
+      cv.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var n = Math.round(Math.min(220, (w * h) / 5200));
+      flakes = [];
+      for (var i = 0; i < n; i++) {
+        flakes.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * 1.6 + 0.4,
+          vy: Math.random() * 0.34 + 0.08,
+          vx: Math.random() * 0.34 - 0.17,
+          a: Math.random() * 0.5 + 0.12,
+          p: Math.random() * Math.PI * 2
+        });
+      }
+    }
+
+    function frame() {
+      if (!running) return;
+      ctx.clearRect(0, 0, w, h);
+      for (var i = 0; i < flakes.length; i++) {
+        var f = flakes[i];
+        f.p += 0.008;
+        f.y += f.vy;
+        f.x += f.vx + Math.sin(f.p) * 0.24;
+        if (f.y > h + 4) { f.y = -4; f.x = Math.random() * w; }
+        if (f.x > w + 4) f.x = -4;
+        if (f.x < -4) f.x = w + 4;
+        ctx.beginPath();
+        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(239,237,228,' + f.a + ')';
+        ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+    // метель останавливается, когда первый экран ушёл из виду
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting && !running) { running = true; frame(); }
+          else if (!e.isIntersecting) { running = false; }
+        });
+      }, { threshold: 0 }).observe(cv);
+    }
+    frame();
+  })();
+
+  /* ---------- 3. Эпизоды: липкая сцена на три экрана ---------- */
+  (function episodes() {
+    var wrap = document.getElementById('pj-eps');
+    var frames = $$('.pj-ep');
+    var rail = document.getElementById('pj-rail');
+    if (!wrap || !frames.length || !rail) return;
+
+    var titles = frames.map(function (f) {
+      var t = $('.pj-ep__t', f), y = $('.pj-ep__years', f);
+      return (y ? y.textContent.trim() + ' — ' : '') + (t ? t.textContent.trim() : '');
+    });
+
+    // точки на линейке 1799 → 1837
+    rail.innerHTML = '';
+    var dots = titles.map(function (label, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'pj-rail__dot';
+      b.setAttribute('role', 'tab');
+      b.setAttribute('title', label);
+      b.setAttribute('aria-label', label);
+      b.setAttribute('aria-current', i === 0 ? 'true' : 'false');
+      b.addEventListener('click', function () { goTo(i); });
+      rail.appendChild(b);
+      return b;
+    });
+
+    var current = 0;
+    function show(i) {
+      if (i === current) return;
+      current = i;
+      frames.forEach(function (f, n) { f.classList.toggle('is-on', n === i); });
+      dots.forEach(function (d, n) { d.setAttribute('aria-current', n === i ? 'true' : 'false'); });
+    }
+
+    function metrics() {
+      var stage = $('.pj-eps__stage', wrap);
+      var top = wrap.getBoundingClientRect().top + window.pageYOffset;
+      var span = wrap.offsetHeight - stage.offsetHeight;
+      return { top: top, span: span > 0 ? span : 1 };
+    }
+
+    function goTo(i) {
+      var m = metrics();
+      var y = m.top + (m.span * (i + 0.5)) / frames.length;
+      window.scrollTo({ top: y, behavior: reduced ? 'auto' : 'smooth' });
+    }
+
+    var ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        ticking = false;
+        // на мобильном сцена превращается в обычный список — скролл не нужен
+        if (window.matchMedia('(max-width: 860px)').matches) { show(0); return; }
+        var m = metrics();
+        var p = (window.pageYOffset - m.top) / m.span;
+        var i = Math.floor(p * frames.length);
+        if (i < 0) i = 0;
+        if (i > frames.length - 1) i = frames.length - 1;
+        show(i);
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+  })();
+
+  /* ---------- 4. Карта маршрута ---------- */
+  (function map() {
+    var pts = $$('.pj-map__pt');
+    var info = document.getElementById('pj-map-info');
+    if (!pts.length || !info) return;
+    var y = $('.pj-map__info-y', info),
+        t = $('.pj-map__info-t', info),
+        d = $('.pj-map__info-d', info);
+
+    function pick(g) {
+      pts.forEach(function (p) { p.classList.toggle('is-on', p === g); });
+      y.textContent = g.getAttribute('data-y');
+      t.textContent = g.getAttribute('data-t');
+      d.textContent = g.getAttribute('data-d');
+    }
+
+    pts.forEach(function (g) {
+      g.addEventListener('click', function () { pick(g); });
+      g.addEventListener('mouseenter', function () { pick(g); });
+      g.addEventListener('focus', function () { pick(g); });
+      g.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(g); }
+      });
+    });
+  })();
+
+  /* ---------- 5. Калькулятор билетов ---------- */
+  (function calc() {
+    var box = document.getElementById('pj-calc');
+    if (!box) return;
+
+    var PRICE = {
+      full:    { week: 700, wknd: 800, name: 'полный билет' },
+      family:  { week: 600, wknd: null, name: 'семейный билет', min: 3 },
+      benefit: { week: 600, wknd: null, name: 'льготный билет' },
+      school:  { week: 400, wknd: null, name: 'школьная экскурсия', min: 10 },
+      lucky:   { week: 400, wknd: null, name: 'счастливый сеанс' },
+      corp:    { week: 500, wknd: 600, name: 'корпоративный тариф', min: 10 },
+      kid:     { week: 0,   wknd: 0,   name: 'дети до 6 лет' }
+    };
+
+    var day = 'week';
+    var qty = 2;
+    var sel = document.getElementById('pj-cat');
+    var out = document.getElementById('pj-qty');
+    var total = document.getElementById('pj-total');
+    var hint = document.getElementById('pj-hint');
+    var dayBtns = $$('[data-day]', box);
+
+    function money(n) { return n.toLocaleString('ru-RU') + ' ₽'; }
+
+    function render() {
+      var key = sel.value;
+      var p = PRICE[key];
+      var price = p[day];
+
+      if (price === null) {
+        total.textContent = '—';
+        hint.innerHTML = 'В выходные этот тариф не действует. В выходные доступны <b>полный билет — 800 ₽</b>, дети до 6 лет — бесплатно, корпоративный тариф — 600 ₽.';
+        return;
+      }
+
+      if (p.min && qty < p.min) {
+        total.textContent = '—';
+        hint.innerHTML = 'Тариф «' + p.name + '» действует от <b>' + p.min + ' человек</b>. Добавьте ещё ' + (p.min - qty) + '.';
+        return;
+      }
+
+      var sum = price * qty;
+      total.textContent = money(sum);
+
+      if (price === 0) {
+        hint.innerHTML = 'Дети до 6 лет включительно проходят <b>бесплатно</b> в любой день.';
+        return;
+      }
+
+      var dayWord = day === 'week' ? 'будний день' : 'выходной';
+      var txt = qty + ' × ' + money(price) + ' — ' + p.name + ', ' + dayWord + '.';
+
+      // подсказать более выгодный тариф
+      if (day === 'week' && key === 'full') {
+        if (qty >= 10) txt += ' <b>Выгоднее: от 10 человек — 400 ₽</b>, это ' + money(400 * qty) + '.';
+        else if (qty >= 3) txt += ' <b>Выгоднее: семейный — 600 ₽</b>, это ' + money(600 * qty) + '.';
+        else txt += ' На первом и последнем сеансе в пн и вт — <b>400 ₽</b>.';
+      }
+      if (key === 'school') {
+        var free = Math.floor(qty / 10);
+        if (free > 0) txt += ' Плюс ' + free + ' сопровождающ' + (free === 1 ? 'ий проходит' : 'их проходят') + ' <b>бесплатно</b>.';
+      }
+      hint.innerHTML = txt;
+    }
+
+    dayBtns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        day = b.getAttribute('data-day');
+        dayBtns.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+        render();
+      });
+    });
+
+    document.getElementById('pj-minus').addEventListener('click', function () {
+      qty = Math.max(1, qty - 1); out.textContent = qty; render();
+    });
+    document.getElementById('pj-plus').addEventListener('click', function () {
+      qty = Math.min(200, qty + 1); out.textContent = qty; render();
+    });
+    sel.addEventListener('change', render);
+    render();
+  })();
+
+  /* ---------- 6. Галерея: лайтбокс ---------- */
+  (function gallery() {
+    var lb = document.getElementById('pj-lb');
+    var img = document.getElementById('pj-lb-img');
+    var x = document.getElementById('pj-lb-x');
+    if (!lb || !img) return;
+
+    $$('.pj-gal__i').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var s = b.querySelector('img');
+        img.src = s.src;
+        img.alt = s.alt;
+        lb.classList.add('is-on');
+        x.focus();
+      });
+    });
+
+    function close() { lb.classList.remove('is-on'); img.src = ''; }
+    x.addEventListener('click', close);
+    lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && lb.classList.contains('is-on')) close();
+    });
+  })();
+
+  /* ---------- 7. Заявка от групп ---------- */
+  (function form() {
+    var f = document.getElementById('pj-form');
+    var note = document.getElementById('pj-form__note');
+    if (!f) return;
+
+    // ЗАМЕНИТЬ: адрес, на который приходят заявки
+    var MAILTO = 'info@example.ru';
+
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!f.reportValidity()) return;
+      var d = new FormData(f);
+      var body = [
+        'Заявка с сайта «Пушкин. Живой»',
+        '',
+        'Школа или компания: ' + d.get('org'),
+        'Контактное лицо: '   + d.get('name'),
+        'Человек: '           + d.get('count'),
+        'Желаемая дата: '     + d.get('date'),
+        'Телефон: '           + d.get('phone'),
+        'Почта: '             + d.get('email'),
+        'Комментарий: '       + (d.get('note') || '—')
+      ].join('\n');
+
+      window.location.href = 'mailto:' + MAILTO +
+        '?subject=' + encodeURIComponent('Групповая заявка — Пушкин. Живой') +
+        '&body=' + encodeURIComponent(body);
+
+      note.textContent = 'Открылось письмо с вашей заявкой — отправьте его, и мы забронируем сеанс.';
+    });
+  })();
+
+  /* ---------- 8. Липкая шапка ---------- */
+  (function nav() {
+    var n = document.getElementById('pj-nav');
+    if (!n) return;
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        ticking = false;
+        n.classList.toggle('is-stuck', window.pageYOffset > 24);
+      });
+    }, { passive: true });
+  })();
+
+  /* ---------- 9. Плавный переход по якорям ---------- */
+  $$('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href');
+      if (id.length < 2) return;
+      var t = document.querySelector(id);
+      if (!t) return;
+      e.preventDefault();
+      var top = t.getBoundingClientRect().top + window.pageYOffset - 64;
+      window.scrollTo({ top: top, behavior: reduced ? 'auto' : 'smooth' });
+    });
+  });
+
+})();
+</script>
+
+</body>
+</html>

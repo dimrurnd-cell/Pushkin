@@ -1,0 +1,586 @@
+<!-- ============================================================
+     «ПУШКИН. ЖИВОЙ» — разметка страницы
+     Tilda: блок T123 «HTML-код», ширина контейнера 100%,
+     отступы сверху/снизу 0. Либо вставка в начало BODY.
+     Всё содержимое обёрнуто в #pzh — снаружи ничего не течёт.
+     ============================================================ -->
+
+<div id="pzh">
+
+  <!-- ────────────────────────── ШАПКА ────────────────────────── -->
+  <header class="pzh-bar">
+    <a class="pzh-mark" href="#pzh">Пушкин.&nbsp;<i>Живой</i></a>
+    <nav class="pzh-nav" aria-label="Разделы">
+      <a href="#film">Фильм</a>
+      <a href="#marshrut">Маршрут</a>
+      <a href="#zal">Зал</a>
+      <a href="#bilety">Билеты</a>
+      <a href="#raspisanie">Сеансы</a>
+      <a href="#gruppam">Группам</a>
+      <a href="#kak-dobratsya">Адрес</a>
+    </nav>
+    <a class="pzh-btn" href="#bilety">Купить билет</a>
+  </header>
+
+  <!-- ───────────────────────── ПРОЛОГ ───────────────────────── -->
+  <section class="pzh-prologue" aria-labelledby="pzh-h1">
+    <canvas class="pzh-blizzard" aria-hidden="true"></canvas>
+
+    <div class="pzh-triptych">
+
+      <div class="pzh-screen pzh-hero-side">
+        <div class="pzh-plate" style="--pl-a:#131a2e; --pl-b:#07090f;">
+          <b aria-hidden="true">II</b>
+          <i>левый экран · внутри экипажа — только рука в перчатке, касающаяся колена, едва заметная дрожь ткани</i>
+        </div>
+      </div>
+
+      <div class="pzh-screen pzh-hero-main">
+        <p class="pzh-slug pzh-hero-slug">
+          <span>Пролог <b>Мгновение до выстрела</b></span>
+          <span>27 января 1837 · 15:30</span>
+        </p>
+
+        <div class="pzh-title-wrap">
+          <span class="pzh-drop" aria-hidden="true"></span>
+          <span class="pzh-splat" aria-hidden="true"></span>
+          <h1 class="pzh-title" id="pzh-h1"><span>Пушкин.</span><span>Живой</span></h1>
+          <div class="pzh-rule-draw" aria-hidden="true"></div>
+          <p class="pzh-subtitle">Мультимедийная выставка в Екатеринбурге. Сорок минут, три экрана, одна жизнь.</p>
+        </div>
+      </div>
+
+      <div class="pzh-screen pzh-hero-side pzh-hero-side--b">
+        <div class="pzh-plate" style="--pl-a:#1a2135; --pl-b:#080a11;">
+          <b aria-hidden="true">III</b>
+          <i>правый экран · тёмный экипаж движется по зимнему Петербургу. Камера не показывает его целиком — только колесо, обледенелый бок, рывок лошади</i>
+        </div>
+      </div>
+
+    </div>
+
+    <dl class="pzh-facts">
+      <div class="pzh-fact">
+        <dt>Даты</dt>
+        <dd>5.10&thinsp;—&thinsp;29.11<small> 2026, 56 дней</small></dd>
+      </div>
+      <div class="pzh-fact">
+        <dt>Фильм</dt>
+        <dd>40<small> минут</small></dd>
+      </div>
+      <div class="pzh-fact">
+        <dt>Эпизодов</dt>
+        <dd>10<small> от 1799 до 1837</small></dd>
+      </div>
+      <div class="pzh-fact">
+        <dt>Полотен</dt>
+        <dd>100+<small> живопись и графика</small></dd>
+      </div>
+      <div class="pzh-fact">
+        <dt>Экранов</dt>
+        <dd>3<small> действие переходит между ними</small></dd>
+      </div>
+      <div class="pzh-fact">
+        <dt>Сеансов в день</dt>
+        <dd>13<small> с 11:10 до 19:10</small></dd>
+      </div>
+    </dl>
+
+    <div class="pzh-countdown">
+      <span class="pzh-cd-label">До первого сеанса · 5 октября, 11:10</span>
+      <div class="pzh-cd-units" id="pzh-cd" aria-live="off">
+        <div class="pzh-cd-unit"><b data-cd="d">—</b><span>дней</span></div>
+        <div class="pzh-cd-unit"><b data-cd="h">—</b><span>часов</span></div>
+        <div class="pzh-cd-unit"><b data-cd="m">—</b><span>минут</span></div>
+        <div class="pzh-cd-unit"><b data-cd="s">—</b><span>секунд</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────── О ЧЁМ ЭТО ───────────────────── -->
+  <section class="pzh-section" id="o-vystavke" aria-labelledby="pzh-h-about">
+    <div class="pzh-about-grid">
+      <div>
+        <p class="pzh-eyebrow">О выставке</p>
+        <h2 class="pzh-h2" id="pzh-h-about">Не музей о поэте.<br>Сорок минут его жизни.</h2>
+        <div style="margin-top:26px">
+          <p class="pzh-prose"><strong>«Пушкин. Живой» — это фильм, а не экспозиция.</strong> Вы садитесь в тёмном зале, свет уходит, и три экрана начинают говорить одновременно: на центральном — сцена, на боковых — то, что происходит рядом. Экипаж, снег, рука в перчатке. Персонажи переходят из экрана в экран.</p>
+          <p class="pzh-prose">Фильм собран из более чем ста живописных полотен — Айвазовский, Врубель, Кипренский, Куинджи, Левитан, Брюллов, акварели Садовникова, графика Нади Рушевой. Картины оживают: камера входит внутрь холста, фигуры двигаются, свет меняется. Там, где живописи не сохранилось, эпоха восстановлена по документам и гравюрам средствами искусственного интеллекта — интерьеры, улицы, рукописи, дневник поэта.</p>
+          <p class="pzh-prose">Пушкин здесь говорит своими словами: репликами из писем, дневников и стихов. Ни одна строка не придумана за него.</p>
+        </div>
+      </div>
+
+      <div>
+        <p class="pzh-eyebrow" style="margin-bottom:14px">Голоса</p>
+        <dl class="pzh-voices">
+          <div class="pzh-voice"><dt>Пушкин</dt><dd>Письма, дневники, стихи и разговоры, записанные современниками</dd></div>
+          <div class="pzh-voice"><dt>Натали</dt><dd>Наталья Николаевна — от первого бала у Йогеля до последней зимы</dd></div>
+          <div class="pzh-voice"><dt>Муза</dt><dd>Голос, который слышит только он: сомнение, восторг, предчувствие</dd></div>
+          <div class="pzh-voice"><dt>Диктор</dt><dd>Факты, даты, документы. Тот, кто держит хронологию</dd></div>
+          <div class="pzh-voice"><dt>Хор</dt><dd>В финале стихотворение читают все — от семилетнего ребёнка до взрослых героев фильма</dd></div>
+        </dl>
+        <p class="pzh-prose" style="margin-top:18px; font-size:0.8rem">Возрастная категория 0+. Дети до 6 лет включительно — бесплатно.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ ФИЛЬМ: ТРИПТИХ-ПЛЕЕР ══════════════════ -->
+  <section class="pzh-section pzh-film" id="film" aria-labelledby="pzh-h-film">
+    <div class="pzh-head pzh-head--split">
+      <div>
+        <p class="pzh-eyebrow">Десять эпизодов</p>
+        <h2 class="pzh-h2" id="pzh-h-film">Хронометраж фильма</h2>
+      </div>
+      <p class="pzh-lead" style="max-width:44ch">Ширина каждого отрезка на линейке — настоящая длительность эпизода из съёмочного сценария. Самый длинный — «Натали»: семь минут из сорока.</p>
+    </div>
+
+    <!-- Три экрана -->
+    <div class="pzh-stage" id="pzh-stage">
+      <div class="pzh-screen pzh-screen--side" id="pzh-side-l" aria-hidden="true">
+        <div class="pzh-layer" data-buf="a" data-on="1"></div>
+        <div class="pzh-layer" data-buf="b"></div>
+      </div>
+
+      <div class="pzh-screen pzh-screen--main">
+        <!-- Пролог -->
+        <div class="pzh-layer" data-ep="0" data-on="1">
+          <p class="pzh-ep-no">Пролог · 0:30</p>
+          <h3 class="pzh-ep-title">Мгновение до выстрела</h3>
+          <p class="pzh-ep-years">27 января 1837 · Санкт-Петербург, 15:30 → Чёрная речка, 16:30</p>
+          <blockquote class="pzh-ep-quote">«О люди! жалкий род, достойный слёз и смеха! Жрецы минутного, поклонники успеха!»<span class="pzh-ep-who">Пушкин</span></blockquote>
+        </div>
+        <!-- 1 -->
+        <div class="pzh-layer" data-ep="1">
+          <p class="pzh-ep-no">Эпизод 1 · 3:30</p>
+          <h3 class="pzh-ep-title">Детство. Москва</h3>
+          <p class="pzh-ep-years">1799 — 1811</p>
+          <blockquote class="pzh-ep-quote">«— Посмотрите, ведь это настоящий арабчик! — По крайней мере, отличусь тем, что не буду как рябчик!»<span class="pzh-ep-who">Иван Дмитриев и десятилетний Пушкин</span></blockquote>
+        </div>
+        <!-- 2 -->
+        <div class="pzh-layer" data-ep="2">
+          <p class="pzh-ep-no">Эпизод 2 · 5:30</p>
+          <h3 class="pzh-ep-title">Юность. Лицейское братство</h3>
+          <p class="pzh-ep-years">1811 — 1817 · Царское Село</p>
+          <blockquote class="pzh-ep-quote">«В те дни, когда в садах Лицея я безмятежно расцветал… являться муза стала мне.»<span class="pzh-ep-who">Пушкин</span></blockquote>
+        </div>
+        <!-- 3 -->
+        <div class="pzh-layer" data-ep="3">
+          <p class="pzh-ep-no">Эпизод 3 · 4:00</p>
+          <h3 class="pzh-ep-title">Петербург цитирует Пушкина</h3>
+          <p class="pzh-ep-years">1817 — 1820 · жалованье 700 рублей в год</p>
+          <blockquote class="pzh-ep-quote">«Я встаю в семь часов, пишу до обеда. Обедаю поздно. После — театр, или карты, или снова стихи. Я почти счастлив.»<span class="pzh-ep-who">Пушкин</span></blockquote>
+        </div>
+        <!-- 4 -->
+        <div class="pzh-layer" data-ep="4">
+          <p class="pzh-ep-no">Эпизод 4 · 3:30</p>
+          <h3 class="pzh-ep-title">Юг. Изгнание как свобода</h3>
+          <p class="pzh-ep-years">1820 — 1824 · Кавказ, Крым, Кишинёв, Одесса</p>
+          <blockquote class="pzh-ep-quote">«Лети, корабль, неси меня к пределам дальным… но только не к брегам печальным туманной родины моей…»<span class="pzh-ep-who">Пушкин</span></blockquote>
+        </div>
+        <!-- 5 -->
+        <div class="pzh-layer" data-ep="5">
+          <p class="pzh-ep-no">Эпизод 5 · 4:00</p>
+          <h3 class="pzh-ep-title">Михайловское</h3>
+          <p class="pzh-ep-years">1824 — 1826 · триста вёрст от Петербурга</p>
+          <blockquote class="pzh-ep-quote">«Подруга дней моих суровых, голубка дряхлая моя! Одна в глуши лесов сосновых давно, давно ты ждёшь меня…»<span class="pzh-ep-who">Пушкин — няне</span></blockquote>
+        </div>
+        <!-- 6 -->
+        <div class="pzh-layer" data-ep="6">
+          <p class="pzh-ep-no">Эпизод 6 · 4:00</p>
+          <h3 class="pzh-ep-title">Возвращение. Поэт и император</h3>
+          <p class="pzh-ep-years">1826 — 1830 · Кремль, 8 сентября 1826</p>
+          <blockquote class="pzh-ep-quote">«Я только что разговаривал с умнейшим человеком России.»<span class="pzh-ep-who">Николай I — приближённым, после разговора с Пушкиным</span></blockquote>
+        </div>
+        <!-- 7 -->
+        <div class="pzh-layer" data-ep="7">
+          <p class="pzh-ep-no">Эпизод 7 · 3:00</p>
+          <h3 class="pzh-ep-title">Болдино</h3>
+          <p class="pzh-ep-years">1830 · холерные карантины перекрыли дороги</p>
+          <blockquote class="pzh-ep-quote">«Подъём до рассвета. Верховая прогулка. Потом — стол, перо, бумага. Каждый день.»<span class="pzh-ep-who">Пушкин</span></blockquote>
+        </div>
+        <!-- 8 -->
+        <div class="pzh-layer" data-ep="8">
+          <p class="pzh-ep-no">Эпизод 8 · 7:00</p>
+          <h3 class="pzh-ep-title">Натали</h3>
+          <p class="pzh-ep-years">1830 — 1836 · ему двадцать девять, ей шестнадцать</p>
+          <blockquote class="pzh-ep-quote">«Я влюблён, я очарован, я совсем огончарован!»<span class="pzh-ep-who">Пушкин</span></blockquote>
+        </div>
+        <!-- 9 -->
+        <div class="pzh-layer pzh-layer--finale" data-ep="9">
+          <p class="pzh-ep-no">Эпизод 9 · 4:00</p>
+          <h3 class="pzh-ep-title">Финал</h3>
+          <p class="pzh-ep-years">1837 · дневник, пасквиль, Чёрная речка</p>
+          <blockquote class="pzh-ep-quote">«Будь покойна! Ты не виновата, я знаю, что ты не виновата…»<span class="pzh-ep-who">Пушкин — Наталье Николаевне</span></blockquote>
+        </div>
+      </div>
+
+      <div class="pzh-screen pzh-screen--side" id="pzh-side-r" aria-hidden="true">
+        <div class="pzh-layer" data-buf="a" data-on="1"></div>
+        <div class="pzh-layer" data-buf="b"></div>
+      </div>
+    </div>
+
+    <!-- Линейка хронометража -->
+    <div class="pzh-rail-wrap">
+      <div class="pzh-rail-top">
+        <button type="button" class="pzh-play" id="pzh-play" aria-pressed="true">
+          <span data-play-label>Пауза</span>
+        </button>
+        <span>Линейка = 40 минут фильма</span>
+        <span class="pzh-now" id="pzh-now">Пролог · 0:00 — 0:30</span>
+      </div>
+      <div class="pzh-rail" id="pzh-rail" role="tablist" aria-label="Эпизоды фильма"></div>
+    </div>
+
+    <!-- Индекс эпизодов -->
+    <div class="pzh-index" id="pzh-index"></div>
+  </section>
+
+  <!-- ═════════════════ МАРШРУТ: КАРТА ЖИЗНИ ═════════════════ -->
+  <section class="pzh-section" id="marshrut" aria-labelledby="pzh-h-map">
+    <div class="pzh-head pzh-head--split">
+      <div>
+        <p class="pzh-eyebrow">Маршрут</p>
+        <h2 class="pzh-h2" id="pzh-h-map">Тридцать семь лет<br>на одной карте</h2>
+      </div>
+      <p class="pzh-lead" style="max-width:44ch">Точки поставлены по настоящим координатам. Наведите на любую — фильм рассказывает про неё отдельный эпизод. Последняя точка — Екатеринбург, 2026.</p>
+    </div>
+
+    <div class="pzh-map-wrap">
+      <svg class="pzh-map" id="pzh-map" viewBox="0 0 1000 560" role="img" aria-label="Карта мест жизни Пушкина: Москва, Царское Село, Петербург, Кавказ, Крым, Кишинёв, Одесса, Михайловское, Болдино, Чёрная речка — и Екатеринбург, где проходит выставка"></svg>
+    </div>
+
+    <div class="pzh-map-note">
+      <div>
+        <span class="pzh-yrbig" id="pzh-map-year">1799</span>
+        <h3 id="pzh-map-place">Москва</h3>
+      </div>
+      <p class="pzh-prose" id="pzh-map-text" style="max-width:60ch">Родился 26 мая (6 июня) 1799 года. Город живой, шумный, немного провинциальный — не Петербург. Первый эпизод фильма собран из панорам Фёдора Алексеева и анимированной графики Нади Рушевой.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ КАК ЭТО СДЕЛАНО ═══════════════════ -->
+  <section class="pzh-section" id="kak" aria-labelledby="pzh-h-tech">
+    <div class="pzh-head">
+      <p class="pzh-eyebrow">Технология</p>
+      <h2 class="pzh-h2" id="pzh-h-tech">Из чего собран фильм</h2>
+    </div>
+    <div class="pzh-tech">
+      <div class="pzh-tech-item">
+        <span class="pzh-tech-num">01</span>
+        <h3>Три экрана</h3>
+        <p>Центральный держит сцену, боковые — то, что происходит вокруг неё. Персонажи и предметы переходят из экрана в экран: карета въезжает слева, проходит центр и уходит вправо.</p>
+      </div>
+      <div class="pzh-tech-item">
+        <span class="pzh-tech-num">02</span>
+        <h3>Сто живописных полотен</h3>
+        <p>Айвазовский, Врубель, Кипренский, Куинджи, Левитан, Брюллов, Пластов, акварели Садовникова, Гау и Премацци, графика Нади Рушевой. Камера входит внутрь холста.</p>
+      </div>
+      <div class="pzh-tech-item">
+        <span class="pzh-tech-num">03</span>
+        <h3>ИИ-реконструкция эпохи</h3>
+        <p>Там, где живописи не осталось, восстановлено по документам и гравюрам: комната на Фонтанке, стол поэта, литературный салон 1810-х, страница дневника, тот самый пасквиль.</p>
+      </div>
+      <div class="pzh-tech-item">
+        <span class="pzh-tech-num">04</span>
+        <h3>Звук и голоса</h3>
+        <p>Ветер и колокол в прологе, треск камина и тиканье часов в финале. Четыре голоса — Пушкин, Натали, Муза, Диктор — и хор, читающий стихотворение в конце.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════ ЗАЛ ════════════════════════ -->
+  <section class="pzh-section" id="zal" aria-labelledby="pzh-h-hall">
+    <div class="pzh-head pzh-head--split">
+      <div>
+        <p class="pzh-eyebrow">Зал</p>
+        <h2 class="pzh-h2" id="pzh-h-hall">Темнота, пуфы,<br>стена из света</h2>
+      </div>
+      <p class="pzh-lead" style="max-width:44ch">Смотреть можно с пуфа, с кресла или с пола. Сорок минут — ровно столько, сколько выдерживает ребёнок и не устаёт взрослый.</p>
+    </div>
+    <div class="pzh-hall">
+      <figure>
+        <img src="./assets/hall/23.webp" width="1200" height="800" loading="lazy" decoding="async" alt="Тёмный зал, зрители на пуфах перед стеной из проекционных экранов">
+        <figcaption>Формат в действии: предыдущая мультимедийная выставка агентства R-ART. Так выглядит зал и посадка.</figcaption>
+      </figure>
+      <figure>
+        <img src="./assets/hall/24.webp" width="1200" height="800" loading="lazy" decoding="async" alt="Общий план зала мультимедийной выставки: проекторы на подвесной фермe, широкая экранная стена">
+        <figcaption>Проекторы на подвесной ферме, экранная стена по всей длине зала.</figcaption>
+      </figure>
+      <figure>
+        <img src="./assets/hall/10.webp" width="1200" height="800" loading="lazy" decoding="async" alt="Экспозиционная часть мультимедийной выставки с настенными материалами и витринами">
+        <figcaption>Экспозиционная часть — до и после сеанса.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ БИЛЕТЫ ═════════════════════ -->
+  <section class="pzh-section" id="bilety" aria-labelledby="pzh-h-tick">
+    <div class="pzh-head pzh-head--split">
+      <div>
+        <p class="pzh-eyebrow">Билеты</p>
+        <h2 class="pzh-h2" id="pzh-h-tick">Сколько это стоит</h2>
+      </div>
+      <p class="pzh-lead" style="max-width:44ch">Льготные тарифы работают в будни. В выходные действуют полный билет, корпоративная цена и бесплатный вход детям до 6 лет.</p>
+    </div>
+
+    <div class="pzh-tickets-grid">
+
+      <!-- Прайс -->
+      <div>
+        <table class="pzh-price">
+          <caption>Прайс на 05.10.2026 — 29.11.2026</caption>
+          <thead>
+            <tr><th scope="col">Категория</th><th scope="col">Будни</th><th scope="col">Выходные</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Полный билет</th>
+              <td class="pzh-rub">700 ₽</td><td class="pzh-rub">800 ₽</td>
+            </tr>
+            <tr>
+              <th scope="row">Семейный<small>цена одного билета при посещении от 3 человек</small></th>
+              <td class="pzh-rub">600 ₽</td><td class="pzh-na">не действует</td>
+            </tr>
+            <tr>
+              <th scope="row">Льготный<small>пенсионеры, инвалиды всех групп, школьники 7–14 лет, студенты</small></th>
+              <td class="pzh-rub">600 ₽</td><td class="pzh-na">не действует</td>
+            </tr>
+            <tr>
+              <th scope="row">Организованные и школьные экскурсии<small>от 10 человек</small></th>
+              <td class="pzh-rub">400 ₽</td><td class="pzh-na">не действует</td>
+            </tr>
+            <tr>
+              <th scope="row">Счастливый сеанс<small>первый и последний сеанс в понедельник и вторник — 11:10 и 19:10</small></th>
+              <td class="pzh-rub">400 ₽</td><td class="pzh-na">не действует</td>
+            </tr>
+            <tr>
+              <th scope="row">Крупные компании и заводы<small>специальная цена</small></th>
+              <td class="pzh-rub">500 ₽</td><td class="pzh-rub">600 ₽</td>
+            </tr>
+            <tr>
+              <th scope="row">Сопровождающие школьных групп<small>один сопровождающий на 10 человек</small></th>
+              <td class="pzh-free">бесплатно</td><td class="pzh-na">не действует</td>
+            </tr>
+            <tr>
+              <th scope="row">Дети до 6 лет включительно</th>
+              <td class="pzh-free">бесплатно</td><td class="pzh-free">бесплатно</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="pzh-price-foot">Пушкинская карта не действует. Цены указаны за один билет на один сеанс.</p>
+      </div>
+
+      <!-- Калькулятор -->
+      <div class="pzh-calc" id="pzh-calc">
+        <div>
+          <p class="pzh-eyebrow" style="color:var(--candle)">Посчитать свой поход</p>
+          <p class="pzh-hint" style="margin-top:8px">Выберите день и сеанс — калькулятор сам подставит доступные тарифы и подскажет, где выгоднее.</p>
+        </div>
+
+        <div class="pzh-calc-row">
+          <span class="pzh-calc-lab">День недели</span>
+          <div class="pzh-chips" id="pzh-days" role="group" aria-label="День недели"></div>
+        </div>
+
+        <div class="pzh-calc-row">
+          <span class="pzh-calc-lab">Сеанс</span>
+          <div class="pzh-chips" id="pzh-slots" role="group" aria-label="Время сеанса"></div>
+        </div>
+
+        <div class="pzh-calc-row">
+          <span class="pzh-calc-lab">Кто идёт</span>
+          <div class="pzh-cats" id="pzh-cats"></div>
+        </div>
+
+        <p class="pzh-hint" id="pzh-calc-hint">&nbsp;</p>
+
+        <div class="pzh-total">
+          <span class="pzh-total-lab">Итого</span>
+          <span class="pzh-total-val" id="pzh-total">0 ₽</span>
+        </div>
+
+        <a class="pzh-btn pzh-btn--wide" href="#pzh-widget">Перейти к покупке</a>
+      </div>
+    </div>
+
+    <!-- Слот виджета Яндекс Афиши -->
+    <div class="pzh-widget" id="pzh-widget">
+      <p><strong>Продажа билетов — виджет Яндекс&nbsp;Афиши.</strong> Код виджета вставляется в этот блок вместо текста. В файле <code>3-BODY.html</code> найдите <code>id="pzh-widget"</code> и замените содержимое.</p>
+      <a class="pzh-btn pzh-btn--ghost" href="#kak-dobratsya">Пока — связаться с нами</a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ РАСПИСАНИЕ ═══════════════════ -->
+  <section class="pzh-section" id="raspisanie" aria-labelledby="pzh-h-sess">
+    <div class="pzh-head pzh-head--split">
+      <div>
+        <p class="pzh-eyebrow">Сеансы</p>
+        <h2 class="pzh-h2" id="pzh-h-sess">Тринадцать раз в день,<br>каждые сорок минут</h2>
+      </div>
+      <p class="pzh-lead" style="max-width:44ch">Расписание одинаковое все 56 дней. Первый сеанс в 11:10, последний в 19:10.</p>
+    </div>
+    <div class="pzh-sessions" id="pzh-sessions"></div>
+    <div class="pzh-sessions-foot">
+      <span><b>Золотом</b> — «Счастливый сеанс»: 400 ₽ в понедельник и вторник</span>
+      <span>Длительность фильма — 40 минут</span>
+      <span>5 октября — 29 ноября 2026, без выходных</span>
+    </div>
+  </section>
+
+  <!-- ═════════════ ШКОЛАМ И КОМПАНИЯМ ═════════════ -->
+  <section class="pzh-section" id="gruppam" aria-labelledby="pzh-h-gr">
+    <div class="pzh-head">
+      <p class="pzh-eyebrow">Школам и компаниям</p>
+      <h2 class="pzh-h2" id="pzh-h-gr">Привести класс или смену</h2>
+    </div>
+
+    <div class="pzh-groups-grid">
+      <div>
+        <p class="pzh-prose"><strong>Школьная или организованная экскурсия — 400 ₽ с человека</strong> при группе от 10 человек, в будни. Один сопровождающий на каждые 10 детей проходит бесплатно.</p>
+        <p class="pzh-prose"><strong>Крупным компаниям и заводам — 500 ₽ в будни и 600 ₽ в выходные.</strong> Возможен выкуп целого сеанса: зал на 40 минут только для вашей группы.</p>
+        <p class="pzh-prose">Фильм согласуется со школьной программой по литературе: «Евгений Онегин», «Борис Годунов», «Повести Белкина», «Капитанская дочка», сказки, лирика лицейского и болдинского периодов. Возрастная категория 0+.</p>
+        <dl class="pzh-voices" style="margin-top:24px">
+          <div class="pzh-voice"><dt>от 10 чел.</dt><dd>экскурсия по 400 ₽, только будни</dd></div>
+          <div class="pzh-voice"><dt>1 : 10</dt><dd>сопровождающий бесплатно</dd></div>
+          <div class="pzh-voice"><dt>40 мин</dt><dd>длительность сеанса</dd></div>
+        </dl>
+      </div>
+
+      <form class="pzh-form" id="pzh-form" novalidate>
+        <div class="pzh-form-row">
+          <label for="pzh-org">Школа или компания</label>
+          <input id="pzh-org" name="org" type="text" required placeholder="МАОУ СОШ № 1 / ООО «Уралмаш»">
+        </div>
+        <div class="pzh-form-row pzh-form-row--2">
+          <div class="pzh-form-row">
+            <label for="pzh-name">Контактное лицо</label>
+            <input id="pzh-name" name="name" type="text" required placeholder="Имя и фамилия">
+          </div>
+          <div class="pzh-form-row">
+            <label for="pzh-phone">Телефон</label>
+            <input id="pzh-phone" name="phone" type="tel" required placeholder="+7 ___ ___-__-__">
+          </div>
+        </div>
+        <div class="pzh-form-row pzh-form-row--2">
+          <div class="pzh-form-row">
+            <label for="pzh-count">Сколько человек</label>
+            <input id="pzh-count" name="count" type="number" min="1" step="1" required placeholder="25">
+          </div>
+          <div class="pzh-form-row">
+            <label for="pzh-date">Желаемая дата</label>
+            <input id="pzh-date" name="date" type="date" min="2026-10-05" max="2026-11-29" required>
+          </div>
+        </div>
+        <div class="pzh-form-row">
+          <label for="pzh-kind">Тариф</label>
+          <select id="pzh-kind" name="kind">
+            <option>Школьная экскурсия — 400 ₽, будни</option>
+            <option>Организованная группа — 400 ₽, будни</option>
+            <option>Компания или завод — 500 ₽ будни / 600 ₽ выходные</option>
+            <option>Выкуп целого сеанса</option>
+          </select>
+        </div>
+        <div class="pzh-form-row">
+          <label for="pzh-note">Что уточнить</label>
+          <textarea id="pzh-note" name="note" placeholder="Класс, возраст детей, удобное время сеанса"></textarea>
+        </div>
+        <button type="submit" class="pzh-btn pzh-btn--wide">Отправить заявку</button>
+        <p class="pzh-form-note" id="pzh-form-note">Заявка откроется письмом в вашей почтовой программе. Либо позвоните: <a href="tel:+73430000000">+7 (343) 000-00-00</a>.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ ВОПРОСЫ ═══════════════════ -->
+  <section class="pzh-section" id="voprosy" aria-labelledby="pzh-h-faq">
+    <div class="pzh-head">
+      <p class="pzh-eyebrow">Вопросы</p>
+      <h2 class="pzh-h2" id="pzh-h-faq">Коротко о главном</h2>
+    </div>
+    <div class="pzh-faq">
+      <details open>
+        <summary>Сколько это длится?</summary>
+        <p class="pzh-faq-a">Фильм идёт <b>40 минут</b>. Сеансы начинаются каждые 40 минут: первый в 11:10, последний в 19:10 — <b>13 сеансов в день</b>.</p>
+      </details>
+      <details>
+        <summary>С какого возраста?</summary>
+        <p class="pzh-faq-a">Категория <b>0+</b>. Дети до 6 лет включительно проходят <b>бесплатно</b> в любой день. Школьникам 7–14 лет в будни — льготный билет 600 ₽.</p>
+      </details>
+      <details>
+        <summary>Что такое «Счастливый сеанс»?</summary>
+        <p class="pzh-faq-a">Это <b>первый и последний сеанс в понедельник и вторник</b> — 11:10 и 19:10. Билет на них стоит <b>400 ₽</b> вместо 700 ₽. Самый дешёвый способ посмотреть фильм.</p>
+      </details>
+      <details>
+        <summary>Действуют ли льготы в выходные?</summary>
+        <p class="pzh-faq-a">Нет. В субботу и воскресенье работают <b>полный билет за 800 ₽</b>, корпоративная цена 600 ₽ и <b>бесплатный вход детям до 6 лет</b>. Семейный, льготный, экскурсионный и «Счастливый сеанс» — только в будни.</p>
+      </details>
+      <details>
+        <summary>Работает ли Пушкинская карта?</summary>
+        <p class="pzh-faq-a"><b>Нет</b>, на этой выставке Пушкинская карта не принимается.</p>
+      </details>
+      <details>
+        <summary>Как привести класс?</summary>
+        <p class="pzh-faq-a">Группа <b>от 10 человек</b> в будни — 400 ₽ с человека. <b>Один сопровождающий на 10 детей — бесплатно.</b> Оставьте заявку в разделе <a href="#gruppam" style="color:var(--candle)">«Школам и компаниям»</a>, и мы согласуем сеанс.</p>
+      </details>
+      <details>
+        <summary>Нужно ли знать Пушкина заранее?</summary>
+        <p class="pzh-faq-a">Нет. Фильм ведёт диктор — даты, места и события объясняются по ходу. Но если вы читали «Онегина», вы узнаете больше половины кадров.</p>
+      </details>
+      <details>
+        <summary>Где это находится?</summary>
+        <p class="pzh-faq-a">Екатеринбург, <b>просп. Ленина, 50Ж</b> — Свердловская киностудия. Подробнее — в разделе <a href="#kak-dobratsya" style="color:var(--candle)">«Как добраться»</a>.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ═══════════════ КАК ДОБРАТЬСЯ ═══════════════ -->
+  <section class="pzh-section" id="kak-dobratsya" aria-labelledby="pzh-h-visit">
+    <div class="pzh-head">
+      <p class="pzh-eyebrow">Как добраться</p>
+      <h2 class="pzh-h2" id="pzh-h-visit">Свердловская киностудия</h2>
+    </div>
+    <dl class="pzh-visit-grid">
+      <div class="pzh-visit-cell">
+        <dt>Адрес</dt>
+        <dd><strong>просп. Ленина, 50Ж</strong>Екатеринбург, Свердловская киностудия</dd>
+      </div>
+      <div class="pzh-visit-cell">
+        <dt>Даты</dt>
+        <dd><strong>5.10 — 29.11.2026</strong>56 дней, без выходных</dd>
+      </div>
+      <div class="pzh-visit-cell">
+        <dt>Сеансы</dt>
+        <dd><strong>11:10 — 19:10</strong>13 сеансов, каждые 40 минут</dd>
+      </div>
+      <div class="pzh-visit-cell">
+        <dt>Телефон</dt>
+        <dd><a href="tel:+73430000000">+7 (343) 000-00-00</a><br>Ежедневно 10:00 — 20:00</dd>
+      </div>
+      <div class="pzh-visit-cell">
+        <dt>Почта</dt>
+        <dd><a href="mailto:info@пушкин-живой.рф">info@пушкин-живой.рф</a></dd>
+      </div>
+      <div class="pzh-visit-cell">
+        <dt>Организатор</dt>
+        <dd>Креативное агентство <strong>R-ART</strong></dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- ═══════════════════ ПОДВАЛ ═══════════════════ -->
+  <footer class="pzh-footer">
+    <div>
+      <span class="pzh-footer-mark">Пушкин. <i>Живой</i></span><br>
+      Мультимедийная выставка · Екатеринбург · 2026
+    </div>
+    <div>
+      просп. Ленина, 50Ж<br>
+      <a href="tel:+73430000000">+7 (343) 000-00-00</a> · <a href="mailto:info@пушкин-живой.рф">info@пушкин-живой.рф</a>
+    </div>
+    <div>
+      Креативное агентство R-ART<br>
+      0+ · Пушкинская карта не действует
+    </div>
+  </footer>
+
+</div>
