@@ -1,0 +1,437 @@
+<!-- ============================================================
+     ПУШКИН. ЖИВОЙ — блок FOOTER / скрипты
+     Tilda: Настройки сайта → Ещё → HTML-код для BODY (перед </body>)
+     ============================================================ -->
+<script>
+(function () {
+  'use strict';
+
+  var root = document.getElementById('pj');
+  if (!root) return;
+
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $  = function (s, c) { return (c || root).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || root).querySelectorAll(s)); };
+
+  /* ---------- 1. Обратный отсчёт до открытия ---------- */
+  (function countdown() {
+    var box = document.getElementById('pj-count');
+    if (!box) return;
+    // 5 октября 2026, 11:10 по Екатеринбургу (UTC+5)
+    var target = new Date('2026-10-05T11:10:00+05:00').getTime();
+    var cells = {};
+    $$('[data-c]', box).forEach(function (el) { cells[el.getAttribute('data-c')] = el; });
+
+    function pad(n) { return n < 10 ? '0' + n : String(n); }
+
+    function tick() {
+      var left = target - Date.now();
+      if (left <= 0) {
+        box.innerHTML = '<div class="pj-count__u" style="min-width:auto"><span class="pj-count__v">Выставка открыта</span><span class="pj-count__l">до 29 ноября 2026</span></div>';
+        return;
+      }
+      var s = Math.floor(left / 1000);
+      cells.d.textContent = Math.floor(s / 86400);
+      cells.h.textContent = pad(Math.floor(s / 3600) % 24);
+      cells.m.textContent = pad(Math.floor(s / 60) % 60);
+      cells.s.textContent = pad(s % 60);
+      setTimeout(tick, 1000);
+    }
+    tick();
+  })();
+
+  /* ---------- 2. Метель на первом экране ---------- */
+  (function snow() {
+    var cv = document.getElementById('pj-snow');
+    if (!cv || reduced) return;
+    var ctx = cv.getContext('2d');
+    var flakes = [];
+    var w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var running = true;
+
+    function resize() {
+      var r = cv.getBoundingClientRect();
+      w = r.width; h = r.height;
+      cv.width = Math.round(w * dpr);
+      cv.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var n = Math.round(Math.min(220, (w * h) / 5200));
+      flakes = [];
+      for (var i = 0; i < n; i++) {
+        flakes.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * 1.6 + 0.4,
+          vy: Math.random() * 0.34 + 0.08,
+          vx: Math.random() * 0.34 - 0.17,
+          a: Math.random() * 0.5 + 0.12,
+          p: Math.random() * Math.PI * 2
+        });
+      }
+    }
+
+    function frame() {
+      if (!running) return;
+      ctx.clearRect(0, 0, w, h);
+      for (var i = 0; i < flakes.length; i++) {
+        var f = flakes[i];
+        f.p += 0.008;
+        f.y += f.vy;
+        f.x += f.vx + Math.sin(f.p) * 0.24;
+        if (f.y > h + 4) { f.y = -4; f.x = Math.random() * w; }
+        if (f.x > w + 4) f.x = -4;
+        if (f.x < -4) f.x = w + 4;
+        ctx.beginPath();
+        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(239,237,228,' + f.a + ')';
+        ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+    // метель останавливается, когда первый экран ушёл из виду
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting && !running) { running = true; frame(); }
+          else if (!e.isIntersecting) { running = false; }
+        });
+      }, { threshold: 0 }).observe(cv);
+    }
+    frame();
+  })();
+
+  /* ---------- 2b. Кадры эпизодов ----------
+     У каждого экрана есть data-img. Если файл существует — кадр
+     проявляется поверх процедурной заливки; если нет — остаётся заливка.
+     Чтобы добавить картинки, сгенерируйте их в site/assets/ep/
+     скриптом gen-images.sh и загрузите в Tilda, поправив пути. */
+  (function frames() {
+    $$('.pj-screen[data-img]').forEach(function (fig) {
+      var src = fig.getAttribute('data-img');
+      if (!src) return;
+      var probe = new Image();
+      probe.onload = function () {
+        var el = document.createElement('img');
+        el.className = 'pj-screen__img pj-screen__img--gen';
+        el.src = src;
+        el.alt = '';
+        el.decoding = 'async';
+        fig.appendChild(el);
+        requestAnimationFrame(function () { el.classList.add('is-in'); });
+      };
+      probe.src = src;
+    });
+
+    // Оживлённые кадры: где есть mp4, поверх картинки встаёт зацикленное видео.
+    // При «уменьшить движение» видео не подключается — остаётся неподвижный кадр.
+    if (reduced) return;
+    $$('.pj-screen[data-video]').forEach(function (fig) {
+      var src = fig.getAttribute('data-video');
+      if (!src) return;
+      var v = document.createElement('video');
+      v.className = 'pj-screen__img pj-screen__img--gen';
+      // атрибуты до src — иначе автозапуск не разрешат
+      v.setAttribute('muted', '');
+      v.setAttribute('playsinline', '');
+      v.setAttribute('webkit-playsinline', '');
+      v.setAttribute('autoplay', '');
+      v.setAttribute('loop', '');
+      v.setAttribute('preload', 'auto');
+      v.muted = true;
+      v.defaultMuted = true;
+      v.loop = true;
+      v.playsInline = true;
+      v.addEventListener('canplay', function () {
+        v.classList.add('is-in');
+        pjPlay(v);
+      }, { once: true });
+      v.addEventListener('error', function () { v.remove(); });
+      v.src = src;
+      fig.appendChild(v);
+    });
+  })();
+
+  /* мягкий запуск видео: браузер может отказать до первого действия пользователя */
+  function pjPlay(v) {
+    if (!v || !v.paused) return;
+    var p = v.play();
+    if (p && p.catch) p.catch(function () {});
+  }
+  (function retryPlayback() {
+    function kick() { $$('.pj-screen video').forEach(pjPlay); }
+    ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (e) {
+      window.addEventListener(e, kick, { once: true, passive: true });
+    });
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden) kick();
+    });
+  })();
+
+  /* ---------- 3. Эпизоды: липкая сцена на три экрана ---------- */
+  (function episodes() {
+    var wrap = document.getElementById('pj-eps');
+    var frames = $$('.pj-ep');
+    var rail = document.getElementById('pj-rail');
+    if (!wrap || !frames.length || !rail) return;
+
+    var titles = frames.map(function (f) {
+      var t = $('.pj-ep__t', f), y = $('.pj-ep__years', f);
+      return (y ? y.textContent.trim() + ' — ' : '') + (t ? t.textContent.trim() : '');
+    });
+
+    // точки на линейке 1799 → 1837
+    rail.innerHTML = '';
+    var dots = titles.map(function (label, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'pj-rail__dot';
+      b.setAttribute('role', 'tab');
+      b.setAttribute('title', label);
+      b.setAttribute('aria-label', label);
+      b.setAttribute('aria-current', i === 0 ? 'true' : 'false');
+      b.addEventListener('click', function () { goTo(i); });
+      rail.appendChild(b);
+      return b;
+    });
+
+    function stacked() { return window.matchMedia("(max-width: 860px)").matches; }
+
+    var current = 0;
+    function show(i) {
+      if (i === current) return;
+      current = i;
+      frames.forEach(function (f, n) {
+        var on = n === i;
+        f.classList.toggle('is-on', on);
+        // на большом экране видео крутится только в текущем эпизоде;
+        // на мобильном эпизоды идут списком — там играют все
+        if (stacked()) return;
+        $$('video', f).forEach(function (v) { if (on) pjPlay(v); else v.pause(); });
+      });
+      dots.forEach(function (d, n) { d.setAttribute('aria-current', n === i ? 'true' : 'false'); });
+    }
+
+    // Каждому эпизоду соответствует своя полоса прокрутки: та, что сейчас
+    // пересекает середину экрана, и задаёт активный эпизод.
+    var steps = $$('.pj-eps__step', wrap);
+    steps.forEach(function (s, i) { s.setAttribute('data-i', String(i)); });
+
+    function goTo(i) {
+      var s = steps[i];
+      if (!s) return;
+      var r = s.getBoundingClientRect();
+      var y = r.top + window.pageYOffset + r.height / 2 - window.innerHeight / 2;
+      window.scrollTo({ top: y, behavior: reduced ? 'auto' : 'smooth' });
+    }
+
+    if ('IntersectionObserver' in window && steps.length === frames.length) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) show(Number(e.target.getAttribute('data-i')));
+        });
+      }, { rootMargin: '-50% 0px -50% 0px', threshold: 0 });
+      steps.forEach(function (s) { io.observe(s); });
+    }
+  })();
+
+  /* ---------- 4. Карта маршрута ---------- */
+  (function map() {
+    var pts = $$('.pj-map__pt');
+    var info = document.getElementById('pj-map-info');
+    if (!pts.length || !info) return;
+    var y = $('.pj-map__info-y', info),
+        t = $('.pj-map__info-t', info),
+        d = $('.pj-map__info-d', info);
+
+    function pick(g) {
+      pts.forEach(function (p) { p.classList.toggle('is-on', p === g); });
+      y.textContent = g.getAttribute('data-y');
+      t.textContent = g.getAttribute('data-t');
+      d.textContent = g.getAttribute('data-d');
+    }
+
+    pts.forEach(function (g) {
+      g.addEventListener('click', function () { pick(g); });
+      g.addEventListener('mouseenter', function () { pick(g); });
+      g.addEventListener('focus', function () { pick(g); });
+      g.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(g); }
+      });
+    });
+  })();
+
+  /* ---------- 5. Калькулятор билетов ---------- */
+  (function calc() {
+    var box = document.getElementById('pj-calc');
+    if (!box) return;
+
+    var PRICE = {
+      full:    { week: 700, wknd: 800, name: 'полный билет' },
+      family:  { week: 600, wknd: null, name: 'семейный билет', min: 3 },
+      benefit: { week: 600, wknd: null, name: 'льготный билет' },
+      school:  { week: 400, wknd: null, name: 'школьная экскурсия', min: 10 },
+      lucky:   { week: 400, wknd: null, name: 'счастливый сеанс' },
+      corp:    { week: 500, wknd: 600, name: 'корпоративный тариф', min: 10 },
+      kid:     { week: 0,   wknd: 0,   name: 'дети до 6 лет' }
+    };
+
+    var day = 'week';
+    var qty = 2;
+    var sel = document.getElementById('pj-cat');
+    var out = document.getElementById('pj-qty');
+    var total = document.getElementById('pj-total');
+    var hint = document.getElementById('pj-hint');
+    var dayBtns = $$('[data-day]', box);
+
+    function money(n) { return n.toLocaleString('ru-RU') + ' ₽'; }
+
+    function render() {
+      var key = sel.value;
+      var p = PRICE[key];
+      var price = p[day];
+
+      if (price === null) {
+        total.textContent = '—';
+        hint.innerHTML = 'В выходные этот тариф не действует. В выходные доступны <b>полный билет — 800 ₽</b>, дети до 6 лет — бесплатно, корпоративный тариф — 600 ₽.';
+        return;
+      }
+
+      if (p.min && qty < p.min) {
+        total.textContent = '—';
+        hint.innerHTML = 'Тариф «' + p.name + '» действует от <b>' + p.min + ' человек</b>. Добавьте ещё ' + (p.min - qty) + '.';
+        return;
+      }
+
+      var sum = price * qty;
+      total.textContent = money(sum);
+
+      if (price === 0) {
+        hint.innerHTML = 'Дети до 6 лет включительно проходят <b>бесплатно</b> в любой день.';
+        return;
+      }
+
+      var dayWord = day === 'week' ? 'будний день' : 'выходной';
+      var txt = qty + ' × ' + money(price) + ' — ' + p.name + ', ' + dayWord + '.';
+
+      // подсказать более выгодный тариф
+      if (day === 'week' && key === 'full') {
+        if (qty >= 10) txt += ' <b>Выгоднее: от 10 человек — 400 ₽</b>, это ' + money(400 * qty) + '.';
+        else if (qty >= 3) txt += ' <b>Выгоднее: семейный — 600 ₽</b>, это ' + money(600 * qty) + '.';
+        else txt += ' На первом и последнем сеансе в пн и вт — <b>400 ₽</b>.';
+      }
+      if (key === 'school') {
+        var free = Math.floor(qty / 10);
+        if (free > 0) txt += ' Плюс ' + free + ' сопровождающ' + (free === 1 ? 'ий проходит' : 'их проходят') + ' <b>бесплатно</b>.';
+      }
+      hint.innerHTML = txt;
+    }
+
+    dayBtns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        day = b.getAttribute('data-day');
+        dayBtns.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+        render();
+      });
+    });
+
+    document.getElementById('pj-minus').addEventListener('click', function () {
+      qty = Math.max(1, qty - 1); out.textContent = qty; render();
+    });
+    document.getElementById('pj-plus').addEventListener('click', function () {
+      qty = Math.min(200, qty + 1); out.textContent = qty; render();
+    });
+    sel.addEventListener('change', render);
+    render();
+  })();
+
+  /* ---------- 6. Галерея: лайтбокс ---------- */
+  (function gallery() {
+    var lb = document.getElementById('pj-lb');
+    var img = document.getElementById('pj-lb-img');
+    var x = document.getElementById('pj-lb-x');
+    if (!lb || !img) return;
+
+    $$('.pj-gal__i').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var s = b.querySelector('img');
+        img.src = s.src;
+        img.alt = s.alt;
+        lb.classList.add('is-on');
+        x.focus();
+      });
+    });
+
+    function close() { lb.classList.remove('is-on'); img.src = ''; }
+    x.addEventListener('click', close);
+    lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && lb.classList.contains('is-on')) close();
+    });
+  })();
+
+  /* ---------- 7. Заявка от групп ---------- */
+  (function form() {
+    var f = document.getElementById('pj-form');
+    var note = document.getElementById('pj-form__note');
+    if (!f) return;
+
+    // ЗАМЕНИТЬ: адрес, на который приходят заявки
+    var MAILTO = 'info@example.ru';
+
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!f.reportValidity()) return;
+      var d = new FormData(f);
+      var body = [
+        'Заявка с сайта «Пушкин. Живой»',
+        '',
+        'Школа или компания: ' + d.get('org'),
+        'Контактное лицо: '   + d.get('name'),
+        'Человек: '           + d.get('count'),
+        'Желаемая дата: '     + d.get('date'),
+        'Телефон: '           + d.get('phone'),
+        'Почта: '             + d.get('email'),
+        'Комментарий: '       + (d.get('note') || '—')
+      ].join('\n');
+
+      window.location.href = 'mailto:' + MAILTO +
+        '?subject=' + encodeURIComponent('Групповая заявка — Пушкин. Живой') +
+        '&body=' + encodeURIComponent(body);
+
+      note.textContent = 'Открылось письмо с вашей заявкой — отправьте его, и мы забронируем сеанс.';
+    });
+  })();
+
+  /* ---------- 8. Липкая шапка ---------- */
+  (function nav() {
+    var n = document.getElementById('pj-nav');
+    if (!n) return;
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        ticking = false;
+        n.classList.toggle('is-stuck', window.pageYOffset > 24);
+      });
+    }, { passive: true });
+  })();
+
+  /* ---------- 9. Плавный переход по якорям ---------- */
+  $$('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href');
+      if (id.length < 2) return;
+      var t = document.querySelector(id);
+      if (!t) return;
+      e.preventDefault();
+      var top = t.getBoundingClientRect().top + window.pageYOffset - 64;
+      window.scrollTo({ top: top, behavior: reduced ? 'auto' : 'smooth' });
+    });
+  });
+
+})();
+</script>

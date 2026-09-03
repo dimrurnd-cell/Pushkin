@@ -10,9 +10,6 @@
 Open-Generative-AI-main/
 Open-Generative-AI-main.zip
 
-# сборка под Tilda генерируется скриптом
-site/tilda-ready/
-
 # служебное
 .DS_Store
 Thumbs.db

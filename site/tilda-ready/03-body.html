@@ -1,0 +1,750 @@
+<!-- ============================================================
+     ПУШКИН. ЖИВОЙ — блок BODY (Tilda: блок T123 «HTML-код»)
+     Всё содержимое обёрнуто в .pj, чтобы стили Tilda не пересекались.
+     ============================================================ -->
+
+<div class="pj" id="pj">
+
+  <!-- ══════════ НАВИГАЦИЯ ══════════ -->
+  <nav class="pj-nav" id="pj-nav" aria-label="Разделы страницы">
+    <div class="pj-nav__in">
+      <a class="pj-nav__brand" href="#pj">Пушкин.&nbsp;<span>Живой</span></a>
+      <div class="pj-nav__links">
+        <a href="#o-vystavke">Выставка</a>
+        <a href="#epizody">Эпизоды</a>
+        <a href="#marshrut">Маршрут</a>
+        <a href="#zal">Зал</a>
+        <a href="#bilety">Билеты</a>
+        <a href="#seansy">Расписание</a>
+        <a href="#gruppam">Группам</a>
+        <a href="#kak-dobratsya">Как дойти</a>
+      </div>
+      <a class="pj-btn pj-btn--solid pj-nav__btn" href="#bilety">Билеты</a>
+    </div>
+  </nav>
+
+  <!-- ══════════ ПРОЛОГ ══════════ -->
+  <header class="pj-hero pj-wrap">
+    <canvas class="pj-hero__snow" id="pj-snow" aria-hidden="true"></canvas>
+
+    <div class="pj-hero__inner">
+      <div class="pj-hero__top pj-anim pj-anim--1">
+        <span class="pj-slug">Екатеринбург · Свердловская киностудия</span>
+        <span class="pj-slug pj-slug--dim">Мультимедийная выставка</span>
+        <span class="pj-slug pj-slug--dim">0+</span>
+      </div>
+
+      <h1 class="pj-title pj-anim pj-anim--2">
+        <span class="pj-title__l1">Пушкин.</span>
+        <span class="pj-title__l2">Живой</span>
+        <svg class="pj-title__ink" viewBox="0 0 640 40" aria-hidden="true" focusable="false">
+          <path d="M4 26 C 88 8, 172 34, 258 20 S 424 6, 512 24 S 604 34, 636 18" />
+        </svg>
+      </h1>
+
+      <div class="pj-hero__sub pj-anim pj-anim--3">
+        <span class="pj-hero__dates">5 октября — 29 ноября 2026</span>
+        <span class="pj-slug pj-slug--dim">56 дней · 13 сеансов ежедневно</span>
+      </div>
+
+      <p class="pj-lead pj-anim pj-anim--3" style="margin-top:20px">
+        Сорок минут между 1799 и 1837 годом. Фильм идёт сразу на трёх экранах:
+        то, что герой видит, то, что он вспоминает, и то, о чём он молчит.
+      </p>
+
+      <!-- три экрана -->
+      <div class="pj-hero__stage pj-tri pj-anim pj-anim--4">
+        <figure class="pj-screen pj-screen--l">
+          <img class="pj-screen__img" src="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/hall/13.webp" alt="Левый экран зала мультимедийной выставки" loading="eager" decoding="async">
+          <span class="pj-screen__tag">Левый экран</span>
+        </figure>
+        <figure class="pj-screen pj-screen--c">
+          <img class="pj-screen__img" src="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/hall/22.webp" alt="Центральный экран: проекция во весь зал" loading="eager" decoding="async">
+          <span class="pj-screen__tag">Центр</span>
+          <figcaption class="pj-screen__cap">Три проекции идут одновременно. Персонажи переходят с экрана на экран.</figcaption>
+        </figure>
+        <figure class="pj-screen pj-screen--r">
+          <img class="pj-screen__img" src="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/hall/10.webp" alt="Правый экран зала мультимедийной выставки" loading="eager" decoding="async">
+          <span class="pj-screen__tag">Правый экран</span>
+        </figure>
+      </div>
+
+      <div class="pj-facts">
+        <div class="pj-fact"><span class="pj-fact__n">40</span><span class="pj-fact__l">минут фильма</span></div>
+        <div class="pj-fact"><span class="pj-fact__n">10</span><span class="pj-fact__l">эпизодов</span></div>
+        <div class="pj-fact"><span class="pj-fact__n">3</span><span class="pj-fact__l">экрана</span></div>
+        <div class="pj-fact"><span class="pj-fact__n">100+</span><span class="pj-fact__l">полотен</span></div>
+        <div class="pj-fact"><span class="pj-fact__n">13</span><span class="pj-fact__l">сеансов в день</span></div>
+      </div>
+
+      <div class="pj-cta">
+        <a class="pj-btn pj-btn--solid" href="#bilety">Купить билет</a>
+        <a class="pj-btn pj-btn--ghost" href="#epizody">Смотреть эпизоды</a>
+      </div>
+
+      <div class="pj-count" id="pj-count" aria-label="Обратный отсчёт до открытия">
+        <div class="pj-count__u"><span class="pj-count__v" data-c="d">—</span><span class="pj-count__l">дней</span></div>
+        <div class="pj-count__u"><span class="pj-count__v" data-c="h">—</span><span class="pj-count__l">часов</span></div>
+        <div class="pj-count__u"><span class="pj-count__v" data-c="m">—</span><span class="pj-count__l">минут</span></div>
+        <div class="pj-count__u"><span class="pj-count__v" data-c="s">—</span><span class="pj-count__l">секунд</span></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="pj-wrap"><div class="pj-rule"></div></div>
+
+  <!-- ══════════ О ВЫСТАВКЕ ══════════ -->
+  <section class="pj-sec pj-wrap" id="o-vystavke">
+    <div class="pj-sechead">
+      <span class="pj-slug">Что происходит в зале</span>
+      <h2 class="pj-h2">Не экспозиция.<br>Сорокаминутный фильм,<br>в который вы входите.</h2>
+    </div>
+
+    <div class="pj-about">
+      <div style="display:grid;gap:22px">
+        <p class="pj-lead">
+          Вы садитесь в тёмном зале, и три проекции окружают вас с трёх сторон.
+          На центральном экране идёт основное действие; боковые досказывают его —
+          деталью, рукописью, пейзажем за окном кареты.
+        </p>
+        <p class="pj-body">
+          Фильм собран из более чем ста живописных полотен — Айвазовский, Кипренский,
+          Врубель, Левитан, Куинджи, Садовников, Беггров, — из графики Нади Рушевой
+          и из ИИ-реконструкций тех сцен, которых живопись не сохранила: комната на
+          Фонтанке, ночь в Кишинёве, часы в доме Пушкиных.
+        </p>
+        <p class="pj-body">
+          Пушкин здесь не памятник и не портрет в раме. Он опаздывает, влюбляется,
+          злится, играет в карты, пишет ночами и спорит с императором. Отсюда
+          и название.
+        </p>
+        <div class="pj-cta" style="margin-top:6px">
+          <a class="pj-btn pj-btn--ghost" href="#zal">Посмотреть зал</a>
+        </div>
+      </div>
+
+      <div>
+        <span class="pj-slug pj-slug--dim" style="display:block;margin-bottom:12px">Голоса фильма</span>
+        <div class="pj-about__voices">
+          <div class="pj-voice"><span class="pj-voice__n">Пушкин</span><span class="pj-voice__d">Письма, дневники, стихи — только его собственные слова</span></div>
+          <div class="pj-voice"><span class="pj-voice__n">Натали</span><span class="pj-voice__d">История, рассказанная с другой стороны бального зала</span></div>
+          <div class="pj-voice"><span class="pj-voice__n">Муза</span><span class="pj-voice__d">Голос, который слышит только он</span></div>
+          <div class="pj-voice"><span class="pj-voice__n">Диктор</span><span class="pj-voice__d">Даты, факты, документы — то, что проверяется</span></div>
+          <div class="pj-voice"><span class="pj-voice__n">Хор</span><span class="pj-voice__d">В финале стихотворение читают все — от семилетнего до взрослого</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ ЭПИЗОДЫ ══════════ -->
+  <section class="pj-sec pj-sec--tight" id="epizody">
+    <div class="pj-wrap pj-sechead">
+      <div class="pj-sechead__row">
+        <span class="pj-slug">Хронометраж</span>
+        <span class="pj-slug pj-slug--dim">1799 — 1837 · десять эпизодов</span>
+      </div>
+      <h2 class="pj-h2">Из чего собран фильм</h2>
+    </div>
+
+    <div class="pj-eps" id="pj-eps">
+      <div class="pj-eps__stage">
+        <div class="pj-wrap" style="width:100%">
+          <div class="pj-eps__frames" id="pj-ep-frames">
+
+            <!-- 00 · ПРОЛОГ -->
+            <article class="pj-ep is-on" data-i="0" style="--washA:rgba(90,130,200,.20);--washB:rgba(158,43,32,.16);--wx:26%;--wy:20%;--wx2:80%;--wy2:84%">
+              <div class="pj-ep__head">
+                <span class="pj-ep__years">Пролог · 27 января 1837</span>
+                <h3 class="pj-ep__t">Мгновение до выстрела</h3>
+              </div>
+              <div class="pj-ep__tri pj-tri">
+                <figure class="pj-screen" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep0-l.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">ИИ-реконструкция: внутри экипажа — рука в перчатке, едва заметная дрожь ткани</figcaption></figure>
+                <figure class="pj-screen pj-screen--c" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep0-c.webp" data-video="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/video/ep0-c.mp4"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">«Зимний Петербург» · А. К. Беггров · Челябинский музей изобразительных искусств</figcaption></figure>
+                <figure class="pj-screen" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep0-r.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">«Приезд. Выбор места дуэли» · Д. Белюкин · 2022—2023</figcaption></figure>
+              </div>
+              <blockquote class="pj-ep__quote">
+                <p class="pj-ep__q">«О люди! жалкий род, достойный слёз и смеха! Жрецы минутного, поклонники успеха!»</p>
+                <span class="pj-ep__who">Пушкин · Санкт-Петербург, 15:30</span>
+              </blockquote>
+            </article>
+
+            <!-- 01 · ДЕТСТВО -->
+            <article class="pj-ep" data-i="1" style="--washA:rgba(217,164,65,.20);--washB:rgba(120,90,60,.20);--wx:30%;--wy:26%;--wx2:76%;--wy2:80%">
+              <div class="pj-ep__head">
+                <span class="pj-ep__years">Эпизод 1 · 1799—1811</span>
+                <h3 class="pj-ep__t">Детство. Москва</h3>
+              </div>
+              <div class="pj-ep__tri pj-tri">
+                <figure class="pj-screen" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep1-l.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">Оживлённая графика пером и тушью по рисункам Нади Рушевой</figcaption></figure>
+                <figure class="pj-screen pj-screen--c" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep1-c.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">Москва рубежа веков: старая улица близ Немецкой слободы · по видам Ф. Я. Алексеева</figcaption></figure>
+                <figure class="pj-screen" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep1-r.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">Бабушка Мария Алексеевна Ганнибал · семейная хроника Пушкиных</figcaption></figure>
+              </div>
+              <blockquote class="pj-ep__quote">
+                <p class="pj-ep__q">«Учился я плохо. Но был до книг охотчив. Единственно, кто любили меня без условий, были сестра Оля и няня.»</p>
+                <span class="pj-ep__who">Пушкин</span>
+              </blockquote>
+            </article>
+
+            <!-- 02 · ЛИЦЕЙ -->
+            <article class="pj-ep" data-i="2" style="--washA:rgba(217,164,65,.22);--washB:rgba(70,110,160,.18);--wx:22%;--wy:30%;--wx2:84%;--wy2:74%">
+              <div class="pj-ep__head">
+                <span class="pj-ep__years">Эпизод 2 · 1811—1817</span>
+                <h3 class="pj-ep__t">Юность. Лицейское братство</h3>
+              </div>
+              <div class="pj-ep__tri pj-tri">
+                <figure class="pj-screen" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep2-l.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">А. А. Тон · «Царское Село. Лицей» · 1822</figcaption></figure>
+                <figure class="pj-screen pj-screen--c" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep2-c.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">Э. Гау · Церковь в Большом Царскосельском дворце · 1860-е · ГМЗ «Царское Село»</figcaption></figure>
+                <figure class="pj-screen" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep2-r.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">Л. Премацци · Малиновая гостиная в Александровском дворце · 1863</figcaption></figure>
+              </div>
+              <blockquote class="pj-ep__quote">
+                <p class="pj-ep__q">«В те дни, когда в садах Лицея я безмятежно расцветал… являться муза стала мне.»</p>
+                <span class="pj-ep__who">Пушкин · подъём в 6:00, отбой в 22:00, шесть лет</span>
+              </blockquote>
+            </article>
+
+            <!-- 03 · ПЕТЕРБУРГ -->
+            <article class="pj-ep" data-i="3" style="--washA:rgba(120,150,200,.20);--washB:rgba(217,164,65,.14);--wx:34%;--wy:22%;--wx2:72%;--wy2:82%">
+              <div class="pj-ep__head">
+                <span class="pj-ep__years">Эпизод 3 · 1817—1820</span>
+                <h3 class="pj-ep__t">Петербург цитирует Пушкина</h3>
+              </div>
+              <div class="pj-ep__tri pj-tri">
+                <figure class="pj-screen" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep3-l.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">ИИ-реконструкция: комната поэта на Фонтанке · интерьер в стиле бидермайер</figcaption></figure>
+                <figure class="pj-screen pj-screen--c" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep3-c.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">В. С. Садовников · «Вид Невы и Петропавловской крепости» · 1847</figcaption></figure>
+                <figure class="pj-screen" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep3-r.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">В. С. Садовников · «Вид Казанского собора»</figcaption></figure>
+              </div>
+              <blockquote class="pj-ep__quote">
+                <p class="pj-ep__q">«Я встаю в семь часов, пишу до обеда. Обедаю поздно. После — театр, или карты, или снова стихи. Я почти счастлив.»</p>
+                <span class="pj-ep__who">Пушкин · коллежский секретарь, жалованье 700 рублей в год</span>
+              </blockquote>
+            </article>
+
+            <!-- 04 · ЮГ -->
+            <article class="pj-ep" data-i="4" style="--washA:rgba(217,164,65,.24);--washB:rgba(40,140,150,.20);--wx:20%;--wy:74%;--wx2:80%;--wy2:24%">
+              <div class="pj-ep__head">
+                <span class="pj-ep__years">Эпизод 4 · 1820—1824</span>
+                <h3 class="pj-ep__t">Юг. Изгнание как свобода</h3>
+              </div>
+              <div class="pj-ep__tri pj-tri">
+                <figure class="pj-screen" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep4-l.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">А. И. Куинджи · «Днепр утром» · 1881</figcaption></figure>
+                <figure class="pj-screen pj-screen--c" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep4-c.webp" data-video="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/video/ep4-c.mp4"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">И. К. Айвазовский · «Пушкин на берегу Чёрного моря» · 1887</figcaption></figure>
+                <figure class="pj-screen" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep4-r.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">И. К. Айвазовский · «Гурзуф» · 1859 · Художественный музей, Харьков</figcaption></figure>
+              </div>
+              <blockquote class="pj-ep__quote">
+                <p class="pj-ep__q">«Лети, корабль, неси меня к пределам дальным по грозной прихоти обманчивых морей…»</p>
+                <span class="pj-ep__who">Пушкин · Екатеринослав, Кавказ, Гурзуф, Кишинёв, Одесса</span>
+              </blockquote>
+            </article>
+
+            <!-- 05 · МИХАЙЛОВСКОЕ -->
+            <article class="pj-ep" data-i="5" style="--washA:rgba(150,170,140,.18);--washB:rgba(217,164,65,.18);--wx:28%;--wy:34%;--wx2:78%;--wy2:78%">
+              <div class="pj-ep__head">
+                <span class="pj-ep__years">Эпизод 5 · 1824—1826</span>
+                <h3 class="pj-ep__t">Михайловское</h3>
+              </div>
+              <div class="pj-ep__tri pj-tri">
+                <figure class="pj-screen" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep5-l.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">П. А. Александров с оригинала И. С. Иванова · «Михайловское. Вид усадьбы» · 1837</figcaption></figure>
+                <figure class="pj-screen pj-screen--c" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep5-c.webp" data-video="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/video/ep5-c.mp4"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">М. А. Врубель · «Царевна-Лебедь» · 1900 · ГТГ — оживают сказки няни</figcaption></figure>
+                <figure class="pj-screen" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep5-r.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">И. Геллер · «Пушкин и няня»</figcaption></figure>
+              </div>
+              <blockquote class="pj-ep__quote">
+                <p class="pj-ep__q">«Подруга дней моих суровых, голубка дряхлая моя! Одна в глуши лесов сосновых давно, давно ты ждёшь меня…»</p>
+                <span class="pj-ep__who">Пушкин · «Няне», 1826 · триста вёрст от Петербурга</span>
+              </blockquote>
+            </article>
+
+            <!-- 06 · ИМПЕРАТОР -->
+            <article class="pj-ep" data-i="6" style="--washA:rgba(158,43,32,.18);--washB:rgba(217,164,65,.18);--wx:76%;--wy:24%;--wx2:24%;--wy2:80%">
+              <div class="pj-ep__head">
+                <span class="pj-ep__years">Эпизод 6 · 1826—1830</span>
+                <h3 class="pj-ep__t">Возвращение. Поэт и император</h3>
+              </div>
+              <div class="pj-ep__tri pj-tri">
+                <figure class="pj-screen" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep6-l.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">Дж. Доу · Портрет А. Х. Бенкендорфа · ок. 1819—1820 · Военная галерея Зимнего дворца</figcaption></figure>
+                <figure class="pj-screen pj-screen--c" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep6-c.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">О. А. Кипренский · Портрет А. С. Пушкина · 1827 · холст, масло · ГТГ</figcaption></figure>
+                <figure class="pj-screen" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep6-r.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">Дж. Доу · Портрет великого князя Николая Павловича · 1821</figcaption></figure>
+              </div>
+              <blockquote class="pj-ep__quote">
+                <p class="pj-ep__q">«Я только что разговаривал с умнейшим человеком России.»</p>
+                <span class="pj-ep__who">Николай I · 8 сентября 1826, сразу после разговора в Кремле</span>
+              </blockquote>
+            </article>
+
+            <!-- 07 · БОЛДИНО -->
+            <article class="pj-ep" data-i="7" style="--washA:rgba(217,164,65,.26);--washB:rgba(140,80,40,.20);--wx:32%;--wy:70%;--wx2:74%;--wy2:26%">
+              <div class="pj-ep__head">
+                <span class="pj-ep__years">Эпизод 7 · осень 1830</span>
+                <h3 class="pj-ep__t">Болдино</h3>
+              </div>
+              <div class="pj-ep__tri pj-tri">
+                <figure class="pj-screen" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep7-l.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">А. А. Пластов · «Пушкин в Болдине» · 1949 · фонды ГМП</figcaption></figure>
+                <figure class="pj-screen pj-screen--c" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep7-c.webp" data-video="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/video/ep7-c.mp4"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">И. И. Левитан · «Золотая осень» · 1895 · ГТГ</figcaption></figure>
+                <figure class="pj-screen" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep7-r.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">В. Хазов · Болдинские акварели · холерные карантины перекрыли дороги</figcaption></figure>
+              </div>
+              <blockquote class="pj-ep__quote">
+                <p class="pj-ep__q">«Белкин — мой добрый приятель. Если б нашёлся издатель, я б охотно его сочинениям дал своё имя…»</p>
+                <span class="pj-ep__who">Пушкин · письмо Плетнёву, октябрь 1830</span>
+              </blockquote>
+            </article>
+
+            <!-- 08 · НАТАЛИ -->
+            <article class="pj-ep" data-i="8" style="--washA:rgba(220,190,190,.16);--washB:rgba(217,164,65,.18);--wx:24%;--wy:26%;--wx2:80%;--wy2:76%">
+              <div class="pj-ep__head">
+                <span class="pj-ep__years">Эпизод 8 · 1830—1836</span>
+                <h3 class="pj-ep__t">Натали</h3>
+              </div>
+              <div class="pj-ep__tri pj-tri">
+                <figure class="pj-screen" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep8-l.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">А. П. Брюллов · Н. Н. Пушкина · 1831—1832 · бумага, акварель</figcaption></figure>
+                <figure class="pj-screen pj-screen--c" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep8-c.webp" data-video="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/video/ep8-c.mp4"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">В. Комаров · «Знакомство Пушкина с Гончаровой» · бал у танцмейстера Йогеля, зима 1828</figcaption></figure>
+                <figure class="pj-screen" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep8-r.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">Н. Рушева · «Н. Н. Пушкина с детьми» · 1966 · из цикла «Пушкиниана»</figcaption></figure>
+              </div>
+              <blockquote class="pj-ep__quote">
+                <p class="pj-ep__q">«Я влюблён, я очарован, я совсем огончарован!»</p>
+                <span class="pj-ep__who">Пушкин · ему двадцать девять, ей шестнадцать</span>
+              </blockquote>
+            </article>
+
+            <!-- 09 · ФИНАЛ -->
+            <article class="pj-ep" data-i="9" style="--washA:rgba(158,43,32,.22);--washB:rgba(60,80,130,.22);--wx:70%;--wy:78%;--wx2:26%;--wy2:22%">
+              <div class="pj-ep__head">
+                <span class="pj-ep__years">Эпизод 9 · 1837</span>
+                <h3 class="pj-ep__t">Финал</h3>
+              </div>
+              <div class="pj-ep__tri pj-tri">
+                <figure class="pj-screen" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep9-l.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">ИИ-реконструкция: дневник Пушкина, записи 1—3 ноября 1836 года</figcaption></figure>
+                <figure class="pj-screen pj-screen--c" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep9-c.webp" data-video="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/video/ep9-c.mp4"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">Ю. Г. Чистяков · из серии «А. Пушкин» · бумага, акварель · 1982</figcaption></figure>
+                <figure class="pj-screen" data-img="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/ep/ep9-r.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">ИИ-реконструкция: часы в доме Пушкиных — время идёт назад</figcaption></figure>
+              </div>
+              <blockquote class="pj-ep__quote">
+                <p class="pj-ep__q">«Требую, чтобы ты не мстил за мою смерть, прощаю ему и хочу умереть христианином.»</p>
+                <span class="pj-ep__who">Пушкин · Чёрная речка, 27 января 1837, 16:30</span>
+              </blockquote>
+            </article>
+
+          </div>
+
+          <div class="pj-rail" aria-hidden="false">
+            <span class="pj-rail__y">1799</span>
+            <div class="pj-rail__track" id="pj-rail" role="tablist" aria-label="Переход к эпизоду"></div>
+            <span class="pj-rail__y">1837</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pj-eps__steps" aria-hidden="true">
+        <div class="pj-eps__step"></div><div class="pj-eps__step"></div><div class="pj-eps__step"></div>
+        <div class="pj-eps__step"></div><div class="pj-eps__step"></div><div class="pj-eps__step"></div>
+        <div class="pj-eps__step"></div><div class="pj-eps__step"></div><div class="pj-eps__step"></div>
+        <div class="pj-eps__step"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pj-wrap"><div class="pj-rule"></div></div>
+
+  <!-- ══════════ МАРШРУТ ══════════ -->
+  <section class="pj-sec pj-wrap" id="marshrut">
+    <div class="pj-sechead">
+      <span class="pj-slug">Схема маршрута</span>
+      <h2 class="pj-h2">Тридцать семь лет на одной карте</h2>
+      <p class="pj-body">Ссылка, к которой он не просился, оказалась дорогой длиной в полжизни. Нажмите точку — она расскажет свой год.</p>
+    </div>
+
+    <div class="pj-map">
+      <figure class="pj-map__fig">
+        <svg class="pj-map__svg" viewBox="0 0 1000 620" role="img" aria-label="Схема мест жизни Пушкина: Москва, Царское Село, Петербург, юг, Михайловское, Болдино, Чёрная речка">
+          <g class="pj-map__grid">
+            <line x1="152" y1="40" x2="152" y2="580"></line>
+            <line x1="316" y1="40" x2="316" y2="580"></line>
+            <line x1="479" y1="40" x2="479" y2="580"></line>
+            <line x1="643" y1="40" x2="643" y2="580"></line>
+            <line x1="807" y1="40" x2="807" y2="580"></line>
+            <line x1="60" y1="150" x2="950" y2="150"></line>
+            <line x1="60" y1="257" x2="950" y2="257"></line>
+            <line x1="60" y1="363" x2="950" y2="363"></line>
+            <line x1="60" y1="470" x2="950" y2="470"></line>
+          </g>
+          <polyline class="pj-map__route" points="545,210 262,122 234,97 439,403 766,523 410,510 185,443 262,457 193,177 545,210 860,230 234,97 200,74"></polyline>
+          <g id="pj-map-pts">
+            <g class="pj-map__pt is-on" tabindex="0" role="button" data-y="1799—1811" data-t="Москва" data-d="Родился 26 мая 1799 года в Немецкой слободе. Учился плохо, читал запоем. Безусловно любили его только сестра Оля и няня."><circle cx="545" cy="210" r="6"></circle><text x="559" y="215">Москва</text></g>
+            <g class="pj-map__pt" tabindex="0" role="button" data-y="1811—1817" data-t="Царское Село" data-d="Двенадцатилетний мальчик въезжает в Царское Село. Подъём в 6:00, отбой в 22:00, шесть лет. Здесь он впервые понимает, что он поэт."><circle cx="262" cy="122" r="6"></circle><text x="276" y="127">Царское Село</text></g>
+            <g class="pj-map__pt" tabindex="0" role="button" data-y="1817—1820" data-t="Петербург" data-d="Коллегия иностранных дел, жалованье 700 рублей в год, присутствие дважды в неделю. Остальное время — театр, карты и стихи."><circle cx="234" cy="97" r="6"></circle><text x="248" y="102">Петербург</text></g>
+            <g class="pj-map__pt" tabindex="0" role="button" data-y="май 1820" data-t="Екатеринослав" data-d="Купался в Днепре и тяжело заболел. Мимо проездом оказался генерал Раевский с семьёй — и забрал поэта с собой на воды."><circle cx="439" cy="403" r="5"></circle><text x="453" y="408">Екатеринослав</text></g>
+            <g class="pj-map__pt" tabindex="0" role="button" data-y="1820" data-t="Кавказ" data-d="Минеральные воды, Военно-Грузинская дорога, аулы в горах. Другой воздух — и другой Пушкин: вольный, пылкий."><circle cx="766" cy="523" r="5"></circle><text x="780" y="528">Кавказ</text></g>
+            <g class="pj-map__pt" tabindex="0" role="button" data-y="1820" data-t="Гурзуф" data-d="Крым, море, кипарисы. Айвазовский напишет его на этом берегу спустя шестьдесят семь лет."><circle cx="410" cy="510" r="5"></circle><text x="424" y="515">Гурзуф</text></g>
+            <g class="pj-map__pt" tabindex="0" role="button" data-y="1820—1823" data-t="Кишинёв" data-d="Маленькая комната, свеча, степь за окном. Ночами пишется «Кавказский пленник»."><circle cx="185" cy="443" r="5"></circle><text x="199" y="448">Кишинёв</text></g>
+            <g class="pj-map__pt" tabindex="0" role="button" data-y="1823—1824" data-t="Одесса" data-d="Порт, опера, море и служба, которая закончится высылкой в псковскую глушь."><circle cx="262" cy="457" r="5"></circle><text x="276" y="462">Одесса</text></g>
+            <g class="pj-map__pt" tabindex="0" role="button" data-y="1824—1826" data-t="Михайловское" data-d="Ни столицы, ни моря, ни друзей. Только сосны, няня и работа: главы «Онегина», «Борис Годунов», «Пророк», «Я помню чудное мгновенье…»"><circle cx="193" cy="177" r="6"></circle><text x="207" y="182">Михайловское</text></g>
+            <g class="pj-map__pt" tabindex="0" role="button" data-y="осень 1830" data-t="Болдино" data-d="Ехал на три недели оформить бумаги под свадьбу — застрял на всю осень из-за холерных карантинов. Так появились «Повести Белкина»."><circle cx="860" cy="230" r="6"></circle><text x="846" y="235" text-anchor="end">Болдино</text></g>
+            <g class="pj-map__pt pj-map__pt--end" tabindex="0" role="button" data-y="27 января 1837" data-t="Чёрная речка" data-d="Близ Комендантской дачи, 16:30. Предсмертные страдания продолжались сорок три часа."><circle cx="200" cy="74" r="6"></circle><text x="186" y="79" text-anchor="end">Чёрная речка</text></g>
+          </g>
+        </svg>
+      </figure>
+
+      <div class="pj-map__info" id="pj-map-info">
+        <span class="pj-map__info-y">1799—1811</span>
+        <h3 class="pj-map__info-t">Москва</h3>
+        <p class="pj-map__info-d">Родился 26 мая 1799 года в Немецкой слободе. Учился плохо, читал запоем. Безусловно любили его только сестра Оля и няня.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ ТЕХНОЛОГИЯ ══════════ -->
+  <section class="pj-sec pj-sec--tight pj-wrap" id="tehnologiya">
+    <div class="pj-sechead">
+      <span class="pj-slug">Как это сделано</span>
+      <h2 class="pj-h2">Новый формат</h2>
+    </div>
+    <div class="pj-tech">
+      <div class="pj-tech__i">
+        <span class="pj-tech__n">01</span>
+        <h3 class="pj-tech__t">Три экрана</h3>
+        <p class="pj-tech__d">Действие идёт одновременно на центральной и двух боковых проекциях. Персонаж уходит с одного экрана и появляется на другом — зритель оказывается внутри сцены, а не перед ней.</p>
+      </div>
+      <div class="pj-tech__i">
+        <span class="pj-tech__n">02</span>
+        <h3 class="pj-tech__t">Более 100 полотен</h3>
+        <p class="pj-tech__d">Айвазовский, Кипренский, Врубель, Левитан, Куинджи, Садовников, Беггров, Пластов, графика Нади Рушевой. Картины движутся: камера входит внутрь холста.</p>
+      </div>
+      <div class="pj-tech__i">
+        <span class="pj-tech__n">03</span>
+        <h3 class="pj-tech__t">ИИ-реконструкция</h3>
+        <p class="pj-tech__d">Сцены, которых живопись не сохранила, восстановлены нейросетями по документам эпохи: комната на Фонтанке, ночь в Кишинёве, кабинет на Мойке, страницы дневника и рукописей.</p>
+      </div>
+      <div class="pj-tech__i">
+        <span class="pj-tech__n">04</span>
+        <h3 class="pj-tech__t">Только подлинные слова</h3>
+        <p class="pj-tech__d">Реплики Пушкина в фильме — цитаты из его писем, дневников и стихов. Ничего не дописано за него.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ ЗАЛ ══════════ -->
+  <section class="pj-sec pj-sec--tight" id="zal">
+    <div class="pj-wrap pj-sechead">
+      <span class="pj-slug">Зал</span>
+      <h2 class="pj-h2">Темнота, в которой всё светится</h2>
+      <p class="pj-body pj-dim">Кадры мультимедийных проектов креативного агентства R-ART. Зал в Екатеринбурге откроется 5 октября 2026 года.</p>
+    </div>
+    <div class="pj-wrap">
+      <div class="pj-gal" id="pj-gal">
+        <button class="pj-gal__i" type="button"><img src="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/hall/22.webp" alt="Панорама зала с проекцией на стены" loading="lazy"></button>
+        <button class="pj-gal__i" type="button"><img src="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/hall/9.webp" alt="Зрители в зале мультимедийной выставки" loading="lazy"></button>
+        <button class="pj-gal__i" type="button"><img src="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/hall/10.webp" alt="Проекция картины на всю стену зала" loading="lazy"></button>
+        <button class="pj-gal__i" type="button"><img src="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/hall/12.webp" alt="Зал во время сеанса" loading="lazy"></button>
+        <button class="pj-gal__i" type="button"><img src="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/hall/17.webp" alt="Крупный фрагмент проекции" loading="lazy"></button>
+        <button class="pj-gal__i" type="button"><img src="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/hall/19.webp" alt="Свет проектора в темноте зала" loading="lazy"></button>
+        <button class="pj-gal__i" type="button"><img src="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/hall/6.webp" alt="Зрительские места перед экраном" loading="lazy"></button>
+        <button class="pj-gal__i" type="button"><img src="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/hall/5.webp" alt="Широкая панорама проекционного зала" loading="lazy"></button>
+        <button class="pj-gal__i" type="button"><img src="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/hall/8.webp" alt="Деталь проекции на стене" loading="lazy"></button>
+        <button class="pj-gal__i" type="button"><img src="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/hall/16.webp" alt="Зал с трёх сторон окружён изображением" loading="lazy"></button>
+        <button class="pj-gal__i" type="button"><img src="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/hall/18.webp" alt="Посетители рассматривают проекцию" loading="lazy"></button>
+        <button class="pj-gal__i" type="button"><img src="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/hall/23.webp" alt="Фрагмент экспозиции в темноте" loading="lazy"></button>
+      </div>
+    </div>
+  </section>
+
+  <div class="pj-wrap"><div class="pj-rule"></div></div>
+
+  <!-- ══════════ БИЛЕТЫ ══════════ -->
+  <section class="pj-sec pj-wrap" id="bilety">
+    <div class="pj-sechead">
+      <div class="pj-sechead__row">
+        <span class="pj-slug">Билеты</span>
+        <span class="pj-slug pj-slug--dim">Будни — пн—пт · Выходные — сб, вс</span>
+      </div>
+      <h2 class="pj-h2">Сколько стоит</h2>
+    </div>
+
+    <div class="pj-tick">
+      <div>
+        <div class="pj-tablewrap">
+          <table class="pj-table">
+            <thead>
+              <tr><th scope="col">Категория</th><th scope="col">Будни</th><th scope="col">Выходные</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pj-table__name">Полный билет</span></td>
+                <td><span class="pj-table__p">700 ₽</span></td>
+                <td><span class="pj-table__p">800 ₽</span></td>
+              </tr>
+              <tr>
+                <td><span class="pj-table__name">Семейный</span><span class="pj-table__note">Цена одного билета при посещении от 3 человек</span></td>
+                <td><span class="pj-table__p">600 ₽</span></td>
+                <td><span class="pj-table__na">не действует</span></td>
+              </tr>
+              <tr>
+                <td><span class="pj-table__name">Льготный</span><span class="pj-table__note">Пенсионеры · инвалиды всех групп · школьники 7—14 лет · студенты</span></td>
+                <td><span class="pj-table__p">600 ₽</span></td>
+                <td><span class="pj-table__na">не действует</span></td>
+              </tr>
+              <tr>
+                <td><span class="pj-table__name">Организованные и школьные экскурсии</span><span class="pj-table__note">От 10 человек</span></td>
+                <td><span class="pj-table__p">400 ₽</span></td>
+                <td><span class="pj-table__na">не действует</span></td>
+              </tr>
+              <tr>
+                <td><span class="pj-table__name">Счастливый сеанс</span><span class="pj-table__note">Первый и последний сеанс в понедельник и вторник — 11:10 и 19:10</span></td>
+                <td><span class="pj-table__p">400 ₽</span></td>
+                <td><span class="pj-table__na">не действует</span></td>
+              </tr>
+              <tr>
+                <td><span class="pj-table__name">Крупные компании и заводы</span><span class="pj-table__note">Специальная цена по коллективной заявке</span></td>
+                <td><span class="pj-table__p">500 ₽</span></td>
+                <td><span class="pj-table__p">600 ₽</span></td>
+              </tr>
+              <tr>
+                <td><span class="pj-table__name">Сопровождающие школьных экскурсий</span><span class="pj-table__note">Один сопровождающий на 10 человек</span></td>
+                <td><span class="pj-table__p pj-table__free">0 ₽</span></td>
+                <td><span class="pj-table__na">не действует</span></td>
+              </tr>
+              <tr>
+                <td><span class="pj-table__name">Дети до 6 лет включительно</span><span class="pj-table__note">Вход свободный в любой день</span></td>
+                <td><span class="pj-table__p pj-table__free">0 ₽</span></td>
+                <td><span class="pj-table__p pj-table__free">0 ₽</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ЗАМЕНИТЬ: сюда вставляется код виджета Яндекс Афиши -->
+        <div class="pj-widget" id="pj-ticket-widget">
+          <span class="pj-slug">Онлайн-продажа</span>
+          <p class="pj-body">Билеты продаются через Яндекс Афишу. Виджет появится здесь, как только откроется продажа.</p>
+          <!-- ВСТАВЬТЕ КОД ВИДЖЕТА ЯНДЕКС АФИШИ НИЖЕ ЭТОЙ СТРОКИ -->
+        </div>
+      </div>
+
+      <!-- калькулятор -->
+      <div class="pj-calc" id="pj-calc">
+        <div>
+          <span class="pj-slug">Калькулятор</span>
+          <h3 class="pj-h3" style="margin-top:8px">Посчитать свой визит</h3>
+        </div>
+
+        <div class="pj-field">
+          <label id="pj-daylabel">Когда идёте</label>
+          <div class="pj-seg" role="group" aria-labelledby="pj-daylabel">
+            <button type="button" data-day="week" aria-pressed="true">Будни</button>
+            <button type="button" data-day="wknd" aria-pressed="false">Выходные</button>
+          </div>
+        </div>
+
+        <div class="pj-field">
+          <label for="pj-cat">Категория</label>
+          <select class="pj-select" id="pj-cat">
+            <option value="full">Полный билет</option>
+            <option value="family">Семейный (от 3 человек)</option>
+            <option value="benefit">Льготный</option>
+            <option value="school">Школьная или организованная экскурсия (от 10)</option>
+            <option value="lucky">Счастливый сеанс (пн, вт — 11:10 и 19:10)</option>
+            <option value="corp">Компания или завод</option>
+            <option value="kid">Ребёнок до 6 лет</option>
+          </select>
+        </div>
+
+        <div class="pj-field">
+          <label for="pj-qty">Сколько человек</label>
+          <div class="pj-stepper">
+            <button type="button" id="pj-minus" aria-label="Убрать одного человека">−</button>
+            <output id="pj-qty" for="pj-minus pj-plus">2</output>
+            <button type="button" id="pj-plus" aria-label="Добавить одного человека">+</button>
+          </div>
+        </div>
+
+        <div class="pj-calc__out">
+          <div class="pj-calc__sum">
+            <span class="pj-slug pj-slug--dim">Итого</span>
+            <b id="pj-total">1 400 ₽</b>
+          </div>
+          <p class="pj-calc__hint" id="pj-hint">На двоих в будний день по полному тарифу.</p>
+        </div>
+
+        <a class="pj-btn pj-btn--solid" href="#pj-ticket-widget" style="justify-content:center">Перейти к покупке</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ РАСПИСАНИЕ ══════════ -->
+  <section class="pj-sec pj-sec--tight pj-wrap" id="seansy">
+    <div class="pj-sechead">
+      <div class="pj-sechead__row">
+        <span class="pj-slug">Расписание</span>
+        <span class="pj-slug pj-slug--dim">Ежедневно · 13 сеансов · фильм 40 минут</span>
+      </div>
+      <h2 class="pj-h2">Сеансы</h2>
+    </div>
+    <div class="pj-ses">
+      <div class="pj-ses__i pj-ses__i--lucky"><span class="pj-ses__t">11:10</span><span class="pj-ses__n">Сеанс 01 · счастливый</span></div>
+      <div class="pj-ses__i"><span class="pj-ses__t">11:50</span><span class="pj-ses__n">Сеанс 02</span></div>
+      <div class="pj-ses__i"><span class="pj-ses__t">12:30</span><span class="pj-ses__n">Сеанс 03</span></div>
+      <div class="pj-ses__i"><span class="pj-ses__t">13:10</span><span class="pj-ses__n">Сеанс 04</span></div>
+      <div class="pj-ses__i"><span class="pj-ses__t">13:50</span><span class="pj-ses__n">Сеанс 05</span></div>
+      <div class="pj-ses__i"><span class="pj-ses__t">14:30</span><span class="pj-ses__n">Сеанс 06</span></div>
+      <div class="pj-ses__i"><span class="pj-ses__t">15:10</span><span class="pj-ses__n">Сеанс 07</span></div>
+      <div class="pj-ses__i"><span class="pj-ses__t">15:50</span><span class="pj-ses__n">Сеанс 08</span></div>
+      <div class="pj-ses__i"><span class="pj-ses__t">16:30</span><span class="pj-ses__n">Сеанс 09</span></div>
+      <div class="pj-ses__i"><span class="pj-ses__t">17:10</span><span class="pj-ses__n">Сеанс 10</span></div>
+      <div class="pj-ses__i"><span class="pj-ses__t">17:50</span><span class="pj-ses__n">Сеанс 11</span></div>
+      <div class="pj-ses__i"><span class="pj-ses__t">18:30</span><span class="pj-ses__n">Сеанс 12</span></div>
+      <div class="pj-ses__i pj-ses__i--lucky"><span class="pj-ses__t">19:10</span><span class="pj-ses__n">Сеанс 13 · счастливый</span></div>
+    </div>
+    <p class="pj-body pj-dim" style="margin-top:18px">
+      «Счастливый сеанс» — первый и последний сеанс по понедельникам и вторникам, билет 400 ₽.
+      Приходите за 10 минут до начала: после старта фильма вход в зал закрывается.
+    </p>
+  </section>
+
+  <div class="pj-wrap"><div class="pj-rule"></div></div>
+
+  <!-- ══════════ ГРУППАМ ══════════ -->
+  <section class="pj-sec pj-wrap" id="gruppam">
+    <div class="pj-sechead">
+      <span class="pj-slug">Школам, вузам и компаниям</span>
+      <h2 class="pj-h2">Прийти всем классом<br>или всем отделом</h2>
+    </div>
+
+    <div class="pj-groups">
+      <div style="display:grid;gap:20px">
+        <p class="pj-body">
+          Фильм идёт 40 минут — ровно один урок. Возрастная маркировка 0+, но содержательно
+          выставка попадает в школьную программу по литературе с 5 по 11 класс.
+        </p>
+        <div class="pj-dl">
+          <div class="pj-dl__i"><span class="pj-dl__k">Школьная экскурсия, от 10 человек</span><span class="pj-dl__v">400 ₽ с человека, будни</span></div>
+          <div class="pj-dl__i"><span class="pj-dl__k">Сопровождающие</span><span class="pj-dl__v">Бесплатно — один на каждые 10 школьников</span></div>
+          <div class="pj-dl__i"><span class="pj-dl__k">Компании и заводы</span><span class="pj-dl__v">500 ₽ в будни, 600 ₽ в выходные</span></div>
+          <div class="pj-dl__i"><span class="pj-dl__k">Пушкинская карта</span><span class="pj-dl__v">К оплате не принимается</span></div>
+        </div>
+      </div>
+
+      <form class="pj-form" id="pj-form">
+        <div class="pj-form__row">
+          <div class="pj-field">
+            <label for="pj-f-org">Школа или компания</label>
+            <input class="pj-input" id="pj-f-org" name="org" type="text" placeholder="МАОУ СОШ № 1" required>
+          </div>
+          <div class="pj-field">
+            <label for="pj-f-name">Контактное лицо</label>
+            <input class="pj-input" id="pj-f-name" name="name" type="text" placeholder="Имя и фамилия" required>
+          </div>
+        </div>
+        <div class="pj-form__row">
+          <div class="pj-field">
+            <label for="pj-f-count">Сколько человек</label>
+            <input class="pj-input" id="pj-f-count" name="count" type="number" min="10" step="1" value="25" required>
+          </div>
+          <div class="pj-field">
+            <label for="pj-f-date">Желаемая дата</label>
+            <input class="pj-input" id="pj-f-date" name="date" type="date" min="2026-10-05" max="2026-11-29" value="2026-10-05" required>
+          </div>
+        </div>
+        <div class="pj-form__row">
+          <div class="pj-field">
+            <label for="pj-f-phone">Телефон</label>
+            <input class="pj-input" id="pj-f-phone" name="phone" type="tel" placeholder="+7 ___ ___-__-__" required>
+          </div>
+          <div class="pj-field">
+            <label for="pj-f-mail">Почта</label>
+            <input class="pj-input" id="pj-f-mail" name="email" type="email" placeholder="school@mail.ru" required>
+          </div>
+        </div>
+        <div class="pj-field">
+          <label for="pj-f-note">Что уточнить</label>
+          <textarea class="pj-textarea" id="pj-f-note" name="note" rows="3" placeholder="Например: два класса подряд, нужен счёт для оплаты по безналу"></textarea>
+        </div>
+        <button class="pj-btn pj-btn--solid" type="submit" style="justify-content:center">Отправить заявку</button>
+        <p class="pj-form__note" id="pj-form__note">Ответим в течение рабочего дня и забронируем сеанс.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ══════════ ВОПРОСЫ ══════════ -->
+  <section class="pj-sec pj-sec--tight pj-wrap" id="voprosy">
+    <div class="pj-sechead">
+      <span class="pj-slug">Вопросы</span>
+      <h2 class="pj-h2">Что спрашивают чаще всего</h2>
+    </div>
+    <div class="pj-faq">
+      <details open>
+        <summary>Сколько длится и когда приходить?</summary>
+        <div class="pj-faq__a">Фильм идёт 40 минут. Сеансы начинаются каждые 40 минут с 11:10 до 19:10. Приходите за 10 минут до начала — после старта вход в зал закрывается.</div>
+      </details>
+      <details>
+        <summary>С какого возраста интересно?</summary>
+        <div class="pj-faq__a">Маркировка 0+. Дети до 6 лет включительно проходят бесплатно в любой день. Школьникам с 7 до 14 лет действует льготный билет в будни.</div>
+      </details>
+      <details>
+        <summary>Можно оплатить Пушкинской картой?</summary>
+        <div class="pj-faq__a">Нет, Пушкинская карта к оплате не принимается. Для школьников действует льготный тариф 600 ₽ в будни, а для организованных групп от 10 человек — 400 ₽.</div>
+      </details>
+      <details>
+        <summary>Что такое «счастливый сеанс»?</summary>
+        <div class="pj-faq__a">Это первый и последний сеанс по понедельникам и вторникам — 11:10 и 19:10. Билет на них стоит 400 ₽ вместо 700 ₽.</div>
+      </details>
+      <details>
+        <summary>Есть ли места для сидения?</summary>
+        <div class="pj-faq__a">Да, зал оборудован местами для зрителей. Проекция идёт на трёх экранах, изображение видно с любой точки зала.</div>
+      </details>
+      <details>
+        <summary>Можно ли фотографировать?</summary>
+        <div class="pj-faq__a">Да, фотографировать без вспышки можно. Вспышка мешает проекции и другим зрителям.</div>
+      </details>
+      <details>
+        <summary>Как попасть большой группой?</summary>
+        <div class="pj-faq__a">Оставьте заявку в разделе «Школам, вузам и компаниям» — мы забронируем отдельный сеанс и выставим счёт для оплаты по безналичному расчёту.</div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ══════════ КАК ДОБРАТЬСЯ ══════════ -->
+  <section class="pj-sec pj-wrap" id="kak-dobratsya">
+    <div class="pj-sechead">
+      <span class="pj-slug">Место</span>
+      <h2 class="pj-h2">Свердловская киностудия</h2>
+    </div>
+    <div class="pj-place">
+      <div class="pj-place__card">
+        <div class="pj-dl">
+          <div class="pj-dl__i"><span class="pj-dl__k">Адрес</span><span class="pj-dl__v">Екатеринбург, просп. Ленина, 50Ж<br>Свердловская киностудия</span></div>
+          <div class="pj-dl__i"><span class="pj-dl__k">Даты</span><span class="pj-dl__v">5 октября — 29 ноября 2026<br>ежедневно, 56 дней</span></div>
+          <div class="pj-dl__i"><span class="pj-dl__k">Сеансы</span><span class="pj-dl__v">с 11:10 до 19:10, каждые 40 минут</span></div>
+          <div class="pj-dl__i"><span class="pj-dl__k">Возраст</span><span class="pj-dl__v">0+</span></div>
+        </div>
+        <div class="pj-cta">
+          <a class="pj-btn pj-btn--ghost" href="https://yandex.ru/maps/?text=Екатеринбург%2C%20проспект%20Ленина%2C%2050Ж" target="_blank" rel="noopener">Открыть в Яндекс Картах</a>
+        </div>
+      </div>
+      <div class="pj-place__card">
+        <div class="pj-dl">
+          <div class="pj-dl__i"><span class="pj-dl__k">Телефон</span><span class="pj-dl__v"><a href="tel:+70000000000">ЗАМЕНИТЬ: телефон кассы</a></span></div>
+          <div class="pj-dl__i"><span class="pj-dl__k">Почта</span><span class="pj-dl__v"><a href="mailto:info@example.ru">ЗАМЕНИТЬ: почта</a></span></div>
+          <div class="pj-dl__i"><span class="pj-dl__k">Группам и школам</span><span class="pj-dl__v"><a href="#gruppam">Оставить заявку</a></span></div>
+          <div class="pj-dl__i"><span class="pj-dl__k">Организатор</span><span class="pj-dl__v">Креативное агентство R-ART</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ ПОДВАЛ ══════════ -->
+  <footer class="pj-foot pj-wrap">
+    <div class="pj-foot__grid">
+      <div style="display:grid;gap:10px">
+        <span class="pj-display" style="font-size:1.6rem">Пушкин. <span style="color:var(--candle)">Живой</span></span>
+        <span class="pj-slug pj-slug--dim">Мультимедийная выставка · Екатеринбург · 2026</span>
+      </div>
+      <p class="pj-foot__legal">
+        Изображения зала — кадры мультимедийных проектов креативного агентства R-ART.
+        Живописные произведения принадлежат собраниям государственных музеев и указаны в титрах фильма.
+      </p>
+    </div>
+  </footer>
+
+  <!-- лайтбокс галереи -->
+  <div class="pj-lb" id="pj-lb" role="dialog" aria-modal="true" aria-label="Просмотр фотографии">
+    <button class="pj-lb__x" type="button" id="pj-lb-x">Закрыть ✕</button>
+    <img id="pj-lb-img" src="" alt="">
+  </div>
+
+</div>

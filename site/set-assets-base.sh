@@ -20,14 +20,14 @@ OUT="tilda-ready"
 mkdir -p "$OUT"
 
 # 1. BODY — переписываем пути
-perl -pe "s{\"assets/}{\"$BASE/assets/}g" tilda/03-body.html > "$OUT/03-body.html"
+BASE="$BASE" perl -pe 's{"assets/}{"$ENV{BASE}/assets/}g' tilda/03-body.html > "$OUT/03-body.html"
 
 # 2. HEAD, CSS и скрипты идут как есть
 cp tilda/01-head.html "$OUT/01-head.html"
 { printf '<style>\n'; cat tilda/02-style.css; printf '\n</style>\n'; } > "$OUT/02-style.html"
 cp tilda/04-footer.html "$OUT/04-footer.html"
 
-N=$(grep -o "$BASE/assets/" "$OUT/03-body.html" | wc -l)
+N=$(grep -oF "$BASE/assets/" "$OUT/03-body.html" | wc -l)
 echo "Готово: $OUT/"
 echo "  01-head.html    → Настройки сайта → Ещё → HTML-код внутрь HEAD"
 echo "  02-style.html   → туда же, следом (уже обёрнуто в <style>)"
