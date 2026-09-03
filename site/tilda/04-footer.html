@@ -103,6 +103,29 @@
     frame();
   })();
 
+  /* ---------- 2b. Кадры эпизодов ----------
+     У каждого экрана есть data-img. Если файл существует — кадр
+     проявляется поверх процедурной заливки; если нет — остаётся заливка.
+     Чтобы добавить картинки, сгенерируйте их в site/assets/ep/
+     скриптом gen-images.sh и загрузите в Tilda, поправив пути. */
+  (function frames() {
+    $$('.pj-screen[data-img]').forEach(function (fig) {
+      var src = fig.getAttribute('data-img');
+      if (!src) return;
+      var probe = new Image();
+      probe.onload = function () {
+        var el = document.createElement('img');
+        el.className = 'pj-screen__img pj-screen__img--gen';
+        el.src = src;
+        el.alt = '';
+        el.decoding = 'async';
+        fig.appendChild(el);
+        requestAnimationFrame(function () { el.classList.add('is-in'); });
+      };
+      probe.src = src;
+    });
+  })();
+
   /* ---------- 3. Эпизоды: липкая сцена на три экрана ---------- */
   (function episodes() {
     var wrap = document.getElementById('pj-eps');

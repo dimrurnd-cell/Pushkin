@@ -160,29 +160,32 @@
 }
 .pj-screen::after {
   content: '';
-  position: absolute; inset: 0;
+  position: absolute; inset: 0; z-index: 4;
   background-image: var(--grain);
   opacity: 0.05;
   mix-blend-mode: overlay;
   pointer-events: none;
 }
 .pj-screen__img {
-  position: absolute; inset: 0;
+  position: absolute; inset: 0; z-index: 2;
   width: 100%; height: 100%;
   object-fit: cover;
   filter: saturate(0.62) contrast(1.06) brightness(0.72);
   transform: scale(1.06);
 }
+/* сгенерированный кадр проявляется поверх заливки, когда файл найден */
+.pj-screen__img--gen { opacity: 0; transition: opacity .7s ease; }
+.pj-screen__img--gen.is-in { opacity: 1; }
 /* процедурная заливка, пока нет фотографии */
 .pj-screen__wash {
-  position: absolute; inset: 0;
+  position: absolute; inset: 0; z-index: 1;
   background:
     radial-gradient(90% 70% at var(--wx, 30%) var(--wy, 25%), var(--washA, rgba(217,164,65,0.16)), transparent 62%),
     radial-gradient(80% 90% at var(--wx2, 78%) var(--wy2, 82%), var(--washB, rgba(60,96,168,0.22)), transparent 66%),
     linear-gradient(168deg, var(--raise), var(--night) 70%);
 }
 .pj-screen__cap {
-  position: absolute; left: 0; right: 0; bottom: 0;
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 3;
   padding: 14px 14px 12px;
   font-family: var(--f-mono);
   font-size: 0.625rem;
@@ -192,7 +195,7 @@
   background: linear-gradient(transparent, rgba(6,8,15,0.9) 55%);
 }
 .pj-screen__tag {
-  position: absolute; top: 12px; left: 12px;
+  position: absolute; top: 12px; left: 12px; z-index: 3;
   font-family: var(--f-mono);
   font-size: 0.5625rem;
   letter-spacing: 0.24em;
@@ -658,9 +661,9 @@
                 <h3 class="pj-ep__t">Мгновение до выстрела</h3>
               </div>
               <div class="pj-ep__tri pj-tri">
-                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">ИИ-реконструкция: внутри экипажа — рука в перчатке, едва заметная дрожь ткани</figcaption></figure>
-                <figure class="pj-screen pj-screen--c"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">«Зимний Петербург» · А. К. Беггров · Челябинский музей изобразительных искусств</figcaption></figure>
-                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">«Приезд. Выбор места дуэли» · Д. Белюкин · 2022—2023</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/ep/ep0-l.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">ИИ-реконструкция: внутри экипажа — рука в перчатке, едва заметная дрожь ткани</figcaption></figure>
+                <figure class="pj-screen pj-screen--c" data-img="assets/ep/ep0-c.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">«Зимний Петербург» · А. К. Беггров · Челябинский музей изобразительных искусств</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/ep/ep0-r.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">«Приезд. Выбор места дуэли» · Д. Белюкин · 2022—2023</figcaption></figure>
               </div>
               <blockquote class="pj-ep__quote">
                 <p class="pj-ep__q">«О люди! жалкий род, достойный слёз и смеха! Жрецы минутного, поклонники успеха!»</p>
@@ -675,9 +678,9 @@
                 <h3 class="pj-ep__t">Детство. Москва</h3>
               </div>
               <div class="pj-ep__tri pj-tri">
-                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">Оживлённая графика пером и тушью по рисункам Нади Рушевой</figcaption></figure>
-                <figure class="pj-screen pj-screen--c"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">Москва рубежа веков: Красная площадь, Спасские ворота · по картинам Ф. Я. Алексеева</figcaption></figure>
-                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">Бабушка Мария Алексеевна Ганнибал · семейная хроника Пушкиных</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/ep/ep1-l.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">Оживлённая графика пером и тушью по рисункам Нади Рушевой</figcaption></figure>
+                <figure class="pj-screen pj-screen--c" data-img="assets/ep/ep1-c.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">Москва рубежа веков: Красная площадь, Спасские ворота · по картинам Ф. Я. Алексеева</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/ep/ep1-r.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">Бабушка Мария Алексеевна Ганнибал · семейная хроника Пушкиных</figcaption></figure>
               </div>
               <blockquote class="pj-ep__quote">
                 <p class="pj-ep__q">«Учился я плохо. Но был до книг охотчив. Единственно, кто любили меня без условий, были сестра Оля и няня.»</p>
@@ -692,9 +695,9 @@
                 <h3 class="pj-ep__t">Юность. Лицейское братство</h3>
               </div>
               <div class="pj-ep__tri pj-tri">
-                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">А. А. Тон · «Царское Село. Лицей» · 1822</figcaption></figure>
-                <figure class="pj-screen pj-screen--c"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">Э. Гау · Церковь в Большом Царскосельском дворце · 1860-е · ГМЗ «Царское Село»</figcaption></figure>
-                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">Л. Премацци · Малиновая гостиная в Александровском дворце · 1863</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/ep/ep2-l.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">А. А. Тон · «Царское Село. Лицей» · 1822</figcaption></figure>
+                <figure class="pj-screen pj-screen--c" data-img="assets/ep/ep2-c.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">Э. Гау · Церковь в Большом Царскосельском дворце · 1860-е · ГМЗ «Царское Село»</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/ep/ep2-r.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">Л. Премацци · Малиновая гостиная в Александровском дворце · 1863</figcaption></figure>
               </div>
               <blockquote class="pj-ep__quote">
                 <p class="pj-ep__q">«В те дни, когда в садах Лицея я безмятежно расцветал… являться муза стала мне.»</p>
@@ -709,9 +712,9 @@
                 <h3 class="pj-ep__t">Петербург цитирует Пушкина</h3>
               </div>
               <div class="pj-ep__tri pj-tri">
-                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">ИИ-реконструкция: комната поэта на Фонтанке · интерьер в стиле бидермайер</figcaption></figure>
-                <figure class="pj-screen pj-screen--c"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">В. С. Садовников · «Вид Невы и Петропавловской крепости» · 1847</figcaption></figure>
-                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">В. С. Садовников · «Вид Казанского собора»</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/ep/ep3-l.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">ИИ-реконструкция: комната поэта на Фонтанке · интерьер в стиле бидермайер</figcaption></figure>
+                <figure class="pj-screen pj-screen--c" data-img="assets/ep/ep3-c.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">В. С. Садовников · «Вид Невы и Петропавловской крепости» · 1847</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/ep/ep3-r.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">В. С. Садовников · «Вид Казанского собора»</figcaption></figure>
               </div>
               <blockquote class="pj-ep__quote">
                 <p class="pj-ep__q">«Я встаю в семь часов, пишу до обеда. Обедаю поздно. После — театр, или карты, или снова стихи. Я почти счастлив.»</p>
@@ -726,9 +729,9 @@
                 <h3 class="pj-ep__t">Юг. Изгнание как свобода</h3>
               </div>
               <div class="pj-ep__tri pj-tri">
-                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">А. И. Куинджи · «Днепр утром» · 1881</figcaption></figure>
-                <figure class="pj-screen pj-screen--c"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">И. К. Айвазовский · «Пушкин на берегу Чёрного моря» · 1887</figcaption></figure>
-                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">И. К. Айвазовский · «Гурзуф» · 1859 · Художественный музей, Харьков</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/ep/ep4-l.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">А. И. Куинджи · «Днепр утром» · 1881</figcaption></figure>
+                <figure class="pj-screen pj-screen--c" data-img="assets/ep/ep4-c.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">И. К. Айвазовский · «Пушкин на берегу Чёрного моря» · 1887</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/ep/ep4-r.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">И. К. Айвазовский · «Гурзуф» · 1859 · Художественный музей, Харьков</figcaption></figure>
               </div>
               <blockquote class="pj-ep__quote">
                 <p class="pj-ep__q">«Лети, корабль, неси меня к пределам дальным по грозной прихоти обманчивых морей…»</p>
@@ -743,9 +746,9 @@
                 <h3 class="pj-ep__t">Михайловское</h3>
               </div>
               <div class="pj-ep__tri pj-tri">
-                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">П. А. Александров с оригинала И. С. Иванова · «Михайловское. Вид усадьбы» · 1837</figcaption></figure>
-                <figure class="pj-screen pj-screen--c"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">М. А. Врубель · «Царевна-Лебедь» · 1900 · ГТГ — оживают сказки няни</figcaption></figure>
-                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">И. Геллер · «Пушкин и няня»</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/ep/ep5-l.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">П. А. Александров с оригинала И. С. Иванова · «Михайловское. Вид усадьбы» · 1837</figcaption></figure>
+                <figure class="pj-screen pj-screen--c" data-img="assets/ep/ep5-c.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">М. А. Врубель · «Царевна-Лебедь» · 1900 · ГТГ — оживают сказки няни</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/ep/ep5-r.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">И. Геллер · «Пушкин и няня»</figcaption></figure>
               </div>
               <blockquote class="pj-ep__quote">
                 <p class="pj-ep__q">«Подруга дней моих суровых, голубка дряхлая моя! Одна в глуши лесов сосновых давно, давно ты ждёшь меня…»</p>
@@ -760,9 +763,9 @@
                 <h3 class="pj-ep__t">Возвращение. Поэт и император</h3>
               </div>
               <div class="pj-ep__tri pj-tri">
-                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">Дж. Доу · Портрет А. Х. Бенкендорфа · ок. 1819—1820 · Военная галерея Зимнего дворца</figcaption></figure>
-                <figure class="pj-screen pj-screen--c"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">О. А. Кипренский · Портрет А. С. Пушкина · 1827 · холст, масло · ГТГ</figcaption></figure>
-                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">Дж. Доу · Портрет великого князя Николая Павловича · 1821</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/ep/ep6-l.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">Дж. Доу · Портрет А. Х. Бенкендорфа · ок. 1819—1820 · Военная галерея Зимнего дворца</figcaption></figure>
+                <figure class="pj-screen pj-screen--c" data-img="assets/ep/ep6-c.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">О. А. Кипренский · Портрет А. С. Пушкина · 1827 · холст, масло · ГТГ</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/ep/ep6-r.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">Дж. Доу · Портрет великого князя Николая Павловича · 1821</figcaption></figure>
               </div>
               <blockquote class="pj-ep__quote">
                 <p class="pj-ep__q">«Я только что разговаривал с умнейшим человеком России.»</p>
@@ -777,9 +780,9 @@
                 <h3 class="pj-ep__t">Болдино</h3>
               </div>
               <div class="pj-ep__tri pj-tri">
-                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">А. А. Пластов · «Пушкин в Болдине» · 1949 · фонды ГМП</figcaption></figure>
-                <figure class="pj-screen pj-screen--c"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">И. И. Левитан · «Золотая осень» · 1895 · ГТГ</figcaption></figure>
-                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">В. Хазов · Болдинские акварели · холерные карантины перекрыли дороги</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/ep/ep7-l.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">А. А. Пластов · «Пушкин в Болдине» · 1949 · фонды ГМП</figcaption></figure>
+                <figure class="pj-screen pj-screen--c" data-img="assets/ep/ep7-c.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">И. И. Левитан · «Золотая осень» · 1895 · ГТГ</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/ep/ep7-r.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">В. Хазов · Болдинские акварели · холерные карантины перекрыли дороги</figcaption></figure>
               </div>
               <blockquote class="pj-ep__quote">
                 <p class="pj-ep__q">«Белкин — мой добрый приятель. Если б нашёлся издатель, я б охотно его сочинениям дал своё имя…»</p>
@@ -794,9 +797,9 @@
                 <h3 class="pj-ep__t">Натали</h3>
               </div>
               <div class="pj-ep__tri pj-tri">
-                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">А. П. Брюллов · Н. Н. Пушкина · 1831—1832 · бумага, акварель</figcaption></figure>
-                <figure class="pj-screen pj-screen--c"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">В. Комаров · «Знакомство Пушкина с Гончаровой» · бал у танцмейстера Йогеля, зима 1828</figcaption></figure>
-                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">Н. Рушева · «Н. Н. Пушкина с детьми» · 1966 · из цикла «Пушкиниана»</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/ep/ep8-l.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">А. П. Брюллов · Н. Н. Пушкина · 1831—1832 · бумага, акварель</figcaption></figure>
+                <figure class="pj-screen pj-screen--c" data-img="assets/ep/ep8-c.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">В. Комаров · «Знакомство Пушкина с Гончаровой» · бал у танцмейстера Йогеля, зима 1828</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/ep/ep8-r.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">Н. Рушева · «Н. Н. Пушкина с детьми» · 1966 · из цикла «Пушкиниана»</figcaption></figure>
               </div>
               <blockquote class="pj-ep__quote">
                 <p class="pj-ep__q">«Я влюблён, я очарован, я совсем огончарован!»</p>
@@ -811,9 +814,9 @@
                 <h3 class="pj-ep__t">Финал</h3>
               </div>
               <div class="pj-ep__tri pj-tri">
-                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">ИИ-реконструкция: дневник Пушкина, записи 1—3 ноября 1836 года</figcaption></figure>
-                <figure class="pj-screen pj-screen--c"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">Ю. Г. Чистяков · из серии «А. Пушкин» · бумага, акварель · 1982</figcaption></figure>
-                <figure class="pj-screen"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">ИИ-реконструкция: часы в доме Пушкиных — время идёт назад</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/ep/ep9-l.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">ИИ-реконструкция: дневник Пушкина, записи 1—3 ноября 1836 года</figcaption></figure>
+                <figure class="pj-screen pj-screen--c" data-img="assets/ep/ep9-c.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">Ю. Г. Чистяков · из серии «А. Пушкин» · бумага, акварель · 1982</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/ep/ep9-r.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">ИИ-реконструкция: часы в доме Пушкиных — время идёт назад</figcaption></figure>
               </div>
               <blockquote class="pj-ep__quote">
                 <p class="pj-ep__q">«Требую, чтобы ты не мстил за мою смерть, прощаю ему и хочу умереть христианином.»</p>
@@ -1352,6 +1355,29 @@
       }, { threshold: 0 }).observe(cv);
     }
     frame();
+  })();
+
+  /* ---------- 2b. Кадры эпизодов ----------
+     У каждого экрана есть data-img. Если файл существует — кадр
+     проявляется поверх процедурной заливки; если нет — остаётся заливка.
+     Чтобы добавить картинки, сгенерируйте их в site/assets/ep/
+     скриптом gen-images.sh и загрузите в Tilda, поправив пути. */
+  (function frames() {
+    $$('.pj-screen[data-img]').forEach(function (fig) {
+      var src = fig.getAttribute('data-img');
+      if (!src) return;
+      var probe = new Image();
+      probe.onload = function () {
+        var el = document.createElement('img');
+        el.className = 'pj-screen__img pj-screen__img--gen';
+        el.src = src;
+        el.alt = '';
+        el.decoding = 'async';
+        fig.appendChild(el);
+        requestAnimationFrame(function () { el.classList.add('is-in'); });
+      };
+      probe.src = src;
+    });
   })();
 
   /* ---------- 3. Эпизоды: липкая сцена на три экрана ---------- */
