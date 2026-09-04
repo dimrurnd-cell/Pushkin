@@ -23,73 +23,72 @@
     </div>
   </nav>
 
-  <!-- ══════════ ПРОЛОГ ══════════ -->
-  <header class="pj-hero pj-wrap">
-    <canvas class="pj-hero__snow" id="pj-snow" aria-hidden="true"></canvas>
+  <!-- ══════════ ПРОЛОГ: первый экран целиком ══════════ -->
+  <header class="pj-hero pj-bleed">
 
-    <div class="pj-hero__inner">
-      <div class="pj-hero__top pj-anim pj-anim--1">
-        <span class="pj-slug">Екатеринбург · Свердловская киностудия</span>
-        <span class="pj-slug pj-slug--dim">Мультимедийная выставка</span>
-        <span class="pj-slug pj-slug--dim">0+</span>
+    <!-- три экрана выставки, живые -->
+    <div class="pj-hero__tri" aria-hidden="true">
+      <div class="pj-hero__panel pj-hero__panel--l">
+        <video class="pj-hero__v" src="assets/video/ep0-l.mp4" poster="assets/ep/ep0-l.webp"
+               autoplay muted loop playsinline preload="auto"></video>
       </div>
-
-      <h1 class="pj-title pj-anim pj-anim--2">
-        <span class="pj-title__l1">Пушкин.</span>
-        <span class="pj-title__l2">Живой</span>
-        <svg class="pj-title__ink" viewBox="0 0 640 40" aria-hidden="true" focusable="false">
-          <path d="M4 26 C 88 8, 172 34, 258 20 S 424 6, 512 24 S 604 34, 636 18" />
-        </svg>
-      </h1>
-
-      <div class="pj-hero__sub pj-anim pj-anim--3">
-        <span class="pj-hero__dates">5 октября — 29 ноября 2026</span>
-        <span class="pj-slug pj-slug--dim">56 дней · 13 сеансов ежедневно</span>
+      <div class="pj-hero__panel pj-hero__panel--c">
+        <video class="pj-hero__v" src="assets/video/ep0-c.mp4" poster="assets/ep/ep0-c.webp"
+               autoplay muted loop playsinline preload="auto"></video>
       </div>
-
-      <p class="pj-lead pj-anim pj-anim--3" style="margin-top:20px">
-        Сорок минут между 1799 и 1837 годом. Фильм идёт сразу на трёх экранах:
-        то, что герой видит, то, что он вспоминает, и то, о чём он молчит.
-      </p>
-
-      <!-- три экрана -->
-      <div class="pj-hero__stage pj-tri pj-anim pj-anim--4">
-        <figure class="pj-screen pj-screen--l">
-          <img class="pj-screen__img" src="assets/hall/13.webp" alt="Левый экран зала мультимедийной выставки" loading="eager" decoding="async">
-          <span class="pj-screen__tag">Левый экран</span>
-        </figure>
-        <figure class="pj-screen pj-screen--c">
-          <img class="pj-screen__img" src="assets/hall/22.webp" alt="Центральный экран: проекция во весь зал" loading="eager" decoding="async">
-          <span class="pj-screen__tag">Центр</span>
-          <figcaption class="pj-screen__cap">Три проекции идут одновременно. Персонажи переходят с экрана на экран.</figcaption>
-        </figure>
-        <figure class="pj-screen pj-screen--r">
-          <img class="pj-screen__img" src="assets/hall/10.webp" alt="Правый экран зала мультимедийной выставки" loading="eager" decoding="async">
-          <span class="pj-screen__tag">Правый экран</span>
-        </figure>
-      </div>
-
-      <div class="pj-facts">
-        <div class="pj-fact"><span class="pj-fact__n">40</span><span class="pj-fact__l">минут фильма</span></div>
-        <div class="pj-fact"><span class="pj-fact__n">10</span><span class="pj-fact__l">эпизодов</span></div>
-        <div class="pj-fact"><span class="pj-fact__n">3</span><span class="pj-fact__l">экрана</span></div>
-        <div class="pj-fact"><span class="pj-fact__n">100+</span><span class="pj-fact__l">полотен</span></div>
-        <div class="pj-fact"><span class="pj-fact__n">13</span><span class="pj-fact__l">сеансов в день</span></div>
-      </div>
-
-      <div class="pj-cta">
-        <a class="pj-btn pj-btn--solid" href="#bilety">Купить билет</a>
-        <a class="pj-btn pj-btn--ghost" href="#epizody">Смотреть эпизоды</a>
-      </div>
-
-      <div class="pj-count" id="pj-count" aria-label="Обратный отсчёт до открытия">
-        <div class="pj-count__u"><span class="pj-count__v" data-c="d">—</span><span class="pj-count__l">дней</span></div>
-        <div class="pj-count__u"><span class="pj-count__v" data-c="h">—</span><span class="pj-count__l">часов</span></div>
-        <div class="pj-count__u"><span class="pj-count__v" data-c="m">—</span><span class="pj-count__l">минут</span></div>
-        <div class="pj-count__u"><span class="pj-count__v" data-c="s">—</span><span class="pj-count__l">секунд</span></div>
+      <div class="pj-hero__panel pj-hero__panel--r">
+        <video class="pj-hero__v" src="assets/video/ep0-r.mp4" poster="assets/ep/ep0-r.webp"
+               autoplay muted loop playsinline preload="auto"></video>
       </div>
     </div>
+
+    <div class="pj-hero__scrim" aria-hidden="true"></div>
+    <canvas class="pj-hero__snow" id="pj-snow" aria-hidden="true"></canvas>
+
+    <div class="pj-hero__top">
+      <span class="pj-slug">Екатеринбург · Свердловская киностудия</span>
+      <span class="pj-slug pj-slug--dim">27 января 1837 · 15:30</span>
+    </div>
+
+    <div class="pj-hero__in">
+      <h1 class="pj-title">
+        <span class="pj-title__l1">Пушкин.</span>
+        <span class="pj-title__l2">Живой</span>
+      </h1>
+
+      <p class="pj-hero__line">
+        Сорок минут между 1799 и 1837 годом.<br>
+        Фильм идёт сразу на трёх экранах — вы внутри кадра, а не перед ним.
+      </p>
+
+      <div class="pj-hero__bottom">
+        <span class="pj-hero__dates">5 октября — 29 ноября 2026</span>
+        <div class="pj-cta">
+          <a class="pj-btn pj-btn--solid" href="#bilety">Купить билет</a>
+          <a class="pj-btn pj-btn--ghost" href="#epizody">Смотреть эпизоды</a>
+        </div>
+      </div>
+    </div>
+
+    <a class="pj-scroll" href="#o-vystavke" aria-label="К описанию выставки">
+      <span class="pj-scroll__t">Пролог</span>
+      <span class="pj-scroll__l" aria-hidden="true"></span>
+    </a>
   </header>
+
+  <!-- ══════════ ЦИФРЫ ══════════ -->
+  <section class="pj-facts pj-bleed" aria-label="Коротко о выставке">
+    <div class="pj-fact"><span class="pj-fact__n">40</span><span class="pj-fact__l">минут фильма</span></div>
+    <div class="pj-fact"><span class="pj-fact__n">10</span><span class="pj-fact__l">эпизодов</span></div>
+    <div class="pj-fact"><span class="pj-fact__n">3</span><span class="pj-fact__l">экрана</span></div>
+    <div class="pj-fact"><span class="pj-fact__n">100+</span><span class="pj-fact__l">полотен</span></div>
+    <div class="pj-fact"><span class="pj-fact__n">13</span><span class="pj-fact__l">сеансов в день</span></div>
+    <div class="pj-fact pj-fact--count" id="pj-count" aria-label="До открытия">
+      <span class="pj-fact__n"><span data-c="d">—</span></span>
+      <span class="pj-fact__l">дней до открытия</span>
+    </div>
+  </section>
+
 
   <div class="pj-wrap"><div class="pj-rule"></div></div>
 
@@ -136,6 +135,17 @@
     </div>
   </section>
 
+  <!-- ══════════ ЦИТАТА ВО ВЕСЬ ЭКРАН ══════════ -->
+  <section class="pj-band pj-bleed" aria-label="Цитата Пушкина">
+    <video class="pj-band__v" src="assets/video/ep7-c.mp4" poster="assets/ep/ep7-c.webp"
+           autoplay muted loop playsinline preload="none" aria-hidden="true"></video>
+    <div class="pj-band__scrim" aria-hidden="true"></div>
+    <blockquote class="pj-band__in">
+      <p class="pj-band__q">Великим быть желаю,<br>люблю России честь,<br>я много обещаю —<br>исполню ли? Бог весть!</p>
+      <cite class="pj-band__c">Пушкин</cite>
+    </blockquote>
+  </section>
+
   <!-- ══════════ ЭПИЗОДЫ ══════════ -->
   <section class="pj-sec pj-sec--tight" id="epizody">
     <div class="pj-wrap pj-sechead">
@@ -146,9 +156,9 @@
       <h2 class="pj-h2">Из чего собран фильм</h2>
     </div>
 
-    <div class="pj-eps" id="pj-eps">
+    <div class="pj-eps pj-bleed" id="pj-eps">
       <div class="pj-eps__stage">
-        <div class="pj-wrap" style="width:100%">
+        <div class="pj-eps__inner">
           <div class="pj-eps__frames" id="pj-ep-frames">
 
             <!-- 00 · ПРОЛОГ -->
@@ -426,7 +436,7 @@
       <h2 class="pj-h2">Темнота, в которой всё светится</h2>
       <p class="pj-body pj-dim">Кадры мультимедийных проектов креативного агентства R-ART. Зал в Екатеринбурге откроется 5 октября 2026 года.</p>
     </div>
-    <div class="pj-wrap">
+    <div class="pj-bleed">
       <div class="pj-gal" id="pj-gal">
         <button class="pj-gal__i" type="button"><img src="assets/hall/22.webp" alt="Панорама зала с проекцией на стены" loading="lazy"></button>
         <button class="pj-gal__i" type="button"><img src="assets/hall/9.webp" alt="Зрители в зале мультимедийной выставки" loading="lazy"></button>

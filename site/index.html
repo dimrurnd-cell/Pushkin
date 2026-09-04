@@ -88,6 +88,7 @@
   --surguch: #9E2B20;
 
   --maxw: 1360px;
+  --navh: 62px;
   --pad: clamp(20px, 5vw, 72px);
   --seam: 2px;
 
@@ -120,7 +121,7 @@
 
 /* ---------- типографика ---------- */
 .pj-display { font-family: var(--f-display); font-weight: 400; line-height: 0.94; letter-spacing: -0.015em; }
-.pj-h2 { font-family: var(--f-display); font-size: clamp(2rem, 4.4vw, 3.6rem); line-height: 1.02; }
+.pj-h2 { font-family: var(--f-display); font-size: clamp(2.2rem, 5.4vw, 4.6rem); line-height: 1.02; }
 .pj-h3 { font-family: var(--f-display); font-size: clamp(1.35rem, 2.2vw, 2rem); line-height: 1.12; }
 .pj-lead { font-size: clamp(1.05rem, 1.35vw, 1.3rem); line-height: 1.55; color: #D5D2C8; max-width: 62ch; }
 .pj-body { max-width: 66ch; color: #C6C4BC; }
@@ -206,53 +207,175 @@
   color: var(--mute);
 }
 
-/* ---------- ПРОЛОГ / первый экран ---------- */
-.pj-hero { position: relative; padding-top: clamp(28px, 5vw, 64px); padding-bottom: clamp(48px, 6vw, 88px); }
-.pj-hero__snow { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.5; }
-.pj-hero__inner { position: relative; z-index: 1; }
+/* ---------- ПРОЛОГ: первый экран во всю ширину ---------- */
 
-.pj-hero__top {
-  display: flex; gap: 12px 26px; flex-wrap: wrap; align-items: baseline;
-  padding-bottom: 20px; border-bottom: 1px solid var(--line);
+/* вырывает блок из контейнера Tilda на всю ширину окна */
+.pj-bleed { width: 100vw; margin-left: calc(50% - 50vw); }
+
+.pj-hero {
+  position: relative;
+  height: calc(100svh - var(--navh, 62px));
+  min-height: 520px;
+  max-height: 1100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--void);
 }
 
-.pj-title { position: relative; margin: clamp(28px, 5vw, 56px) 0 0; }
+/* три экрана выставки, живые */
+.pj-hero__tri {
+  position: absolute; inset: 0; z-index: 0;
+  display: grid;
+  grid-template-columns: 1fr 2.15fr 1fr;
+  gap: var(--seam);
+  background: var(--void);
+}
+.pj-hero__panel { position: relative; overflow: hidden; background: var(--night); }
+.pj-hero__v {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: saturate(0.58) contrast(1.06) brightness(0.5);
+}
+/* боковые экраны чуть глубже в тень — центр держит взгляд */
+.pj-hero__panel--l .pj-hero__v,
+.pj-hero__panel--r .pj-hero__v { filter: saturate(0.5) contrast(1.05) brightness(0.46); }
+
+.pj-hero__scrim {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(6,8,15,.78) 0%, rgba(6,8,15,.12) 26%, rgba(6,8,15,.30) 52%, rgba(6,8,15,.95) 100%),
+    radial-gradient(130% 90% at 50% 108%, rgba(6,8,15,.85), transparent 62%);
+}
+.pj-hero__snow { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; opacity: .55; }
+
+.pj-hero__top {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 3;
+  display: flex; justify-content: space-between; gap: 14px 26px; flex-wrap: wrap;
+  padding: clamp(16px, 3vh, 30px) var(--pad);
+}
+
+.pj-hero__in {
+  position: relative; z-index: 3;
+  padding: 0 var(--pad) clamp(76px, 11vh, 128px);
+  display: grid; gap: clamp(16px, 2.4vh, 30px);
+}
+
+.pj-title { margin: 0; }
 .pj-title__l1, .pj-title__l2 {
   display: block;
   font-family: var(--f-display);
-  font-size: clamp(3.2rem, 15.5vw, 12.5rem);
-  line-height: 0.82;
-  letter-spacing: -0.02em;
+  font-size: clamp(3rem, 13.2vw, 12.5rem);
+  line-height: 0.84;
+  letter-spacing: -0.025em;
 }
-.pj-title__l2 { color: var(--candle); padding-left: 0.06em; }
-.pj-title__ink { display: block; width: min(100%, 640px); height: auto; margin-top: 6px; overflow: visible; }
-.pj-title__ink path { fill: none; stroke: var(--surguch); stroke-width: 3; stroke-linecap: round; }
+.pj-title__l2 { color: var(--candle); padding-left: 0.05em; }
 
-.pj-hero__sub {
-  display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: baseline;
-  margin-top: clamp(20px, 3vw, 34px);
+.pj-hero__line {
+  font-size: clamp(1.05rem, 1.5vw, 1.5rem);
+  line-height: 1.45;
+  color: #D9D6CC;
+  max-width: 46ch;
 }
-.pj-hero__dates { font-family: var(--f-display); font-size: clamp(1.25rem, 2.4vw, 2rem); }
+.pj-hero__bottom {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: clamp(14px, 2.5vw, 40px);
+}
+.pj-hero__dates {
+  font-family: var(--f-display);
+  font-size: clamp(1.25rem, 2.3vw, 2.1rem);
+  white-space: nowrap;
+}
+.pj-hero__bottom .pj-cta { margin-top: 0; }
 
-.pj-hero__stage { margin-top: clamp(28px, 4vw, 48px); }
-.pj-hero__stage .pj-screen { aspect-ratio: auto; }
-.pj-hero__stage .pj-screen--c { aspect-ratio: 16 / 10; }
+/* подсказка «листайте» */
+.pj-scroll {
+  position: absolute; z-index: 3; left: 50%; bottom: clamp(20px, 3.5vh, 40px);
+  transform: translateX(-50%);
+  display: grid; justify-items: center; gap: 10px;
+}
+.pj-scroll__t {
+  font-family: var(--f-mono); font-size: .5625rem;
+  letter-spacing: .3em; text-transform: uppercase; color: var(--dim);
+}
+.pj-scroll__l {
+  width: 1px; height: clamp(28px, 5vh, 52px);
+  background: linear-gradient(var(--candle), transparent);
+  animation: pj-drop 2.2s ease-in-out infinite;
+  transform-origin: top;
+}
+@keyframes pj-drop { 0%,100% { transform: scaleY(.35); opacity:.5 } 50% { transform: scaleY(1); opacity:1 } }
+.pj-scroll:hover .pj-scroll__t { color: var(--candle); }
 
+/* ---------- полоса цифр во всю ширину ---------- */
 .pj-facts {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(126px, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 1px;
-  margin-top: var(--seam);
   background: var(--line);
+  border-block: 1px solid var(--line);
 }
-.pj-fact { background: var(--night); padding: 18px 16px 16px; }
-.pj-fact__n { font-family: var(--f-display); font-size: clamp(1.6rem, 2.6vw, 2.4rem); line-height: 1; display: block; }
-.pj-fact__l { margin-top: 6px; display: block; font-family: var(--f-mono); font-size: 0.625rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mute); }
+@media (max-width: 1180px) { .pj-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 620px)  { .pj-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.pj-fact {
+  background: var(--void);
+  padding: clamp(20px, 3vw, 38px) clamp(16px, 2vw, 28px);
+  display: grid; gap: 8px; align-content: center;
+}
+.pj-fact__n {
+  font-family: var(--f-display);
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1; display: block;
+}
+.pj-fact--count .pj-fact__n { color: var(--candle); font-variant-numeric: tabular-nums; }
+.pj-fact__l {
+  display: block; font-family: var(--f-mono); font-size: .625rem;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--mute);
+}
 
+/* ---------- полноэкранная цитата ---------- */
+.pj-band {
+  position: relative;
+  min-height: clamp(420px, 72svh, 820px);
+  display: grid; place-items: center;
+  overflow: hidden; isolation: isolate;
+  background: var(--void);
+}
+.pj-band__v {
+  position: absolute; inset: 0; z-index: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  filter: saturate(0.4) brightness(0.32);
+}
+.pj-band__scrim {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: radial-gradient(90% 70% at 50% 50%, rgba(6,8,15,.55), rgba(6,8,15,.92) 78%);
+}
+.pj-band__in {
+  position: relative; z-index: 2; margin: 0;
+  padding: clamp(40px, 8vw, 96px) var(--pad);
+  display: grid; gap: clamp(18px, 3vw, 34px); justify-items: center; text-align: center;
+}
+.pj-band__q {
+  font-family: var(--f-display);
+  font-size: clamp(1.6rem, 5vw, 4.4rem);
+  line-height: 1.16;
+  letter-spacing: -0.015em;
+  color: var(--snow);
+  text-wrap: balance;
+}
+.pj-band__c {
+  font-family: var(--f-mono); font-style: normal;
+  font-size: .625rem; letter-spacing: .3em; text-transform: uppercase; color: var(--candle);
+}
+
+/* кнопки */
 .pj-cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: clamp(26px, 3.5vw, 40px); }
 .pj-btn {
   display: inline-flex; align-items: center; gap: 10px;
-  padding: 15px 26px;
+  padding: 16px 30px;
   font-family: var(--f-mono); font-size: 0.75rem; font-weight: 500;
   letter-spacing: 0.16em; text-transform: uppercase;
   border: 1px solid var(--candle);
@@ -262,14 +385,8 @@
 .pj-btn:hover { background: var(--candle); color: var(--void); }
 .pj-btn--solid { background: var(--candle); color: var(--void); }
 .pj-btn--solid:hover { background: var(--snow); border-color: var(--snow); color: var(--void); }
-.pj-btn--ghost { border-color: var(--line); color: var(--snow); }
-.pj-btn--ghost:hover { border-color: var(--snow); background: transparent; color: var(--snow); }
-
-/* обратный отсчёт */
-.pj-count { display: flex; gap: 1px; margin-top: clamp(26px, 3.5vw, 40px); background: var(--line); width: fit-content; max-width: 100%; flex-wrap: wrap; }
-.pj-count__u { background: var(--night); padding: 14px 20px; min-width: 84px; }
-.pj-count__v { display: block; font-family: var(--f-mono); font-size: clamp(1.4rem, 2.4vw, 2rem); font-variant-numeric: tabular-nums; line-height: 1; color: var(--snow); }
-.pj-count__l { display: block; margin-top: 6px; font-family: var(--f-mono); font-size: 0.5625rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute); }
+.pj-btn--ghost { border-color: rgba(239,237,228,.4); color: var(--snow); }
+.pj-btn--ghost:hover { border-color: var(--snow); background: rgba(239,237,228,.08); }
 
 /* ---------- О выставке ---------- */
 .pj-about { display: grid; grid-template-columns: 1fr; gap: clamp(28px, 4vw, 56px); }
@@ -281,6 +398,8 @@
 
 /* ---------- ЭПИЗОДЫ: липкая сцена ---------- */
 .pj-eps { position: relative; }
+.pj-eps__inner { width: 100%; padding-inline: clamp(12px, 2vw, 30px); }
+.pj-ep__head, .pj-ep__quote { padding-inline: clamp(4px, 1vw, 18px); }
 .pj-eps__stage { position: sticky; top: 0; z-index: 1; height: 100svh; min-height: 620px; display: flex; flex-direction: column; justify-content: center; padding-block: 28px; }
 .pj-eps__steps { position: relative; z-index: 2; margin-top: -100svh; pointer-events: none; }
 .pj-eps__step { height: 82svh; }
@@ -464,8 +583,14 @@
 /* ---------- адаптив ---------- */
 @media (max-width: 860px) {
   .pj-tri { grid-template-columns: 1fr; }
-  .pj-hero__stage .pj-screen, .pj-ep__tri .pj-screen { aspect-ratio: 16 / 10; }
-  .pj-hero__stage .pj-screen--l, .pj-hero__stage .pj-screen--r { display: none; }
+  .pj-ep__tri .pj-screen { aspect-ratio: 16 / 10; }
+
+  /* первый экран: остаётся только центральное видео */
+  .pj-hero__tri { grid-template-columns: 1fr; }
+  .pj-hero__panel--l, .pj-hero__panel--r { display: none; }
+  .pj-hero { height: calc(100svh - 54px); }
+  .pj-hero__in { padding-bottom: clamp(64px, 12vh, 96px); }
+  .pj-band { min-height: 60svh; }
 
   /* эпизоды разворачиваются в обычный список — скролл-сцена только на большом экране */
   .pj-eps__stage { position: static; height: auto; min-height: 0; padding-block: 0; }
@@ -529,73 +654,72 @@
     </div>
   </nav>
 
-  <!-- ══════════ ПРОЛОГ ══════════ -->
-  <header class="pj-hero pj-wrap">
-    <canvas class="pj-hero__snow" id="pj-snow" aria-hidden="true"></canvas>
+  <!-- ══════════ ПРОЛОГ: первый экран целиком ══════════ -->
+  <header class="pj-hero pj-bleed">
 
-    <div class="pj-hero__inner">
-      <div class="pj-hero__top pj-anim pj-anim--1">
-        <span class="pj-slug">Екатеринбург · Свердловская киностудия</span>
-        <span class="pj-slug pj-slug--dim">Мультимедийная выставка</span>
-        <span class="pj-slug pj-slug--dim">0+</span>
+    <!-- три экрана выставки, живые -->
+    <div class="pj-hero__tri" aria-hidden="true">
+      <div class="pj-hero__panel pj-hero__panel--l">
+        <video class="pj-hero__v" src="assets/video/ep0-l.mp4" poster="assets/ep/ep0-l.webp"
+               autoplay muted loop playsinline preload="auto"></video>
       </div>
-
-      <h1 class="pj-title pj-anim pj-anim--2">
-        <span class="pj-title__l1">Пушкин.</span>
-        <span class="pj-title__l2">Живой</span>
-        <svg class="pj-title__ink" viewBox="0 0 640 40" aria-hidden="true" focusable="false">
-          <path d="M4 26 C 88 8, 172 34, 258 20 S 424 6, 512 24 S 604 34, 636 18" />
-        </svg>
-      </h1>
-
-      <div class="pj-hero__sub pj-anim pj-anim--3">
-        <span class="pj-hero__dates">5 октября — 29 ноября 2026</span>
-        <span class="pj-slug pj-slug--dim">56 дней · 13 сеансов ежедневно</span>
+      <div class="pj-hero__panel pj-hero__panel--c">
+        <video class="pj-hero__v" src="assets/video/ep0-c.mp4" poster="assets/ep/ep0-c.webp"
+               autoplay muted loop playsinline preload="auto"></video>
       </div>
-
-      <p class="pj-lead pj-anim pj-anim--3" style="margin-top:20px">
-        Сорок минут между 1799 и 1837 годом. Фильм идёт сразу на трёх экранах:
-        то, что герой видит, то, что он вспоминает, и то, о чём он молчит.
-      </p>
-
-      <!-- три экрана -->
-      <div class="pj-hero__stage pj-tri pj-anim pj-anim--4">
-        <figure class="pj-screen pj-screen--l">
-          <img class="pj-screen__img" src="assets/hall/13.webp" alt="Левый экран зала мультимедийной выставки" loading="eager" decoding="async">
-          <span class="pj-screen__tag">Левый экран</span>
-        </figure>
-        <figure class="pj-screen pj-screen--c">
-          <img class="pj-screen__img" src="assets/hall/22.webp" alt="Центральный экран: проекция во весь зал" loading="eager" decoding="async">
-          <span class="pj-screen__tag">Центр</span>
-          <figcaption class="pj-screen__cap">Три проекции идут одновременно. Персонажи переходят с экрана на экран.</figcaption>
-        </figure>
-        <figure class="pj-screen pj-screen--r">
-          <img class="pj-screen__img" src="assets/hall/10.webp" alt="Правый экран зала мультимедийной выставки" loading="eager" decoding="async">
-          <span class="pj-screen__tag">Правый экран</span>
-        </figure>
-      </div>
-
-      <div class="pj-facts">
-        <div class="pj-fact"><span class="pj-fact__n">40</span><span class="pj-fact__l">минут фильма</span></div>
-        <div class="pj-fact"><span class="pj-fact__n">10</span><span class="pj-fact__l">эпизодов</span></div>
-        <div class="pj-fact"><span class="pj-fact__n">3</span><span class="pj-fact__l">экрана</span></div>
-        <div class="pj-fact"><span class="pj-fact__n">100+</span><span class="pj-fact__l">полотен</span></div>
-        <div class="pj-fact"><span class="pj-fact__n">13</span><span class="pj-fact__l">сеансов в день</span></div>
-      </div>
-
-      <div class="pj-cta">
-        <a class="pj-btn pj-btn--solid" href="#bilety">Купить билет</a>
-        <a class="pj-btn pj-btn--ghost" href="#epizody">Смотреть эпизоды</a>
-      </div>
-
-      <div class="pj-count" id="pj-count" aria-label="Обратный отсчёт до открытия">
-        <div class="pj-count__u"><span class="pj-count__v" data-c="d">—</span><span class="pj-count__l">дней</span></div>
-        <div class="pj-count__u"><span class="pj-count__v" data-c="h">—</span><span class="pj-count__l">часов</span></div>
-        <div class="pj-count__u"><span class="pj-count__v" data-c="m">—</span><span class="pj-count__l">минут</span></div>
-        <div class="pj-count__u"><span class="pj-count__v" data-c="s">—</span><span class="pj-count__l">секунд</span></div>
+      <div class="pj-hero__panel pj-hero__panel--r">
+        <video class="pj-hero__v" src="assets/video/ep0-r.mp4" poster="assets/ep/ep0-r.webp"
+               autoplay muted loop playsinline preload="auto"></video>
       </div>
     </div>
+
+    <div class="pj-hero__scrim" aria-hidden="true"></div>
+    <canvas class="pj-hero__snow" id="pj-snow" aria-hidden="true"></canvas>
+
+    <div class="pj-hero__top">
+      <span class="pj-slug">Екатеринбург · Свердловская киностудия</span>
+      <span class="pj-slug pj-slug--dim">27 января 1837 · 15:30</span>
+    </div>
+
+    <div class="pj-hero__in">
+      <h1 class="pj-title">
+        <span class="pj-title__l1">Пушкин.</span>
+        <span class="pj-title__l2">Живой</span>
+      </h1>
+
+      <p class="pj-hero__line">
+        Сорок минут между 1799 и 1837 годом.<br>
+        Фильм идёт сразу на трёх экранах — вы внутри кадра, а не перед ним.
+      </p>
+
+      <div class="pj-hero__bottom">
+        <span class="pj-hero__dates">5 октября — 29 ноября 2026</span>
+        <div class="pj-cta">
+          <a class="pj-btn pj-btn--solid" href="#bilety">Купить билет</a>
+          <a class="pj-btn pj-btn--ghost" href="#epizody">Смотреть эпизоды</a>
+        </div>
+      </div>
+    </div>
+
+    <a class="pj-scroll" href="#o-vystavke" aria-label="К описанию выставки">
+      <span class="pj-scroll__t">Пролог</span>
+      <span class="pj-scroll__l" aria-hidden="true"></span>
+    </a>
   </header>
+
+  <!-- ══════════ ЦИФРЫ ══════════ -->
+  <section class="pj-facts pj-bleed" aria-label="Коротко о выставке">
+    <div class="pj-fact"><span class="pj-fact__n">40</span><span class="pj-fact__l">минут фильма</span></div>
+    <div class="pj-fact"><span class="pj-fact__n">10</span><span class="pj-fact__l">эпизодов</span></div>
+    <div class="pj-fact"><span class="pj-fact__n">3</span><span class="pj-fact__l">экрана</span></div>
+    <div class="pj-fact"><span class="pj-fact__n">100+</span><span class="pj-fact__l">полотен</span></div>
+    <div class="pj-fact"><span class="pj-fact__n">13</span><span class="pj-fact__l">сеансов в день</span></div>
+    <div class="pj-fact pj-fact--count" id="pj-count" aria-label="До открытия">
+      <span class="pj-fact__n"><span data-c="d">—</span></span>
+      <span class="pj-fact__l">дней до открытия</span>
+    </div>
+  </section>
+
 
   <div class="pj-wrap"><div class="pj-rule"></div></div>
 
@@ -642,6 +766,17 @@
     </div>
   </section>
 
+  <!-- ══════════ ЦИТАТА ВО ВЕСЬ ЭКРАН ══════════ -->
+  <section class="pj-band pj-bleed" aria-label="Цитата Пушкина">
+    <video class="pj-band__v" src="assets/video/ep7-c.mp4" poster="assets/ep/ep7-c.webp"
+           autoplay muted loop playsinline preload="none" aria-hidden="true"></video>
+    <div class="pj-band__scrim" aria-hidden="true"></div>
+    <blockquote class="pj-band__in">
+      <p class="pj-band__q">Великим быть желаю,<br>люблю России честь,<br>я много обещаю —<br>исполню ли? Бог весть!</p>
+      <cite class="pj-band__c">Пушкин</cite>
+    </blockquote>
+  </section>
+
   <!-- ══════════ ЭПИЗОДЫ ══════════ -->
   <section class="pj-sec pj-sec--tight" id="epizody">
     <div class="pj-wrap pj-sechead">
@@ -652,9 +787,9 @@
       <h2 class="pj-h2">Из чего собран фильм</h2>
     </div>
 
-    <div class="pj-eps" id="pj-eps">
+    <div class="pj-eps pj-bleed" id="pj-eps">
       <div class="pj-eps__stage">
-        <div class="pj-wrap" style="width:100%">
+        <div class="pj-eps__inner">
           <div class="pj-eps__frames" id="pj-ep-frames">
 
             <!-- 00 · ПРОЛОГ -->
@@ -932,7 +1067,7 @@
       <h2 class="pj-h2">Темнота, в которой всё светится</h2>
       <p class="pj-body pj-dim">Кадры мультимедийных проектов креативного агентства R-ART. Зал в Екатеринбурге откроется 5 октября 2026 года.</p>
     </div>
-    <div class="pj-wrap">
+    <div class="pj-bleed">
       <div class="pj-gal" id="pj-gal">
         <button class="pj-gal__i" type="button"><img src="assets/hall/22.webp" alt="Панорама зала с проекцией на стены" loading="lazy"></button>
         <button class="pj-gal__i" type="button"><img src="assets/hall/9.webp" alt="Зрители в зале мультимедийной выставки" loading="lazy"></button>
@@ -1284,15 +1419,16 @@
     function tick() {
       var left = target - Date.now();
       if (left <= 0) {
-        box.innerHTML = '<div class="pj-count__u" style="min-width:auto"><span class="pj-count__v">Выставка открыта</span><span class="pj-count__l">до 29 ноября 2026</span></div>';
+        box.innerHTML = '<span class="pj-fact__n">Идёт</span><span class="pj-fact__l">до 29 ноября 2026</span>';
         return;
       }
       var s = Math.floor(left / 1000);
-      cells.d.textContent = Math.floor(s / 86400);
-      cells.h.textContent = pad(Math.floor(s / 3600) % 24);
-      cells.m.textContent = pad(Math.floor(s / 60) % 60);
-      cells.s.textContent = pad(s % 60);
-      setTimeout(tick, 1000);
+      // в полосе цифр стоят только дни, в развёрнутом виде — все четыре ячейки
+      if (cells.d) cells.d.textContent = Math.floor(s / 86400);
+      if (cells.h) cells.h.textContent = pad(Math.floor(s / 3600) % 24);
+      if (cells.m) cells.m.textContent = pad(Math.floor(s / 60) % 60);
+      if (cells.s) cells.s.textContent = pad(s % 60);
+      setTimeout(tick, cells.s ? 1000 : 60000);
     }
     tick();
   })();
@@ -1417,9 +1553,18 @@
     var p = v.play();
     if (p && p.catch) p.catch(function () {});
   }
-  (function retryPlayback() {
-    function kick() { $$('.pj-screen video').forEach(pjPlay); }
-    ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (e) {
+  (function playback() {
+    // «уменьшить движение» — останавливаем всё и показываем постеры
+    if (reduced) {
+      $$('video').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
+      return;
+    }
+    function kick() { $$('video').forEach(pjPlay); }
+    kick();
+    window.addEventListener('load', kick);
+    setTimeout(kick, 800);
+    setTimeout(kick, 2500);
+    ['pointerdown', 'keydown', 'touchstart', 'scroll', 'mousemove'].forEach(function (e) {
       window.addEventListener(e, kick, { once: true, passive: true });
     });
     document.addEventListener('visibilitychange', function () {

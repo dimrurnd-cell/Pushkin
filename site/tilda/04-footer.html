@@ -27,15 +27,16 @@
     function tick() {
       var left = target - Date.now();
       if (left <= 0) {
-        box.innerHTML = '<div class="pj-count__u" style="min-width:auto"><span class="pj-count__v">Выставка открыта</span><span class="pj-count__l">до 29 ноября 2026</span></div>';
+        box.innerHTML = '<span class="pj-fact__n">Идёт</span><span class="pj-fact__l">до 29 ноября 2026</span>';
         return;
       }
       var s = Math.floor(left / 1000);
-      cells.d.textContent = Math.floor(s / 86400);
-      cells.h.textContent = pad(Math.floor(s / 3600) % 24);
-      cells.m.textContent = pad(Math.floor(s / 60) % 60);
-      cells.s.textContent = pad(s % 60);
-      setTimeout(tick, 1000);
+      // в полосе цифр стоят только дни, в развёрнутом виде — все четыре ячейки
+      if (cells.d) cells.d.textContent = Math.floor(s / 86400);
+      if (cells.h) cells.h.textContent = pad(Math.floor(s / 3600) % 24);
+      if (cells.m) cells.m.textContent = pad(Math.floor(s / 60) % 60);
+      if (cells.s) cells.s.textContent = pad(s % 60);
+      setTimeout(tick, cells.s ? 1000 : 60000);
     }
     tick();
   })();
@@ -160,9 +161,18 @@
     var p = v.play();
     if (p && p.catch) p.catch(function () {});
   }
-  (function retryPlayback() {
-    function kick() { $$('.pj-screen video').forEach(pjPlay); }
-    ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (e) {
+  (function playback() {
+    // «уменьшить движение» — останавливаем всё и показываем постеры
+    if (reduced) {
+      $$('video').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
+      return;
+    }
+    function kick() { $$('video').forEach(pjPlay); }
+    kick();
+    window.addEventListener('load', kick);
+    setTimeout(kick, 800);
+    setTimeout(kick, 2500);
+    ['pointerdown', 'keydown', 'touchstart', 'scroll', 'mousemove'].forEach(function (e) {
       window.addEventListener(e, kick, { once: true, passive: true });
     });
     document.addEventListener('visibilitychange', function () {
