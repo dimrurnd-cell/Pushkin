@@ -13,3 +13,6 @@ Open-Generative-AI-main.zip
 # служебное
 .DS_Store
 Thumbs.db
+
+# исходники фотографий — в репозиторий идут только ужатые копии в site/assets/art/
+photo/
