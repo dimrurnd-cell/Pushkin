@@ -84,7 +84,7 @@
         if (f.x < -4) f.x = w + 4;
         ctx.beginPath();
         ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(239,237,228,' + f.a + ')';
+        ctx.fillStyle = 'rgba(255,255,255,' + (f.a * 0.9) + ')';
         ctx.fill();
       }
       requestAnimationFrame(frame);
@@ -158,6 +158,10 @@
   /* мягкий запуск видео: браузер может отказать до первого действия пользователя */
   function pjPlay(v) {
     if (!v || !v.paused) return;
+    // видео внутри эпизода крутится, только когда этот эпизод на экране
+    var ep = v.closest ? v.closest('.pj-ep') : null;
+    if (ep && !ep.classList.contains('is-on') &&
+        !window.matchMedia('(max-width: 860px)').matches) return;
     var p = v.play();
     if (p && p.catch) p.catch(function () {});
   }
@@ -367,7 +371,8 @@
     $$('.pj-gal__i').forEach(function (b) {
       b.addEventListener('click', function () {
         var s = b.querySelector('img');
-        img.src = s.src;
+        // в сетке лежит миниатюра, во весь экран открываем оригинал
+        img.src = s.getAttribute('data-full') || s.src;
         img.alt = s.alt;
         lb.classList.add('is-on');
         x.focus();

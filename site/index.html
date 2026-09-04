@@ -15,11 +15,11 @@
      Настройки страницы → Facebook и SEO.
      ============================================================ -->
 
-<meta name="theme-color" content="#06080F">
+<meta name="theme-color" content="#E9E9E6">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Prata&family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Golos+Text:wght@400;500;600&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
 
 <!-- Разметка события для Яндекса и Google: даты, площадка, цены.
      Tilda ничего подобного не отдаёт, конфликта не будет.
@@ -72,20 +72,24 @@
 .pj *::after { box-sizing: border-box; }
 
 .pj {
-  /* — чернильная ночь — */
-  --void:    #06080F;
-  --night:   #0B1020;
-  --panel:   #121A2E;
-  --raise:   #18223A;
-  --line:    #24314D;
-  /* — снег и бумага — */
-  --snow:    #EFEDE4;
-  --dim:     #8E9AB0;
-  --mute:    #5D6880;
+  /* — бумага и свет — */
+  --void:    #E9E9E6;   /* основной фон страницы */
+  --paper:   #F5F5F2;   /* приподнятые поверхности */
+  --night:   #DEDDD8;   /* утопленные, швы, рамки кадров */
+  --panel:   #F5F5F2;
+  --raise:   #E2E2DE;
+  --line:    #C7C6BF;
+  /* — чернила — */
+  --snow:    #111626;   /* основной текст */
+  --dim:     #414B63;   /* второстепенный */
+  --mute:    #6C7488;   /* третьестепенный */
   /* — свеча и сургуч — */
-  --candle:  #D9A441;
-  --candle-d:#8A6520;
-  --surguch: #9E2B20;
+  --candle:  #8A5E12;   /* акцент на светлом */
+  --candle-l:#D9A441;   /* тот же акцент поверх тёмных кадров */
+  --candle-d:#5E3F0A;
+  --surguch: #93261C;
+  /* — тёмный фон под кадрами фильма — */
+  --frame:   #0E1322;
 
   --maxw: 1360px;
   --navh: 62px;
@@ -94,7 +98,7 @@
 
   --f-display: 'Prata', 'Times New Roman', Georgia, serif;
   --f-body: 'Golos Text', 'Helvetica Neue', Arial, sans-serif;
-  --f-mono: 'JetBrains Mono', 'Courier New', monospace;
+  --f-label: 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
 
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
 
@@ -123,22 +127,22 @@
 .pj-display { font-family: var(--f-display); font-weight: 400; line-height: 0.94; letter-spacing: -0.015em; }
 .pj-h2 { font-family: var(--f-display); font-size: clamp(2.2rem, 5.4vw, 4.6rem); line-height: 1.02; }
 .pj-h3 { font-family: var(--f-display); font-size: clamp(1.35rem, 2.2vw, 2rem); line-height: 1.12; }
-.pj-lead { font-size: clamp(1.05rem, 1.35vw, 1.3rem); line-height: 1.55; color: #D5D2C8; max-width: 62ch; }
-.pj-body { max-width: 66ch; color: #C6C4BC; }
+.pj-lead { font-size: clamp(1.05rem, 1.35vw, 1.3rem); line-height: 1.55; color: var(--dim); max-width: 62ch; }
+.pj-body { max-width: 66ch; color: var(--dim); }
 .pj-dim { color: var(--dim); }
 
 /* метка в духе шапки съёмочной таблицы: КАДР № / ХРОНО / ТИТРЫ */
 .pj-slug {
-  font-family: var(--f-mono);
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
+  font-family: var(--f-label);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--candle);
 }
 .pj-slug--dim { color: var(--mute); }
 
-.pj-num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.pj-num { font-family: var(--f-label); font-variant-numeric: tabular-nums; }
 
 /* ---------- каркас ---------- */
 .pj-wrap { max-width: var(--maxw); margin: 0 auto; padding-inline: var(--pad); }
@@ -159,7 +163,7 @@
 .pj-screen {
   position: relative;
   overflow: hidden;
-  background: var(--night);
+  background: var(--frame);
   isolation: isolate;
 }
 .pj-screen::after {
@@ -174,7 +178,7 @@
   position: absolute; inset: 0; z-index: 2;
   width: 100%; height: 100%;
   object-fit: cover;
-  filter: saturate(0.62) contrast(1.06) brightness(0.72);
+  filter: saturate(1) contrast(1.01) brightness(0.98);
   transform: scale(1.06);
 }
 /* сгенерированный кадр проявляется поверх заливки, когда файл найден */
@@ -191,18 +195,17 @@
 .pj-screen__cap {
   position: absolute; left: 0; right: 0; bottom: 0; z-index: 3;
   padding: 14px 14px 12px;
-  font-family: var(--f-mono);
+  font-family: var(--f-label);
   font-size: 0.625rem;
   line-height: 1.45;
   letter-spacing: 0.04em;
-  color: #B9BCC4;
+  color: #E8E8E4;
   background: linear-gradient(transparent, rgba(6,8,15,0.9) 55%);
 }
 .pj-screen__tag {
   position: absolute; top: 12px; left: 12px; z-index: 3;
-  font-family: var(--f-mono);
-  font-size: 0.5625rem;
-  letter-spacing: 0.24em;
+  font-family: var(--f-label);
+  font-size: 0.75rem; font-weight: 600;  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--mute);
 }
@@ -233,22 +236,21 @@
   gap: var(--seam);
   background: var(--void);
 }
-.pj-hero__panel { position: relative; overflow: hidden; background: var(--night); }
+.pj-hero__panel { position: relative; overflow: hidden; background: var(--frame); }
 .pj-hero__v {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
-  filter: saturate(0.58) contrast(1.06) brightness(0.5);
+  filter: saturate(1) contrast(1.02) brightness(1);
 }
 /* боковые экраны чуть глубже в тень — центр держит взгляд */
 .pj-hero__panel--l .pj-hero__v,
-.pj-hero__panel--r .pj-hero__v { filter: saturate(0.5) contrast(1.05) brightness(0.46); }
+.pj-hero__panel--r .pj-hero__v { filter: saturate(0.9) contrast(1.02) brightness(0.9); }
 
 .pj-hero__scrim {
   position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(6,8,15,.78) 0%, rgba(6,8,15,.12) 26%, rgba(6,8,15,.30) 52%, rgba(6,8,15,.95) 100%),
-    radial-gradient(130% 90% at 50% 108%, rgba(6,8,15,.85), transparent 62%);
+    linear-gradient(180deg, rgba(233,233,230,.70) 0%, rgba(233,233,230,.10) 13%, rgba(233,233,230,.04) 30%, rgba(233,233,230,.55) 46%, rgba(233,233,230,.90) 62%, var(--void) 88%);
 }
 .pj-hero__snow { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; opacity: .55; }
 
@@ -277,7 +279,7 @@
 .pj-hero__line {
   font-size: clamp(1.05rem, 1.5vw, 1.5rem);
   line-height: 1.45;
-  color: #D9D6CC;
+  color: var(--dim);
   max-width: 46ch;
 }
 .pj-hero__bottom {
@@ -293,12 +295,12 @@
 
 /* подсказка «листайте» */
 .pj-scroll {
-  position: absolute; z-index: 3; left: 50%; bottom: clamp(20px, 3.5vh, 40px);
-  transform: translateX(-50%);
+  position: absolute; z-index: 3;
+  right: var(--pad); bottom: clamp(18px, 3vh, 34px);
   display: grid; justify-items: center; gap: 10px;
 }
 .pj-scroll__t {
-  font-family: var(--f-mono); font-size: .5625rem;
+  font-family: var(--f-label); font-size: .5625rem;
   letter-spacing: .3em; text-transform: uppercase; color: var(--dim);
 }
 .pj-scroll__l {
@@ -321,7 +323,7 @@
 @media (max-width: 1180px) { .pj-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 620px)  { .pj-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .pj-fact {
-  background: var(--void);
+  background: var(--paper);
   padding: clamp(20px, 3vw, 38px) clamp(16px, 2vw, 28px);
   display: grid; gap: 8px; align-content: center;
 }
@@ -332,7 +334,7 @@
 }
 .pj-fact--count .pj-fact__n { color: var(--candle); font-variant-numeric: tabular-nums; }
 .pj-fact__l {
-  display: block; font-family: var(--f-mono); font-size: .625rem;
+  display: block; font-family: var(--f-label); font-size: .8125rem; font-weight: 600;
   letter-spacing: .18em; text-transform: uppercase; color: var(--mute);
 }
 
@@ -342,16 +344,16 @@
   min-height: clamp(420px, 72svh, 820px);
   display: grid; place-items: center;
   overflow: hidden; isolation: isolate;
-  background: var(--void);
+  background: var(--paper);
 }
 .pj-band__v {
   position: absolute; inset: 0; z-index: 0;
   width: 100%; height: 100%; object-fit: cover;
-  filter: saturate(0.4) brightness(0.32);
+  opacity: 0.32; filter: saturate(0.95);
 }
 .pj-band__scrim {
   position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background: radial-gradient(90% 70% at 50% 50%, rgba(6,8,15,.55), rgba(6,8,15,.92) 78%);
+  background: radial-gradient(85% 70% at 50% 50%, rgba(233,233,230,.55), rgba(233,233,230,.94) 76%);
 }
 .pj-band__in {
   position: relative; z-index: 2; margin: 0;
@@ -367,7 +369,7 @@
   text-wrap: balance;
 }
 .pj-band__c {
-  font-family: var(--f-mono); font-style: normal;
+  font-family: var(--f-label); font-style: normal;
   font-size: .625rem; letter-spacing: .3em; text-transform: uppercase; color: var(--candle);
 }
 
@@ -376,7 +378,7 @@
 .pj-btn {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 16px 30px;
-  font-family: var(--f-mono); font-size: 0.75rem; font-weight: 500;
+  font-family: var(--f-label); font-size: 0.75rem; font-weight: 500;
   letter-spacing: 0.16em; text-transform: uppercase;
   border: 1px solid var(--candle);
   color: var(--candle);
@@ -385,14 +387,14 @@
 .pj-btn:hover { background: var(--candle); color: var(--void); }
 .pj-btn--solid { background: var(--candle); color: var(--void); }
 .pj-btn--solid:hover { background: var(--snow); border-color: var(--snow); color: var(--void); }
-.pj-btn--ghost { border-color: rgba(239,237,228,.4); color: var(--snow); }
-.pj-btn--ghost:hover { border-color: var(--snow); background: rgba(239,237,228,.08); }
+.pj-btn--ghost { border-color: rgba(17,22,38,.35); color: var(--snow); }
+.pj-btn--ghost:hover { border-color: var(--snow); background: rgba(17,22,38,.06); }
 
 /* ---------- О выставке ---------- */
 .pj-about { display: grid; grid-template-columns: 1fr; gap: clamp(28px, 4vw, 56px); }
 @media (min-width: 900px) { .pj-about { grid-template-columns: 1.15fr 1fr; align-items: start; } }
 .pj-about__voices { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); }
-.pj-voice { background: var(--night); padding: 18px 20px; display: grid; gap: 6px; }
+.pj-voice { background: var(--paper); padding: 18px 20px; display: grid; gap: 6px; }
 .pj-voice__n { font-family: var(--f-display); font-size: 1.15rem; }
 .pj-voice__d { font-size: 0.875rem; color: var(--dim); }
 
@@ -416,7 +418,7 @@
 }
 .pj-ep.is-on { opacity: 1; visibility: visible; }
 .pj-ep__head { display: flex; align-items: baseline; gap: 14px 22px; flex-wrap: wrap; }
-.pj-ep__years { font-family: var(--f-mono); font-size: 0.8125rem; letter-spacing: 0.1em; color: var(--candle); font-variant-numeric: tabular-nums; }
+.pj-ep__years { font-family: var(--f-label); font-size: 0.8125rem; letter-spacing: 0.1em; color: var(--candle); font-variant-numeric: tabular-nums; }
 .pj-ep__t { font-family: var(--f-display); font-size: clamp(1.5rem, 3.4vw, 2.9rem); line-height: 1.03; }
 .pj-ep__tri .pj-screen { aspect-ratio: auto; }
 .pj-ep__tri .pj-screen--c { aspect-ratio: 16 / 10; }
@@ -426,12 +428,12 @@
   padding-left: 18px;
   max-width: 78ch;
 }
-.pj-ep__q { font-family: var(--f-display); font-size: clamp(1.05rem, 1.7vw, 1.5rem); line-height: 1.35; color: #E4E1D6; }
-.pj-ep__who { font-family: var(--f-mono); font-size: 0.625rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mute); }
+.pj-ep__q { font-family: var(--f-display); font-size: clamp(1.05rem, 1.7vw, 1.5rem); line-height: 1.35; color: var(--snow); }
+.pj-ep__who { font-family: var(--f-label); font-size: 0.625rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mute); }
 
 /* линейка времени 1799 → 1837 */
 .pj-rail { display: flex; align-items: center; gap: 10px; margin-top: clamp(16px, 2vw, 26px); }
-.pj-rail__y { font-family: var(--f-mono); font-size: 0.625rem; letter-spacing: 0.12em; color: var(--mute); font-variant-numeric: tabular-nums; }
+.pj-rail__y { font-family: var(--f-label); font-size: 0.625rem; letter-spacing: 0.12em; color: var(--mute); font-variant-numeric: tabular-nums; }
 .pj-rail__track { position: relative; flex: 1; display: flex; align-items: center; gap: 0; height: 26px; }
 .pj-rail__track::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: var(--line); }
 .pj-rail__dot { position: relative; flex: 1; height: 26px; display: grid; place-items: center; }
@@ -450,26 +452,26 @@
 .pj-map__grid line { stroke: var(--line); stroke-width: 0.6; opacity: 0.55; }
 .pj-map__route { fill: none; stroke: var(--candle-d); stroke-width: 1.4; stroke-dasharray: 5 5; opacity: 0.75; }
 .pj-map__pt circle { fill: var(--night); stroke: var(--mute); stroke-width: 1.6; transition: stroke .25s, fill .25s, r .25s; }
-.pj-map__pt text { fill: var(--dim); font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.04em; transition: fill .25s; }
+.pj-map__pt text { fill: var(--dim); font-family: var(--f-label); font-size: 12px; letter-spacing: 0.04em; transition: fill .25s; }
 .pj-map__pt { cursor: pointer; }
 .pj-map__pt:hover circle, .pj-map__pt.is-on circle { fill: var(--candle); stroke: var(--candle); }
 .pj-map__pt:hover text, .pj-map__pt.is-on text { fill: var(--snow); }
 .pj-map__pt--end circle { stroke: var(--surguch); }
-.pj-map__info { border: 1px solid var(--line); background: var(--night); padding: clamp(20px, 2.6vw, 30px); display: grid; gap: 12px; align-content: start; min-height: 220px; }
-.pj-map__info-y { font-family: var(--f-mono); font-size: 0.75rem; letter-spacing: 0.14em; color: var(--candle); }
+.pj-map__info { border: 1px solid var(--line); background: var(--paper); padding: clamp(20px, 2.6vw, 30px); display: grid; gap: 12px; align-content: start; min-height: 220px; }
+.pj-map__info-y { font-family: var(--f-label); font-size: 0.75rem; letter-spacing: 0.14em; color: var(--candle); }
 .pj-map__info-t { font-family: var(--f-display); font-size: clamp(1.4rem, 2.4vw, 2rem); line-height: 1.06; }
-.pj-map__info-d { color: #C6C4BC; }
+.pj-map__info-d { color: var(--dim); }
 
 /* ---------- Технология ---------- */
 .pj-tech { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-.pj-tech__i { background: var(--night); padding: clamp(22px, 2.6vw, 32px); display: grid; gap: 10px; align-content: start; }
-.pj-tech__n { font-family: var(--f-mono); font-size: 0.625rem; letter-spacing: 0.2em; color: var(--candle); }
+.pj-tech__i { background: var(--paper); padding: clamp(22px, 2.6vw, 32px); display: grid; gap: 10px; align-content: start; }
+.pj-tech__n { font-family: var(--f-label); font-size: 0.625rem; letter-spacing: 0.2em; color: var(--candle); }
 .pj-tech__t { font-family: var(--f-display); font-size: 1.3rem; }
 .pj-tech__d { font-size: 0.9375rem; color: var(--dim); }
 
 /* ---------- Галерея ---------- */
 .pj-gal { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--seam); }
-.pj-gal__i { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--night); cursor: zoom-in; }
+.pj-gal__i { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--paper); cursor: zoom-in; }
 .pj-gal__i img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(0.66) brightness(0.78); transition: transform .6s cubic-bezier(.2,.7,.3,1), filter .5s; }
 .pj-gal__i:hover img { transform: scale(1.05); filter: saturate(0.9) brightness(0.95); }
 .pj-gal__i:nth-child(1), .pj-gal__i:nth-child(8) { grid-column: span 2; aspect-ratio: 8 / 3; }
@@ -478,7 +480,7 @@
 .pj-lb { position: fixed; inset: 0; z-index: 9999; background: rgba(4,5,10,0.94); display: none; place-items: center; padding: 4vw; }
 .pj-lb.is-on { display: grid; }
 .pj-lb img { max-width: 100%; max-height: 88vh; width: auto; object-fit: contain; }
-.pj-lb__x { position: absolute; top: 18px; right: 22px; font-family: var(--f-mono); font-size: 0.75rem; letter-spacing: 0.16em; color: var(--dim); }
+.pj-lb__x { position: absolute; top: 18px; right: 22px; font-family: var(--f-label); font-size: 0.75rem; letter-spacing: 0.16em; color: var(--dim); }
 .pj-lb__x:hover { color: var(--snow); }
 
 /* ---------- Билеты ---------- */
@@ -487,21 +489,21 @@
 
 .pj-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
 .pj-table th, .pj-table td { text-align: left; padding: 14px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
-.pj-table thead th { font-family: var(--f-mono); font-size: 0.625rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute); font-weight: 500; border-bottom-color: var(--mute); }
+.pj-table thead th { font-family: var(--f-label); font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mute); font-weight: 500; border-bottom-color: var(--mute); }
 .pj-table td:nth-child(2), .pj-table td:nth-child(3),
 .pj-table th:nth-child(2), .pj-table th:nth-child(3) { text-align: right; width: 108px; white-space: nowrap; }
 .pj-table__name { display: block; }
 .pj-table__note { display: block; margin-top: 4px; font-size: 0.8125rem; color: var(--mute); }
-.pj-table__p { font-family: var(--f-mono); font-size: 1.05rem; color: var(--snow); }
-.pj-table__na { font-family: var(--f-mono); font-size: 0.75rem; color: var(--mute); }
+.pj-table__p { font-family: var(--f-label); font-size: 1.05rem; color: var(--snow); }
+.pj-table__na { font-family: var(--f-label); font-size: 0.75rem; color: var(--mute); }
 .pj-table__free { color: var(--candle); }
 .pj-tablewrap { overflow-x: auto; }
 
-.pj-calc { border: 1px solid var(--line); background: var(--night); padding: clamp(22px, 2.8vw, 32px); display: grid; gap: 18px; align-content: start; }
+.pj-calc { border: 1px solid var(--line); background: var(--paper); padding: clamp(22px, 2.8vw, 32px); display: grid; gap: 18px; align-content: start; }
 .pj-field { display: grid; gap: 8px; }
-.pj-field > label { font-family: var(--f-mono); font-size: 0.625rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute); }
+.pj-field > label { font-family: var(--f-label); font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mute); }
 .pj-seg { display: flex; gap: 1px; background: var(--line); border: 1px solid var(--line); }
-.pj-seg button { flex: 1; padding: 11px 8px; background: var(--panel); font-family: var(--f-mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); transition: background-color .2s, color .2s; }
+.pj-seg button { flex: 1; padding: 11px 8px; background: var(--panel); font-family: var(--f-label); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); transition: background-color .2s, color .2s; }
 .pj-seg button[aria-pressed="true"] { background: var(--candle); color: var(--void); }
 .pj-select, .pj-input, .pj-textarea {
   width: 100%; padding: 12px 14px;
@@ -512,9 +514,9 @@
 .pj-select { background-image: linear-gradient(45deg, transparent 50%, var(--dim) 50%), linear-gradient(135deg, var(--dim) 50%, transparent 50%); background-position: right 18px center, right 12px center; background-size: 6px 6px, 6px 6px; background-repeat: no-repeat; padding-right: 40px; }
 .pj-input::placeholder, .pj-textarea::placeholder { color: var(--mute); }
 .pj-stepper { display: flex; align-items: stretch; border: 1px solid var(--line); width: fit-content; }
-.pj-stepper button { width: 44px; background: var(--panel); font-family: var(--f-mono); font-size: 1.1rem; color: var(--dim); }
+.pj-stepper button { width: 44px; background: var(--panel); font-family: var(--f-label); font-size: 1.1rem; color: var(--dim); }
 .pj-stepper button:hover { color: var(--candle); }
-.pj-stepper output { min-width: 62px; display: grid; place-items: center; font-family: var(--f-mono); font-size: 1.05rem; font-variant-numeric: tabular-nums; background: var(--night); }
+.pj-stepper output { min-width: 62px; display: grid; place-items: center; font-family: var(--f-label); font-size: 1.05rem; font-variant-numeric: tabular-nums; background: var(--paper); }
 .pj-calc__out { border-top: 1px solid var(--line); padding-top: 16px; display: grid; gap: 8px; }
 .pj-calc__sum { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
 .pj-calc__sum b { font-family: var(--f-display); font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 400; color: var(--candle); font-variant-numeric: tabular-nums; }
@@ -525,9 +527,9 @@
 
 /* ---------- Расписание ---------- */
 .pj-ses { display: grid; grid-template-columns: repeat(auto-fit, minmax(104px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
-.pj-ses__i { background: var(--night); padding: 16px 12px; display: grid; gap: 5px; }
-.pj-ses__t { font-family: var(--f-mono); font-size: 1.1rem; font-variant-numeric: tabular-nums; }
-.pj-ses__n { font-family: var(--f-mono); font-size: 0.5625rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mute); }
+.pj-ses__i { background: var(--paper); padding: 16px 12px; display: grid; gap: 5px; }
+.pj-ses__t { font-family: var(--f-label); font-size: 1.1rem; font-variant-numeric: tabular-nums; }
+.pj-ses__n { font-family: var(--f-label); font-size: 0.5625rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mute); }
 .pj-ses__i--lucky { background: var(--panel); }
 .pj-ses__i--lucky .pj-ses__t { color: var(--candle); }
 .pj-ses__i--lucky .pj-ses__n { color: var(--candle-d); }
@@ -544,17 +546,17 @@
 .pj-faq details { border-bottom: 1px solid var(--line); }
 .pj-faq summary { list-style: none; cursor: pointer; padding: 20px 44px 20px 0; position: relative; font-family: var(--f-display); font-size: clamp(1.05rem, 1.7vw, 1.35rem); }
 .pj-faq summary::-webkit-details-marker { display: none; }
-.pj-faq summary::after { content: '+'; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-family: var(--f-mono); font-size: 1.2rem; color: var(--candle); transition: transform .25s; }
+.pj-faq summary::after { content: '+'; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-family: var(--f-label); font-size: 1.2rem; color: var(--candle); transition: transform .25s; }
 .pj-faq details[open] summary::after { content: '−'; }
-.pj-faq__a { padding: 0 0 22px; color: #C6C4BC; max-width: 72ch; }
+.pj-faq__a { padding: 0 0 22px; color: var(--dim); max-width: 72ch; }
 
 /* ---------- Контакты / подвал ---------- */
 .pj-place { display: grid; gap: clamp(22px, 3vw, 40px); }
 @media (min-width: 900px) { .pj-place { grid-template-columns: 1fr 1fr; } }
-.pj-place__card { border: 1px solid var(--line); background: var(--night); padding: clamp(22px, 2.8vw, 34px); display: grid; gap: 14px; align-content: start; }
+.pj-place__card { border: 1px solid var(--line); background: var(--paper); padding: clamp(22px, 2.8vw, 34px); display: grid; gap: 14px; align-content: start; }
 .pj-dl { display: grid; gap: 14px; }
 .pj-dl__i { display: grid; gap: 4px; }
-.pj-dl__k { font-family: var(--f-mono); font-size: 0.625rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute); }
+.pj-dl__k { font-family: var(--f-label); font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mute); }
 .pj-dl__v { font-size: 1.0625rem; }
 
 .pj-foot { border-top: 1px solid var(--line); padding-block: clamp(36px, 4vw, 56px) clamp(28px, 3vw, 44px); }
@@ -564,7 +566,7 @@
 /* ---------- навигация ---------- */
 .pj-nav {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(6,8,15,0.82);
+  background: rgba(233,233,230,0.88);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid transparent;
@@ -576,7 +578,7 @@
 .pj-nav__brand span { color: var(--candle); }
 .pj-nav__links { display: none; gap: 26px; }
 @media (min-width: 940px) { .pj-nav__links { display: flex; } }
-.pj-nav__links a { font-family: var(--f-mono); font-size: 0.6875rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); transition: color .2s; }
+.pj-nav__links a { font-family: var(--f-label); font-size: 0.6875rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); transition: color .2s; }
 .pj-nav__links a:hover { color: var(--candle); }
 .pj-nav__btn { padding: 10px 18px; font-size: 0.6875rem; }
 
@@ -626,6 +628,14 @@
   .pj-title__ink path { stroke-dashoffset: 0; animation: none; }
 }
 
+/* ---------- галерея полотен ---------- */
+.pj-gal--art { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); }
+.pj-gal--art .pj-gal__i { aspect-ratio: 3 / 4; }
+.pj-gal--art .pj-gal__i:nth-child(1),
+.pj-gal--art .pj-gal__i:nth-child(8) { grid-column: auto; aspect-ratio: 3 / 4; }
+.pj-gal--art img { filter: saturate(0.98) brightness(0.98); }
+.pj-gal--art .pj-gal__i:hover img { filter: saturate(1.05) brightness(1.04); }
+
 </style>
 </head>
 <body style="margin:0;background:#06080F">
@@ -660,15 +670,15 @@
     <!-- три экрана выставки, живые -->
     <div class="pj-hero__tri" aria-hidden="true">
       <div class="pj-hero__panel pj-hero__panel--l">
-        <video class="pj-hero__v" src="assets/video/ep0-l.mp4" poster="assets/ep/ep0-l.webp"
+        <video class="pj-hero__v" src="assets/video/art-15.mp4" poster="assets/art/mid/art-15.jpg"
                autoplay muted loop playsinline preload="auto"></video>
       </div>
       <div class="pj-hero__panel pj-hero__panel--c">
-        <video class="pj-hero__v" src="assets/video/ep0-c.mp4" poster="assets/ep/ep0-c.webp"
+        <video class="pj-hero__v" src="assets/video/art-01.mp4" poster="assets/art/mid/art-01.webp"
                autoplay muted loop playsinline preload="auto"></video>
       </div>
       <div class="pj-hero__panel pj-hero__panel--r">
-        <video class="pj-hero__v" src="assets/video/ep0-r.mp4" poster="assets/ep/ep0-r.webp"
+        <video class="pj-hero__v" src="assets/video/art-16.mp4" poster="assets/art/mid/art-16.jpg"
                autoplay muted loop playsinline preload="auto"></video>
       </div>
     </div>
@@ -702,7 +712,7 @@
     </div>
 
     <a class="pj-scroll" href="#o-vystavke" aria-label="К описанию выставки">
-      <span class="pj-scroll__t">Пролог</span>
+      <span class="pj-scroll__t">Пролог · 1837</span>
       <span class="pj-scroll__l" aria-hidden="true"></span>
     </a>
   </header>
@@ -768,7 +778,7 @@
 
   <!-- ══════════ ЦИТАТА ВО ВЕСЬ ЭКРАН ══════════ -->
   <section class="pj-band pj-bleed" aria-label="Цитата Пушкина">
-    <video class="pj-band__v" src="assets/video/ep7-c.mp4" poster="assets/ep/ep7-c.webp"
+    <video class="pj-band__v" src="assets/video/art-49.mp4" poster="assets/art/mid/art-49.jpg"
            autoplay muted loop playsinline preload="none" aria-hidden="true"></video>
     <div class="pj-band__scrim" aria-hidden="true"></div>
     <blockquote class="pj-band__in">
@@ -799,9 +809,9 @@
                 <h3 class="pj-ep__t">Мгновение до выстрела</h3>
               </div>
               <div class="pj-ep__tri pj-tri">
-                <figure class="pj-screen" data-img="assets/ep/ep0-l.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">ИИ-реконструкция: внутри экипажа — рука в перчатке, едва заметная дрожь ткани</figcaption></figure>
-                <figure class="pj-screen pj-screen--c" data-img="assets/ep/ep0-c.webp" data-video="assets/video/ep0-c.mp4"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">«Зимний Петербург» · А. К. Беггров · Челябинский музей изобразительных искусств</figcaption></figure>
-                <figure class="pj-screen" data-img="assets/ep/ep0-r.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">«Приезд. Выбор места дуэли» · Д. Белюкин · 2022—2023</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/art/mid/art-36.jpg"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">«Приезд. Выбор места дуэли» · Дмитрий Белюкин · 2022—2023</figcaption></figure>
+                <figure class="pj-screen pj-screen--c" data-img="assets/art/mid/art-19.jpg" data-video="assets/video/art-19.mp4"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">«Дуэль А. С. Пушкина. Протаптывают тропинку» · Дмитрий Белюкин · 2022</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/art/mid/art-27.jpg"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">«Петербург зимой» · А. К. Беггров · 1874</figcaption></figure>
               </div>
               <blockquote class="pj-ep__quote">
                 <p class="pj-ep__q">«О люди! жалкий род, достойный слёз и смеха! Жрецы минутного, поклонники успеха!»</p>
@@ -816,9 +826,9 @@
                 <h3 class="pj-ep__t">Детство. Москва</h3>
               </div>
               <div class="pj-ep__tri pj-tri">
-                <figure class="pj-screen" data-img="assets/ep/ep1-l.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">Оживлённая графика пером и тушью по рисункам Нади Рушевой</figcaption></figure>
-                <figure class="pj-screen pj-screen--c" data-img="assets/ep/ep1-c.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">Москва рубежа веков: старая улица близ Немецкой слободы · по видам Ф. Я. Алексеева</figcaption></figure>
-                <figure class="pj-screen" data-img="assets/ep/ep1-r.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">Бабушка Мария Алексеевна Ганнибал · семейная хроника Пушкиных</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/art/mid/art-18.jpg"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">Генерал-аншеф Ибрагим Петрович Ганнибал, прадед поэта</figcaption></figure>
+                <figure class="pj-screen pj-screen--c" data-img="assets/art/mid/art-54.jpg" data-video="assets/video/art-54.mp4"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">«Юный Пушкин с Ариной Родионовной» · М. Ю. Шаньков</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/art/mid/art-37.jpg"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">Интерьер в доме родителей поэта · Дом-музей В. Л. Пушкина</figcaption></figure>
               </div>
               <blockquote class="pj-ep__quote">
                 <p class="pj-ep__q">«Учился я плохо. Но был до книг охотчив. Единственно, кто любили меня без условий, были сестра Оля и няня.»</p>
@@ -833,9 +843,9 @@
                 <h3 class="pj-ep__t">Юность. Лицейское братство</h3>
               </div>
               <div class="pj-ep__tri pj-tri">
-                <figure class="pj-screen" data-img="assets/ep/ep2-l.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">А. А. Тон · «Царское Село. Лицей» · 1822</figcaption></figure>
-                <figure class="pj-screen pj-screen--c" data-img="assets/ep/ep2-c.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">Э. Гау · Церковь в Большом Царскосельском дворце · 1860-е · ГМЗ «Царское Село»</figcaption></figure>
-                <figure class="pj-screen" data-img="assets/ep/ep2-r.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">Л. Премацци · Малиновая гостиная в Александровском дворце · 1863</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/art/mid/art-50.jpg"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">«Царское Село. Лицей» · А. А. Тон</figcaption></figure>
+                <figure class="pj-screen pj-screen--c" data-img="assets/art/mid/art-39.jpg" data-video="assets/video/art-39.mp4"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">«Пушкин на экзамене в Царском Селе 8 января 1815 года» · И. Е. Репин · 1911 · Всероссийский музей А. С. Пушкина</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/art/mid/art-52.jpg"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">Церковь в Большом Царскосельском дворце · Эдуард Гау · 1860-е · ГМЗ «Царское Село»</figcaption></figure>
               </div>
               <blockquote class="pj-ep__quote">
                 <p class="pj-ep__q">«В те дни, когда в садах Лицея я безмятежно расцветал… являться муза стала мне.»</p>
@@ -850,9 +860,9 @@
                 <h3 class="pj-ep__t">Петербург цитирует Пушкина</h3>
               </div>
               <div class="pj-ep__tri pj-tri">
-                <figure class="pj-screen" data-img="assets/ep/ep3-l.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">ИИ-реконструкция: комната поэта на Фонтанке · интерьер в стиле бидермайер</figcaption></figure>
-                <figure class="pj-screen pj-screen--c" data-img="assets/ep/ep3-c.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">В. С. Садовников · «Вид Невы и Петропавловской крепости» · 1847</figcaption></figure>
-                <figure class="pj-screen" data-img="assets/ep/ep3-r.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">В. С. Садовников · «Вид Казанского собора»</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/art/mid/art-05.jpg" data-video="assets/video/art-05.mp4"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">«Зелёная лампа»: чтение в кругу друзей</figcaption></figure>
+                <figure class="pj-screen pj-screen--c" data-img="assets/art/mid/art-17.jpg"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">«Вид площади между Исаакиевским собором и Адмиралтейством» · В. С. Садовников · 1847</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/art/mid/art-24.jpg"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">«Невский проспект у кондитерской Вольфа и Беранже» · Д. А. Белюкин</figcaption></figure>
               </div>
               <blockquote class="pj-ep__quote">
                 <p class="pj-ep__q">«Я встаю в семь часов, пишу до обеда. Обедаю поздно. После — театр, или карты, или снова стихи. Я почти счастлив.»</p>
@@ -952,7 +962,7 @@
                 <h3 class="pj-ep__t">Финал</h3>
               </div>
               <div class="pj-ep__tri pj-tri">
-                <figure class="pj-screen" data-img="assets/ep/ep9-l.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">ИИ-реконструкция: дневник Пушкина, записи 1—3 ноября 1836 года</figcaption></figure>
+                <figure class="pj-screen" data-img="assets/art/mid/art-10.jpg"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Лево</span><figcaption class="pj-screen__cap">«Дуэль Пушкина с Дантесом» · А. А. Наумов · 1884</figcaption></figure>
                 <figure class="pj-screen pj-screen--c" data-img="assets/ep/ep9-c.webp" data-video="assets/video/ep9-c.mp4"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Центр</span><figcaption class="pj-screen__cap">Ю. Г. Чистяков · из серии «А. Пушкин» · бумага, акварель · 1982</figcaption></figure>
                 <figure class="pj-screen" data-img="assets/ep/ep9-r.webp"><span class="pj-screen__wash"></span><span class="pj-screen__tag">Право</span><figcaption class="pj-screen__cap">ИИ-реконструкция: часы в доме Пушкиных — время идёт назад</figcaption></figure>
               </div>
@@ -1056,6 +1066,73 @@
         <span class="pj-tech__n">04</span>
         <h3 class="pj-tech__t">Только подлинные слова</h3>
         <p class="pj-tech__d">Реплики Пушкина в фильме — цитаты из его писем, дневников и стихов. Ничего не дописано за него.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ ПОЛОТНА ══════════ -->
+  <section class="pj-sec pj-sec--tight" id="polotna">
+    <div class="pj-wrap pj-sechead">
+      <div class="pj-sechead__row">
+        <span class="pj-slug">Полотна</span>
+        <span class="pj-slug pj-slug--dim">Более ста работ в фильме</span>
+      </div>
+      <h2 class="pj-h2">Из чего он собран</h2>
+      <p class="pj-body">
+        Репин, Беггров, Садовников, Белюкин, Иткин, Гау, Кипренский, Брюллов, Доу,
+        Наумов, Шаньков, де Местр, Алексеев. Живопись, акварель, графика и документы —
+        всё, что сохранило его лицо и его время. Наведите на работу, чтобы прочесть подпись.
+      </p>
+    </div>
+    <div class="pj-bleed">
+      <div class="pj-gal pj-gal--art">
+        <button class="pj-gal__i" type="button" title="«Зимний Петербург», Александр Карлович Беггров, Челябинский государственный музей изобразительных искусств"><img src="assets/art/thumb/art-01.webp" data-full="assets/art/art-01.webp" alt="«Зимний Петербург», Александр Карлович Беггров, Челябинский государственный музей изобразительных искусств" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="А. А. Дельвиг Акварель П. Л. Яковлев 1817 г."><img src="assets/art/thumb/art-09.jpg" data-full="assets/art/art-09.jpg" alt="А. А. Дельвиг Акварель П. Л. Яковлев 1817 г." loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="А. Наумов Дуэль Пушкина с Дантесом 188"><img src="assets/art/thumb/art-10.jpg" data-full="assets/art/art-10.jpg" alt="А. Наумов Дуэль Пушкина с Дантесом 188" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Актовый зал красносельского лицея. П.Ф. Борель с рисунка В.П. Лангера 1820 г."><img src="assets/art/thumb/art-11.jpg" data-full="assets/art/art-11.jpg" alt="Актовый зал красносельского лицея. П.Ф. Борель с рисунка В.П. Лангера 1820 г." loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Аничков мост на Невском проспекте в сумерках. Паоло Сала"><img src="assets/art/thumb/art-12.jpg" data-full="assets/art/art-12.jpg" alt="Аничков мост на Невском проспекте в сумерках. Паоло Сала" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Василий Львович Пушкин. Портрет работы Ж. Вивьена (около 1823)"><img src="assets/art/thumb/art-13.jpg" data-full="assets/art/art-13.jpg" alt="Василий Львович Пушкин. Портрет работы Ж. Вивьена (около 1823)" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Вечер в дворянском доме Акварель неизвестный художник 1820-е г. Государственный Русский музей"><img src="assets/art/thumb/art-14.jpg" data-full="assets/art/art-14.jpg" alt="Вечер в дворянском доме Акварель неизвестный художник 1820-е г. Государственный Русский музей" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Вид на Соборную площадь в Кремле. Грановитая палата и соборы. Фёдор Алексеев 1801 г."><img src="assets/art/thumb/art-15.jpg" data-full="assets/art/art-15.jpg" alt="Вид на Соборную площадь в Кремле. Грановитая палата и соборы. Фёдор Алексеев 1801 г." loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Вид Невы и Петропавловской крепости 1847 г. Акварель В. С. Садовников"><img src="assets/art/thumb/art-16.jpg" data-full="assets/art/art-16.jpg" alt="Вид Невы и Петропавловской крепости 1847 г. Акварель В. С. Садовников" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Вид площади между Исаакиевским собором и Адмиралтейством 1847 г. Акварель В.С. Садовников"><img src="assets/art/thumb/art-17.jpg" data-full="assets/art/art-17.jpg" alt="Вид площади между Исаакиевским собором и Адмиралтейством 1847 г. Акварель В.С. Садовников" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Генерал - аншеф Ибрагим Петрович Ганнибал (ок. 1669 - 1781)"><img src="assets/art/thumb/art-18.jpg" data-full="assets/art/art-18.jpg" alt="Генерал - аншеф Ибрагим Петрович Ганнибал (ок. 1669 - 1781)" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Дуэль А.С. Пушкина. Протаптывают тропинку, Дмитрий Белюкин, 2022 г."><img src="assets/art/thumb/art-19.jpg" data-full="assets/art/art-19.jpg" alt="Дуэль А.С. Пушкина. Протаптывают тропинку, Дмитрий Белюкин, 2022 г." loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Зелёная лампа"><img src="assets/art/thumb/art-20.jpg" data-full="assets/art/art-20.jpg" alt="Зелёная лампа" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Интерьер гостинной"><img src="assets/art/thumb/art-21.jpg" data-full="assets/art/art-21.jpg" alt="Интерьер гостинной" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="На торжественном открытии Лицея 19 октября 1811 года. Иткин А.З."><img src="assets/art/thumb/art-22.jpg" data-full="assets/art/art-22.jpg" alt="На торжественном открытии Лицея 19 октября 1811 года. Иткин А.З." loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Надежда Осиповна Пушкина (Ганнибал),. К. де Местр"><img src="assets/art/thumb/art-23.jpg" data-full="assets/art/art-23.jpg" alt="Надежда Осиповна Пушкина (Ганнибал),. К. де Местр" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Невский проспект у кондитерской Вольфа и Беранже. Д. А. Белюкин"><img src="assets/art/thumb/art-24.jpg" data-full="assets/art/art-24.jpg" alt="Невский проспект у кондитерской Вольфа и Беранже. Д. А. Белюкин" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Первая встреча Пушкина и Пущина. Иткин А.З."><img src="assets/art/thumb/art-25.jpg" data-full="assets/art/art-25.jpg" alt="Первая встреча Пушкина и Пущина. Иткин А.З." loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Первый приезд юного Пушкина в Санкт-Петербург. Иткин А.З."><img src="assets/art/thumb/art-26.jpg" data-full="assets/art/art-26.jpg" alt="Первый приезд юного Пушкина в Санкт-Петербург. Иткин А.З." loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Петербург зимой 1874 г. Александр Карлович Беггров"><img src="assets/art/thumb/art-27.jpg" data-full="assets/art/art-27.jpg" alt="Петербург зимой 1874 г. Александр Карлович Беггров" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Портрет адъюнкт-профессора нравственных и политических наук Александра Петровича Куницына Алексей Илличевский 1816 г."><img src="assets/art/thumb/art-28.jpg" data-full="assets/art/art-28.jpg" alt="Портрет адъюнкт-профессора нравственных и политических наук Александра Петровича Куницына Алексей Илличевский 1816 г." loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Портрет Александра I Джордж Доу"><img src="assets/art/thumb/art-29.jpg" data-full="assets/art/art-29.jpg" alt="Портрет Александра I Джордж Доу" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Портрет В. А. Жуковского Карл Брюллов 1837 г."><img src="assets/art/thumb/art-30.jpg" data-full="assets/art/art-30.jpg" alt="Портрет В. А. Жуковского Карл Брюллов 1837 г." loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Портрет В. А. Жуковского. Кипренский О. А. 1816 г."><img src="assets/art/thumb/art-31.jpg" data-full="assets/art/art-31.jpg" alt="Портрет В. А. Жуковского. Кипренский О. А. 1816 г." loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Портрет Державина Александр Васильевский 1815 г. Музей-усадьба Г.Р. Державина Санкт-Петербург"><img src="assets/art/thumb/art-32.jpg" data-full="assets/art/art-32.jpg" alt="Портрет Державина Александр Васильевский 1815 г. Музей-усадьба Г.Р. Державина Санкт-Петербург" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Портрет Егора Антоновича Энгельгардта Павел Пороховников лицейский преподаватель рисования 1877 г."><img src="assets/art/thumb/art-33.jpg" data-full="assets/art/art-33.jpg" alt="Портрет Егора Антоновича Энгельгардта Павел Пороховников лицейский преподаватель рисования 1877 г." loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Портрет князя Петра Андреевича Вяземского Орест Кипренский 1835 г."><img src="assets/art/thumb/art-34.jpg" data-full="assets/art/art-34.jpg" alt="Портрет князя Петра Андреевича Вяземского Орест Кипренский 1835 г." loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Портрет Ольги Сергеевны Павлищевой (в девичестве Пушкиной)"><img src="assets/art/thumb/art-35.jpg" data-full="assets/art/art-35.jpg" alt="Портрет Ольги Сергеевны Павлищевой (в девичестве Пушкиной)" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Приезд. Выбор места дуэли, 2022—2023, Дмитрий Белюкин"><img src="assets/art/thumb/art-36.jpg" data-full="assets/art/art-36.jpg" alt="Приезд. Выбор места дуэли, 2022—2023, Дмитрий Белюкин" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Пример интерьера в доме родителей Пушкина (Дом-музей В.Л. Пушкина)"><img src="assets/art/thumb/art-37.jpg" data-full="assets/art/art-37.jpg" alt="Пример интерьера в доме родителей Пушкина (Дом-музей В.Л. Пушкина)" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Прогулка императрицы Екатерины II в парке Царского Села. М.Ф. Дамам-Демартре."><img src="assets/art/thumb/art-38.jpg" data-full="assets/art/art-38.jpg" alt="Прогулка императрицы Екатерины II в парке Царского Села. М.Ф. Дамам-Демартре." loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Пушкин на экзамене в Царском Селе 8 января 1815 года И. Репин 1911 г. Всероссийский музей А.С. Пушкина Санкт-Петербург"><img src="assets/art/thumb/art-39.jpg" data-full="assets/art/art-39.jpg" alt="Пушкин на экзамене в Царском Селе 8 января 1815 года И. Репин 1911 г. Всероссийский музей А.С. Пушкина Санкт-Петербург" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Пушкин слушает сказки няни В.А.Кузнецов."><img src="assets/art/thumb/art-40.jpg" data-full="assets/art/art-40.jpg" alt="Пушкин слушает сказки няни В.А.Кузнецов." loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Пушкин-лицеист в Царском Селе Ирина Витман 1954 г."><img src="assets/art/thumb/art-41.jpg" data-full="assets/art/art-41.jpg" alt="Пушкин-лицеист в Царском Селе Ирина Витман 1954 г." loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Пушкин-лицеист. Неизвестный художник. Середина 1810-х"><img src="assets/art/thumb/art-42.jpg" data-full="assets/art/art-42.jpg" alt="Пушкин-лицеист. Неизвестный художник. Середина 1810-х" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Рисунок Пушкина"><img src="assets/art/thumb/art-43.jpg" data-full="assets/art/art-43.jpg" alt="Рисунок Пушкина" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Родословное дерево Пушкиных"><img src="assets/art/thumb/art-44.jpg" data-full="assets/art/art-44.jpg" alt="Родословное дерево Пушкиных" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Саша Пушкин в Лицее. Иткин А.З."><img src="assets/art/thumb/art-45.jpg" data-full="assets/art/art-45.jpg" alt="Саша Пушкин в Лицее. Иткин А.З." loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Свидетельство об окончании А. С. Пушкиным лицея"><img src="assets/art/thumb/art-46.jpg" data-full="assets/art/art-46.jpg" alt="Свидетельство об окончании А. С. Пушкиным лицея" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Сергей Львович Пушкин"><img src="assets/art/thumb/art-47.jpg" data-full="assets/art/art-47.jpg" alt="Сергей Львович Пушкин" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Субботнее собрание у Жуковского Художники школы Алексея Венецианова Григорий Михайлов, Аполлон Мокрицкий и другие 1834–1836 гг."><img src="assets/art/thumb/art-48.jpg" data-full="assets/art/art-48.jpg" alt="Субботнее собрание у Жуковского Художники школы Алексея Венецианова Григорий Михайлов, Аполлон Мокрицкий и другие 1834–1836 гг." loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Усадьба Захарово"><img src="assets/art/thumb/art-49.jpg" data-full="assets/art/art-49.jpg" alt="Усадьба Захарово" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Царское село. Лицей. А. А. Тон."><img src="assets/art/thumb/art-50.jpg" data-full="assets/art/art-50.jpg" alt="Царское село. Лицей. А. А. Тон." loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Царское село. М.М. Иванов. Всероссийский музей А.С. Пушкина"><img src="assets/art/thumb/art-51.jpg" data-full="assets/art/art-51.jpg" alt="Царское село. М.М. Иванов. Всероссийский музей А.С. Пушкина" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Эдуард Гау. Церковь в Большом Царскосельском дворце. Акварель. 1860-е. Из коллекции ГМЗ «Царское Село»"><img src="assets/art/thumb/art-52.jpg" data-full="assets/art/art-52.jpg" alt="Эдуард Гау. Церковь в Большом Царскосельском дворце. Акварель. 1860-е. Из коллекции ГМЗ «Царское Село»" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Юный Пушкин в Царскосельском парке Анатолий Иткин 1966 г. Государственный музей А. С. Пушкина"><img src="assets/art/thumb/art-53.jpg" data-full="assets/art/art-53.jpg" alt="Юный Пушкин в Царскосельском парке Анатолий Иткин 1966 г. Государственный музей А. С. Пушкина" loading="lazy"></button>
+        <button class="pj-gal__i" type="button" title="Юный Пушкин с Ариной Родионовной Шаньков М. Ю."><img src="assets/art/thumb/art-54.jpg" data-full="assets/art/art-54.jpg" alt="Юный Пушкин с Ариной Родионовной Шаньков М. Ю." loading="lazy"></button>
       </div>
     </div>
   </section>
@@ -1476,7 +1553,7 @@
         if (f.x < -4) f.x = w + 4;
         ctx.beginPath();
         ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(239,237,228,' + f.a + ')';
+        ctx.fillStyle = 'rgba(255,255,255,' + (f.a * 0.9) + ')';
         ctx.fill();
       }
       requestAnimationFrame(frame);
@@ -1550,6 +1627,10 @@
   /* мягкий запуск видео: браузер может отказать до первого действия пользователя */
   function pjPlay(v) {
     if (!v || !v.paused) return;
+    // видео внутри эпизода крутится, только когда этот эпизод на экране
+    var ep = v.closest ? v.closest('.pj-ep') : null;
+    if (ep && !ep.classList.contains('is-on') &&
+        !window.matchMedia('(max-width: 860px)').matches) return;
     var p = v.play();
     if (p && p.catch) p.catch(function () {});
   }
@@ -1759,7 +1840,8 @@
     $$('.pj-gal__i').forEach(function (b) {
       b.addEventListener('click', function () {
         var s = b.querySelector('img');
-        img.src = s.src;
+        // в сетке лежит миниатюра, во весь экран открываем оригинал
+        img.src = s.getAttribute('data-full') || s.src;
         img.alt = s.alt;
         lb.classList.add('is-on');
         x.focus();
