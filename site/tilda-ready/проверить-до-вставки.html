@@ -17,7 +17,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Cormorant+Garamond:wght@600;700&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
 
 <!-- Разметка события для Яндекса и Google: даты, площадка, цены.
      Tilda ничего подобного не отдаёт, конфликта не будет.
@@ -108,21 +108,21 @@
   --margin: clamp(96px, 15vw, 232px);  /* ширина полей тетради */
   --seam: 2px;
 
-  --f-display: 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
+  --f-display: 'Prata', 'Times New Roman', Georgia, serif;
   --f-body: 'Literata', 'Georgia', 'Times New Roman', serif;
   --f-label: 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
   --f-hand: 'Caveat', 'Segoe Script', cursive;
 
-  /* вержеры и понтюзо — та самая фактура бумаги ручного отлива */
-  --laid: repeating-linear-gradient(0deg, transparent 0 3px, rgba(42,33,24,.030) 3px 4px);
-  --chain: repeating-linear-gradient(90deg, transparent 0 44px, rgba(42,33,24,.045) 44px 45px);
+  /* фактура листа: только горизонтальные вержеры, очень слабо.
+     Вертикальные понтюзо убраны — вдвоём они давали клетку. */
+  --laid: repeating-linear-gradient(0deg, transparent 0 4px, rgba(42,33,24,.020) 4px 5px);
 
   position: relative;
   margin: 0;
   padding: 0;
   color: var(--snow);
   background-color: var(--void);
-  background-image: var(--laid), var(--chain);
+  background-image: var(--laid);
   font-family: var(--f-body);
   font-size: clamp(15px, 0.5vw + 13.4px, 17px);
   line-height: 1.68;
@@ -133,7 +133,8 @@
 }
 
 .pj img { max-width: 100%; display: block; }
-.pj a { color: inherit; text-decoration: none; }
+.pj a:not([class]) { color: inherit; }
+.pj a { text-decoration: none; }
 .pj p { margin: 0; }
 .pj h1, .pj h2, .pj h3, .pj h4 { margin: 0; font-weight: 400; text-wrap: balance; }
 .pj ul, .pj ol { margin: 0; padding: 0; list-style: none; }
@@ -141,13 +142,13 @@
 .pj :focus-visible { outline: 2px solid var(--candle); outline-offset: 3px; }
 
 /* ---------- типографика ---------- */
-.pj-display { font-family: var(--f-display); font-weight: 600; line-height: 0.96; }
+.pj-display { font-family: var(--f-display); font-weight: 400; line-height: 0.96; }
 .pj-h2 {
-  font-family: var(--f-display); font-weight: 600;
+  font-family: var(--f-display); font-weight: 400;
   font-size: clamp(2.1rem, 5vw, 4.3rem);
   line-height: 1.02; letter-spacing: -0.012em;
 }
-.pj-h3 { font-family: var(--f-display); font-weight: 600; font-size: clamp(1.35rem, 2.2vw, 2rem); line-height: 1.14; }
+.pj-h3 { font-family: var(--f-display); font-weight: 400; font-size: clamp(1.35rem, 2.2vw, 2rem); line-height: 1.14; }
 .pj-lead { font-size: clamp(1.06rem, 1.3vw, 1.28rem); line-height: 1.6; color: var(--dim); max-width: 60ch; }
 .pj-body { max-width: 64ch; color: var(--dim); }
 .pj-dim { color: var(--mute); }
@@ -256,7 +257,7 @@
   padding-block: clamp(28px, 5vh, 64px);
   overflow: hidden;
   background-color: var(--void);
-  background-image: var(--laid), var(--chain);
+  background-image: var(--laid);
 }
 .pj-hero__snow { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; opacity: .5; }
 
@@ -274,7 +275,7 @@
 .pj-title { margin: 0; }
 .pj-title__l1, .pj-title__l2 {
   display: block;
-  font-family: var(--f-display); font-weight: 600;
+  font-family: var(--f-display); font-weight: 400;
   font-size: clamp(3.2rem, 13vw, 12.5rem);
   line-height: 0.86;
   letter-spacing: -0.028em;
@@ -283,7 +284,7 @@
 
 .pj-hero__line { font-size: clamp(1.05rem, 1.4vw, 1.42rem); line-height: 1.5; color: var(--dim); max-width: 44ch; }
 .pj-hero__bottom { display: flex; flex-wrap: wrap; align-items: center; gap: clamp(14px, 2.4vw, 40px); }
-.pj-hero__dates { font-family: var(--f-display); font-weight: 600; font-size: clamp(1.3rem, 2.3vw, 2.15rem); white-space: nowrap; }
+.pj-hero__dates { font-family: var(--f-display); font-weight: 400; font-size: clamp(1.3rem, 2.3vw, 2.15rem); white-space: nowrap; }
 .pj-hero__bottom .pj-cta { margin-top: 0; }
 
 /* три вклейки в подвале разворота */
@@ -341,7 +342,7 @@
   border-left: 1px solid var(--line-2);
 }
 .pj-fact:first-child { border-left: 0; }
-.pj-fact__n { font-family: var(--f-display); font-weight: 600; font-size: clamp(2.1rem, 4vw, 3.5rem); line-height: 1; display: block; }
+.pj-fact__n { font-family: var(--f-display); font-weight: 400; font-size: clamp(2.1rem, 4vw, 3.5rem); line-height: 1; display: block; }
 .pj-fact--count .pj-fact__n { color: var(--candle); font-variant-numeric: tabular-nums; }
 .pj-fact__l { display: block; font-family: var(--f-label); font-size: 0.875rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mute); }
 
@@ -351,17 +352,17 @@
   min-height: clamp(400px, 66svh, 760px);
   display: grid; place-items: center;
   background-color: var(--void);
-  background-image: var(--laid), var(--chain);
+  background-image: var(--laid);
 }
 .pj-band__v { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; opacity: .22; filter: saturate(.9); }
 .pj-band__scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(80% 66% at 50% 50%, rgba(226,228,222,.6), rgba(226,228,222,.95) 74%); }
 .pj-band__in { position: relative; z-index: 2; margin: 0; padding: clamp(40px, 7vw, 92px) var(--pad); display: grid; gap: clamp(18px, 2.6vw, 32px); justify-items: center; text-align: center; }
-.pj-band__q { font-family: var(--f-display); font-weight: 600; font-size: clamp(1.6rem, 4.6vw, 4rem); line-height: 1.18; color: var(--snow); text-wrap: balance; }
+.pj-band__q { font-family: var(--f-display); font-weight: 400; font-size: clamp(1.6rem, 4.6vw, 4rem); line-height: 1.18; color: var(--snow); text-wrap: balance; }
 .pj-band__c { font-family: var(--f-hand); font-style: normal; font-size: 1.35rem; color: var(--candle); }
 
 /* ---------- кнопки ---------- */
 .pj-cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: clamp(24px, 3vw, 36px); }
-.pj-btn {
+.pj .pj-btn {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 15px 30px; min-height: 48px;
   font-family: var(--f-label); font-size: 0.9375rem; font-weight: 700;
@@ -369,23 +370,23 @@
   border: 1px solid var(--candle); color: var(--candle);
   transition: background-color .22s, color .22s, border-color .22s;
 }
-.pj-btn:hover { background: var(--candle); color: var(--void); }
-.pj-btn--solid { background: var(--candle); color: #F2F1EC; }
-.pj-btn--solid:hover { background: var(--candle-d); border-color: var(--candle-d); color: #F2F1EC; }
-.pj-btn--ghost { border-color: var(--field); color: var(--snow); }
-.pj-btn--ghost:hover { border-color: var(--snow); background: rgba(42,33,24,.05); color: var(--snow); }
+.pj .pj-btn:hover { background: var(--candle); color: var(--void); }
+.pj .pj-btn--solid { background: var(--candle); color: #F2F1EC; }
+.pj .pj-btn--solid:hover { background: var(--candle-d); border-color: var(--candle-d); color: #F2F1EC; }
+.pj .pj-btn--ghost { border-color: var(--field); color: var(--snow); }
+.pj .pj-btn--ghost:hover { border-color: var(--snow); background: rgba(42,33,24,.05); color: var(--snow); }
 
 /* ---------- О выставке ---------- */
 .pj-about { display: grid; gap: clamp(28px, 4vw, 56px); }
 @media (min-width: 900px) { .pj-about { grid-template-columns: 1.2fr 1fr; align-items: start; } }
 /* буквица — приём наборной полосы */
 .pj-about .pj-lead::first-letter {
-  float: left; font-family: var(--f-display); font-weight: 600;
+  float: left; font-family: var(--f-display); font-weight: 400;
   font-size: 3.5em; line-height: .82; padding: .06em .1em 0 0; color: var(--candle);
 }
 .pj-about__voices { display: grid; border-top: 1px solid var(--line); }
 .pj-voice { padding: 16px 0; display: grid; gap: 4px; border-bottom: 1px solid var(--line-2); }
-.pj-voice__n { font-family: var(--f-display); font-weight: 600; font-size: 1.3rem; }
+.pj-voice__n { font-family: var(--f-display); font-weight: 400; font-size: 1.3rem; }
 .pj-voice__d { font-size: 0.9375rem; color: var(--mute); }
 
 /* ---------- ЭПИЗОДЫ ---------- */
@@ -406,12 +407,12 @@
 .pj-ep.is-on { opacity: 1; visibility: visible; }
 .pj-ep__head { display: flex; align-items: baseline; gap: 14px 22px; flex-wrap: wrap; }
 .pj-ep__years { font-family: var(--f-label); font-size: 1rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--candle); }
-.pj-ep__t { font-family: var(--f-display); font-weight: 600; font-size: clamp(1.6rem, 3.4vw, 3rem); line-height: 1.04; }
+.pj-ep__t { font-family: var(--f-display); font-weight: 400; font-size: clamp(1.6rem, 3.4vw, 3rem); line-height: 1.04; }
 .pj-ep__tri .pj-screen { aspect-ratio: auto; }
 .pj-ep__tri .pj-screen--c { aspect-ratio: 16 / 10; }
 /* зачёркнутая черта у цитаты — размашистая, как у него */
 .pj-ep__quote { display: grid; gap: 8px; border-left: 2px solid var(--candle); padding-left: 20px; max-width: 80ch; }
-.pj-ep__q { font-family: var(--f-display); font-weight: 600; font-size: clamp(1.15rem, 1.8vw, 1.7rem); line-height: 1.34; color: var(--snow); }
+.pj-ep__q { font-family: var(--f-display); font-weight: 400; font-size: clamp(1.15rem, 1.8vw, 1.7rem); line-height: 1.34; color: var(--snow); }
 .pj-ep__who { font-family: var(--f-hand); font-size: 1.125rem; color: var(--mute); }
 
 .pj-rail { display: flex; align-items: center; gap: 12px; margin-top: clamp(16px, 2vw, 26px); padding-inline: clamp(4px, 1vw, 18px); }
@@ -438,7 +439,7 @@
 .pj-map__pt--end circle { stroke: var(--candle); }
 .pj-map__info { border: 1px solid var(--line); background: var(--paper); padding: clamp(20px, 2.6vw, 30px); display: grid; gap: 12px; align-content: start; min-height: 220px; }
 .pj-map__info-y { font-family: var(--f-hand); font-size: 1.25rem; color: var(--candle); }
-.pj-map__info-t { font-family: var(--f-display); font-weight: 600; font-size: clamp(1.5rem, 2.4vw, 2.1rem); line-height: 1.06; }
+.pj-map__info-t { font-family: var(--f-display); font-weight: 400; font-size: clamp(1.5rem, 2.4vw, 2.1rem); line-height: 1.06; }
 .pj-map__info-d { color: var(--dim); }
 
 /* ---------- Технология ---------- */
@@ -446,7 +447,7 @@
 .pj-tech__i { padding: clamp(22px, 2.6vw, 34px) clamp(18px, 2vw, 28px); display: grid; gap: 10px; align-content: start; border-bottom: 1px solid var(--line-2); border-left: 1px solid var(--line-2); }
 .pj-tech__i:first-child { border-left: 0; }
 .pj-tech__n { font-family: var(--f-hand); font-size: 1.4rem; color: var(--candle); }
-.pj-tech__t { font-family: var(--f-display); font-weight: 600; font-size: 1.4rem; }
+.pj-tech__t { font-family: var(--f-display); font-weight: 400; font-size: 1.4rem; }
 .pj-tech__d { font-size: 0.9375rem; color: var(--dim); }
 
 /* ---------- Галереи ---------- */
@@ -488,7 +489,7 @@
 .pj-table th:nth-child(2), .pj-table th:nth-child(3) { text-align: right; width: 112px; white-space: nowrap; }
 .pj-table__name { display: block; }
 .pj-table__note { display: block; margin-top: 4px; font-size: 0.8125rem; color: var(--mute); }
-.pj-table__p { font-family: var(--f-display); font-weight: 600; font-size: 1.3rem; color: var(--snow); }
+.pj-table__p { font-family: var(--f-display); font-weight: 400; font-size: 1.3rem; color: var(--snow); }
 .pj-table__na { font-family: var(--f-hand); font-size: 1.0625rem; color: var(--mute); }
 .pj-table__free { color: var(--candle); }
 
@@ -508,10 +509,10 @@
 .pj-stepper { display: flex; align-items: stretch; border: 1px solid var(--field); width: fit-content; }
 .pj-stepper button { width: 48px; min-height: 48px; background: var(--void); font-size: 1.15rem; color: var(--dim); }
 .pj-stepper button:hover { color: var(--candle); }
-.pj-stepper output { min-width: 64px; display: grid; place-items: center; font-family: var(--f-display); font-weight: 600; font-size: 1.25rem; font-variant-numeric: tabular-nums; background: var(--paper); }
+.pj-stepper output { min-width: 64px; display: grid; place-items: center; font-family: var(--f-display); font-weight: 400; font-size: 1.25rem; font-variant-numeric: tabular-nums; background: var(--paper); }
 .pj-calc__out { border-top: 1px solid var(--line); padding-top: 16px; display: grid; gap: 8px; }
 .pj-calc__sum { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
-.pj-calc__sum b { font-family: var(--f-display); font-weight: 600; font-size: clamp(1.9rem, 3.4vw, 2.7rem); color: var(--candle); font-variant-numeric: tabular-nums; }
+.pj-calc__sum b { font-family: var(--f-display); font-weight: 400; font-size: clamp(1.9rem, 3.4vw, 2.7rem); color: var(--candle); font-variant-numeric: tabular-nums; }
 .pj-calc__hint { font-size: 0.9375rem; color: var(--dim); min-height: 2.6em; }
 .pj-calc__hint b { color: var(--candle); font-weight: 600; }
 .pj-widget { border: 1px dashed var(--line); padding: clamp(20px, 2.6vw, 28px); margin-top: 22px; display: grid; gap: 10px; }
@@ -519,7 +520,7 @@
 /* ---------- Расписание ---------- */
 .pj-ses { display: grid; grid-template-columns: repeat(auto-fit, minmax(112px, 1fr)); border-top: 1px solid var(--line); }
 .pj-ses__i { padding: 16px 12px; display: grid; gap: 5px; border-bottom: 1px solid var(--line-2); border-left: 1px solid var(--line-2); }
-.pj-ses__t { font-family: var(--f-display); font-weight: 600; font-size: 1.45rem; font-variant-numeric: tabular-nums; }
+.pj-ses__t { font-family: var(--f-display); font-weight: 400; font-size: 1.45rem; font-variant-numeric: tabular-nums; }
 .pj-ses__n { font-family: var(--f-label); font-size: 0.8125rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--mute); }
 .pj-ses__i--lucky { background: rgba(122,46,34,.06); }
 .pj-ses__i--lucky .pj-ses__t { color: var(--candle); }
@@ -534,7 +535,7 @@
 /* ---------- FAQ ---------- */
 .pj-faq { border-top: 1px solid var(--line); }
 .pj-faq details { border-bottom: 1px solid var(--line-2); }
-.pj-faq summary { list-style: none; cursor: pointer; padding: 20px 46px 20px 0; position: relative; min-height: 48px; font-family: var(--f-display); font-weight: 600; font-size: clamp(1.15rem, 1.7vw, 1.45rem); }
+.pj-faq summary { list-style: none; cursor: pointer; padding: 20px 46px 20px 0; position: relative; min-height: 48px; font-family: var(--f-display); font-weight: 400; font-size: clamp(1.15rem, 1.7vw, 1.45rem); }
 .pj-faq summary::-webkit-details-marker { display: none; }
 .pj-faq summary::after { content: '+'; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-size: 1.5rem; color: var(--candle); }
 .pj-faq details[open] summary::after { content: '−'; }
@@ -565,7 +566,7 @@
 }
 .pj-nav.is-stuck { border-bottom-color: var(--line); }
 .pj-nav__in { max-width: var(--maxw); margin: 0 auto; padding: 11px var(--pad); display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-.pj-nav__brand { font-family: var(--f-display); font-weight: 600; font-size: 1.2rem; white-space: nowrap; }
+.pj-nav__brand { font-family: var(--f-display); font-weight: 400; font-size: 1.2rem; white-space: nowrap; }
 .pj-nav__brand span { color: var(--candle); }
 .pj-nav__links { display: none; gap: 26px; }
 @media (min-width: 980px) { .pj-nav__links { display: flex; } }
@@ -573,16 +574,6 @@
 .pj-nav__links a:hover { color: var(--candle); }
 .pj-nav__btn { padding: 10px 20px; min-height: 40px; font-size: 0.875rem; }
 
-/* переключатель движения — для тех, кого укачивает от видео */
-.pj-motion {
-  position: fixed; left: 14px; bottom: 14px; z-index: 60;
-  min-height: 44px; padding: 10px 16px;
-  background: rgba(226,228,222,.94); border: 1px solid var(--field);
-  font-family: var(--f-label); font-size: 0.8125rem; font-weight: 700;
-  letter-spacing: .14em; text-transform: uppercase; color: var(--dim);
-  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-}
-.pj-motion:hover { color: var(--candle); border-color: var(--candle); }
 
 /* ---------- адаптив ---------- */
 @media (max-width: 860px) {
@@ -631,7 +622,7 @@
 .pj [id] { scroll-margin-top: calc(var(--navh) + 14px); }
 
 /* ссылка «к содержанию» — первое, что получает фокус с клавиатуры */
-.pj-skip {
+.pj .pj-skip {
   position: absolute; left: 8px; top: 8px; z-index: 100;
   transform: translateY(-160%);
   padding: 12px 20px; min-height: 44px;
@@ -645,6 +636,53 @@
 
 /* точка на карте: видимый кружок маленький, зона нажатия — 28 px */
 .pj-map__hit { fill: transparent; stroke: none; }
+
+/* ---------- разделение блоков ---------- */
+/* Полосы разной светлоты вместо сплошного полотна: глаз цепляется
+   за границу и понимает, где кончился один раздел и начался другой. */
+.pj-sec--alt  { background-color: var(--paper); border-block: 1px solid var(--line-2); }
+.pj-sec--sunk { background-color: var(--night); border-block: 1px solid var(--line); }
+
+/* раздел с живой подложкой: чернила расходятся по мокрой бумаге */
+.pj-vbg { position: relative; isolation: isolate; overflow: hidden; }
+.pj-vbg__v {
+  position: absolute; inset: 0; z-index: 0;
+  width: 100%; height: 100%; object-fit: cover; opacity: .5;
+}
+.pj-vbg__scrim {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(var(--void), rgba(226,228,222,.58) 20%, rgba(226,228,222,.58) 80%, var(--void));
+}
+.pj-vbg > *:not(.pj-vbg__v):not(.pj-vbg__scrim) { position: relative; z-index: 2; }
+
+/* ---------- пауза по щелчку на кадре ---------- */
+/* Отдельная кнопка «остановить движение» убрана: движение
+   останавливается щелчком по самому видео. */
+.pj-screen[data-video], .pj-hero__panel, .pj-band, .pj-vbg { cursor: pointer; }
+.pj-playhint {
+  position: absolute; z-index: 5; right: 10px; top: 10px;
+  min-width: 44px; min-height: 44px;
+  display: grid; place-items: center; border-radius: 50%;
+  background: rgba(20,17,11,.55); color: #F2F1EC;
+  opacity: 0; transition: opacity .22s; pointer-events: none;
+}
+.pj-playhint svg { width: 15px; height: 15px; fill: currentColor; }
+.pj-screen:hover .pj-playhint,
+.pj-hero__panel:hover .pj-playhint,
+.pj-screen:focus-within .pj-playhint,
+.pj-hero__panel:focus-within .pj-playhint,
+.pj-playhint.is-shown { opacity: 1; }
+
+/* полное полотно без горизонтального переполнения:
+   .pj и так во всю ширину, 100vw давал лишние ~15 px под полосу прокрутки */
+.pj-bleed { width: 100%; margin-left: 0; }
+
+/* тон во всю ширину прямо на .pj-wrap: сама полоса тянется от края
+   до края, а содержимое внутри остаётся в наборной полосе */
+.pj-sec--alt.pj-wrap,
+.pj-sec--sunk.pj-wrap { max-width: none; padding-inline: 0; }
+.pj-sec--alt.pj-wrap > *,
+.pj-sec--sunk.pj-wrap > * { max-width: var(--maxw); margin-inline: auto; padding-inline: var(--pad); }
 
 </style>
 </head>
@@ -665,6 +703,7 @@
       <a class="pj-nav__brand" href="#pj">Пушкин.&nbsp;<span>Живой</span></a>
       <div class="pj-nav__links">
         <a href="#o-vystavke">Выставка</a>
+        <a href="#interaktiv">Интерактив</a>
         <a href="#epizody">Эпизоды</a>
         <a href="#marshrut">Маршрут</a>
         <a href="#zal">Зал</a>
@@ -684,7 +723,7 @@
     <div class="pj-hero__in">
       <div class="pj-hero__top pj-anim pj-anim--1">
         <span class="pj-slug">Екатеринбург · Свердловская киностудия</span>
-        <span class="pj-hand">27 января 1837, половина четвёртого</span>
+        <span class="pj-slug pj-slug--dim">Три экрана · 40 минут · 0+</span>
       </div>
 
       <h1 class="pj-title pj-anim pj-anim--2">
@@ -745,43 +784,88 @@
   <div class="pj-wrap"><div class="pj-rule"></div></div>
 
   <!-- ══════════ О ВЫСТАВКЕ ══════════ -->
-  <section class="pj-sec pj-wrap" id="o-vystavke">
-    <div class="pj-sechead">
-      <span class="pj-slug">Что происходит в зале</span>
-      <h2 class="pj-h2">Не экспозиция.<br>Сорокаминутный фильм,<br>в который вы входите.</h2>
-    </div>
-
-    <div class="pj-about">
-      <div style="display:grid;gap:22px">
-        <p class="pj-lead">
-          Вы садитесь в тёмном зале, и три проекции окружают вас с трёх сторон.
-          На центральном экране идёт основное действие; боковые досказывают его —
-          деталью, рукописью, пейзажем за окном кареты.
-        </p>
-        <p class="pj-body">
-          Фильм собран из более чем ста живописных полотен — Айвазовский, Кипренский,
-          Врубель, Левитан, Куинджи, Садовников, Беггров, — из графики Нади Рушевой
-          и из ИИ-реконструкций тех сцен, которых живопись не сохранила: комната на
-          Фонтанке, ночь в Кишинёве, часы в доме Пушкиных.
-        </p>
-        <p class="pj-body">
-          Пушкин здесь не памятник и не портрет в раме. Он опаздывает, влюбляется,
-          злится, играет в карты, пишет ночами и спорит с императором. Отсюда
-          и название.
-        </p>
-        <div class="pj-cta" style="margin-top:6px">
-          <a class="pj-btn pj-btn--ghost" href="#zal">Посмотреть зал</a>
-        </div>
+  <section class="pj-sec pj-sec--alt pj-bleed" id="o-vystavke">
+    <div class="pj-wrap">
+      <div class="pj-sechead">
+        <span class="pj-slug">Что это</span>
+        <h2 class="pj-h2">Мультимедийная выставка,<br>а не показ фильма</h2>
       </div>
 
-      <div>
-        <span class="pj-slug pj-slug--dim" style="display:block;margin-bottom:12px">Голоса фильма</span>
-        <div class="pj-about__voices">
-          <div class="pj-voice"><span class="pj-voice__n">Пушкин</span><span class="pj-voice__d">Письма, дневники, стихи — только его собственные слова</span></div>
-          <div class="pj-voice"><span class="pj-voice__n">Натали</span><span class="pj-voice__d">История, рассказанная с другой стороны бального зала</span></div>
-          <div class="pj-voice"><span class="pj-voice__n">Муза</span><span class="pj-voice__d">Голос, который слышит только он</span></div>
-          <div class="pj-voice"><span class="pj-voice__n">Диктор</span><span class="pj-voice__d">Даты, факты, документы — то, что проверяется</span></div>
-          <div class="pj-voice"><span class="pj-voice__n">Хор</span><span class="pj-voice__d">В финале стихотворение читают все — от семилетнего до взрослого</span></div>
+      <div class="pj-about">
+        <div style="display:grid;gap:22px">
+          <p class="pj-lead">
+            Авторы проекта соединили современные технологии с русской историей и живописью
+            и собрали выставочную экспозицию, какой ещё не было. Гость не просто смотрит
+            репродукции знаменитых полотен — он попадает внутрь эпохи.
+          </p>
+          <p class="pj-body">
+            Сердце выставки — сорокаминутный фильм на трёх экранах. Вы садитесь в тёмном
+            зале, и три проекции окружают вас с трёх сторон: на центральном идёт основное
+            действие, боковые досказывают его деталью, рукописью, пейзажем за окном кареты.
+          </p>
+          <p class="pj-body">
+            Но фильмом дело не заканчивается. До и после сеанса открыта интерактивная зона —
+            там с эпохой можно иметь дело руками, а не только глазами.
+          </p>
+          <p class="pj-body">
+            Пушкин здесь не памятник и не портрет в раме. Он опаздывает, влюбляется,
+            злится, играет в карты, пишет ночами и спорит с императором. Отсюда и название.
+          </p>
+          <div class="pj-cta" style="margin-top:6px">
+            <a class="pj-btn pj-btn--ghost" href="#interaktiv">Интерактивная зона</a>
+          </div>
+        </div>
+
+        <div>
+          <span class="pj-slug pj-slug--dim" style="display:block;margin-bottom:12px">Голоса фильма</span>
+          <div class="pj-about__voices">
+            <div class="pj-voice"><span class="pj-voice__n">Пушкин</span><span class="pj-voice__d">Письма, дневники, стихи — только его собственные слова</span></div>
+            <div class="pj-voice"><span class="pj-voice__n">Натали</span><span class="pj-voice__d">История, рассказанная с другой стороны бального зала</span></div>
+            <div class="pj-voice"><span class="pj-voice__n">Муза</span><span class="pj-voice__d">Голос, который слышит только он</span></div>
+            <div class="pj-voice"><span class="pj-voice__n">Диктор</span><span class="pj-voice__d">Даты, факты, документы — то, что проверяется</span></div>
+            <div class="pj-voice"><span class="pj-voice__n">Хор</span><span class="pj-voice__d">В финале стихотворение читают все — от семилетнего до взрослого</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ ИНТЕРАКТИВНАЯ ЗОНА ══════════ -->
+  <section class="pj-sec pj-vbg pj-bleed" id="interaktiv">
+    <video class="pj-vbg__v" src="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/video/bg-ink.mp4" poster="https://cdn.jsdelivr.net/gh/dimrurnd-cell/Pushkin@site/pushkin-zhivoy/site/assets/art/bg-ink.jpg"
+           autoplay muted loop playsinline preload="none" aria-hidden="true"></video>
+    <div class="pj-vbg__scrim" aria-hidden="true"></div>
+
+    <div class="pj-wrap">
+      <div class="pj-sechead">
+        <span class="pj-slug">Интерактивная зона</span>
+        <h2 class="pj-h2">Эпоху можно потрогать</h2>
+        <p class="pj-body">
+          Открыта до и после сеанса, вход по тому же билету. Здесь то, что в зале
+          показывают на экране, оказывается на расстоянии вытянутой руки.
+        </p>
+      </div>
+
+      <div class="pj-tech">
+        <div class="pj-tech__i">
+          <span class="pj-tech__n">Полотна вблизи</span>
+          <h3 class="pj-tech__t">Репродукции в натуральную величину</h3>
+          <p class="pj-tech__d">Те самые работы, что летят по трём экранам в фильме, — Репин, Беггров, Садовников, Тон, Гау, Белюкин. Можно подойти вплотную и рассмотреть мазок.</p>
+        </div>
+        <div class="pj-tech__i">
+          <span class="pj-tech__n">Рукою поэта</span>
+          <h3 class="pj-tech__t">Черновики и почерк</h3>
+          <p class="pj-tech__d">Страницы с зачёркиваниями и рисунками на полях. Видно, как строка рождается, правится и вычёркивается — то, чего не показывает готовая книга.</p>
+        </div>
+        <div class="pj-tech__i">
+          <span class="pj-tech__n">Атмосфера</span>
+          <h3 class="pj-tech__t">Предметный мир XIX века</h3>
+          <p class="pj-tech__d">Обстановка, костюм, свет, звук эпохи — то, из чего складывалась его повседневность между Москвой, Царским Селом и Петербургом.</p>
+        </div>
+        <div class="pj-tech__i">
+          <span class="pj-tech__n">Для школ</span>
+          <h3 class="pj-tech__t">Точка для класса</h3>
+          <p class="pj-tech__d">Фильм идёт ровно один урок, а зона позволяет продолжить разговор после него. По заявке от 10 человек — отдельный сеанс.</p>
         </div>
       </div>
     </div>
@@ -1052,7 +1136,7 @@
   </section>
 
   <!-- ══════════ ТЕХНОЛОГИЯ ══════════ -->
-  <section class="pj-sec pj-sec--tight pj-wrap" id="tehnologiya">
+  <section class="pj-sec pj-sec--tight pj-wrap pj-sec--alt" id="tehnologiya">
     <div class="pj-sechead">
       <span class="pj-slug">Как это сделано</span>
       <h2 class="pj-h2">Новый формат</h2>
@@ -1296,7 +1380,7 @@
   </section>
 
   <!-- ══════════ РАСПИСАНИЕ ══════════ -->
-  <section class="pj-sec pj-sec--tight pj-wrap" id="seansy">
+  <section class="pj-sec pj-sec--tight pj-wrap pj-sec--alt" id="seansy">
     <div class="pj-sechead">
       <div class="pj-sechead__row">
         <span class="pj-slug">Расписание</span>
@@ -1391,7 +1475,7 @@
   </section>
 
   <!-- ══════════ ВОПРОСЫ ══════════ -->
-  <section class="pj-sec pj-sec--tight pj-wrap" id="voprosy">
+  <section class="pj-sec pj-sec--tight pj-wrap pj-sec--sunk" id="voprosy">
     <div class="pj-sechead">
       <span class="pj-slug">Вопросы</span>
       <h2 class="pj-h2">Что спрашивают чаще всего</h2>
@@ -1640,6 +1724,8 @@
   /* мягкий запуск видео: браузер может отказать до первого действия пользователя */
   function pjPlay(v) {
     if (!v || !v.paused) return;
+    // кадр, остановленный щелчком, сам собой больше не запускается
+    if (v.dataset && v.dataset.hold === '1') return;
     // видео внутри эпизода крутится, только когда этот эпизод на экране
     var ep = v.closest ? v.closest('.pj-ep') : null;
     if (ep && !ep.classList.contains('is-on') &&
@@ -1648,9 +1734,9 @@
     if (p && p.catch) p.catch(function () {});
   }
   (function playback() {
-    var STORE = 'pj-motion';
+    // движение выключено только системной настройкой «уменьшить движение»;
+    // остальное — щелчком по конкретному кадру
     var off = reduced;
-    try { if (localStorage.getItem(STORE) === 'off') off = true; } catch (e) {}
 
     function stopAll() {
       $$('video').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
@@ -1673,22 +1759,43 @@
       $$('video').forEach(function (v) { io.observe(v); });
     }
 
-    // переключатель для тех, кому движение мешает
-    var btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'pj-motion';
-    function label() {
-      btn.textContent = off ? 'Включить движение' : 'Остановить движение';
-      btn.setAttribute('aria-pressed', String(off));
+    // Пауза по щелчку на самом кадре — отдельной кнопки нет.
+    // У каждого видео появляется значок паузы при наведении и с клавиатуры.
+    var ICON_PAUSE = '<svg viewBox="0 0 12 12" aria-hidden="true"><rect x="1" y="0" width="3.5" height="12"></rect><rect x="7.5" y="0" width="3.5" height="12"></rect></svg>';
+    var ICON_PLAY  = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1 0 L12 6 L1 12 Z"></path></svg>';
+
+    function makeToggle(v) {
+      var box = v.parentElement;
+      if (!box || box.querySelector('.pj-playhint')) return;
+      if (getComputedStyle(box).position === 'static') box.style.position = 'relative';
+
+      var hint = document.createElement('span');
+      hint.className = 'pj-playhint';
+      box.appendChild(hint);
+
+      function sync() {
+        hint.innerHTML = v.paused ? ICON_PLAY : ICON_PAUSE;
+        hint.classList.toggle('is-shown', v.paused);
+        box.setAttribute('aria-label', (v.paused ? 'Запустить движение кадра' : 'Остановить движение кадра'));
+      }
+      function toggle(e) {
+        if (e) e.preventDefault();
+        if (v.paused) { v.dataset.hold = ''; pjPlay(v); }
+        else { v.dataset.hold = '1'; v.pause(); }
+        sync();
+      }
+
+      box.setAttribute('role', 'button');
+      if (!box.hasAttribute('tabindex')) box.setAttribute('tabindex', '0');
+      box.addEventListener('click', toggle);
+      box.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') toggle(e);
+      });
+      v.addEventListener('play', sync);
+      v.addEventListener('pause', sync);
+      sync();
     }
-    btn.addEventListener('click', function () {
-      off = !off;
-      try { localStorage.setItem(STORE, off ? 'off' : 'on'); } catch (e) {}
-      if (off) stopAll(); else kick();
-      label();
-    });
-    label();
-    root.appendChild(btn);
+    $$('video').forEach(makeToggle);
 
     if (off) { stopAll(); return; }
 

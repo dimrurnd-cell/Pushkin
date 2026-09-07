@@ -158,6 +158,8 @@
   /* мягкий запуск видео: браузер может отказать до первого действия пользователя */
   function pjPlay(v) {
     if (!v || !v.paused) return;
+    // кадр, остановленный щелчком, сам собой больше не запускается
+    if (v.dataset && v.dataset.hold === '1') return;
     // видео внутри эпизода крутится, только когда этот эпизод на экране
     var ep = v.closest ? v.closest('.pj-ep') : null;
     if (ep && !ep.classList.contains('is-on') &&
@@ -166,9 +168,9 @@
     if (p && p.catch) p.catch(function () {});
   }
   (function playback() {
-    var STORE = 'pj-motion';
+    // движение выключено только системной настройкой «уменьшить движение»;
+    // остальное — щелчком по конкретному кадру
     var off = reduced;
-    try { if (localStorage.getItem(STORE) === 'off') off = true; } catch (e) {}
 
     function stopAll() {
       $$('video').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
@@ -191,22 +193,43 @@
       $$('video').forEach(function (v) { io.observe(v); });
     }
 
-    // переключатель для тех, кому движение мешает
-    var btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'pj-motion';
-    function label() {
-      btn.textContent = off ? 'Включить движение' : 'Остановить движение';
-      btn.setAttribute('aria-pressed', String(off));
+    // Пауза по щелчку на самом кадре — отдельной кнопки нет.
+    // У каждого видео появляется значок паузы при наведении и с клавиатуры.
+    var ICON_PAUSE = '<svg viewBox="0 0 12 12" aria-hidden="true"><rect x="1" y="0" width="3.5" height="12"></rect><rect x="7.5" y="0" width="3.5" height="12"></rect></svg>';
+    var ICON_PLAY  = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1 0 L12 6 L1 12 Z"></path></svg>';
+
+    function makeToggle(v) {
+      var box = v.parentElement;
+      if (!box || box.querySelector('.pj-playhint')) return;
+      if (getComputedStyle(box).position === 'static') box.style.position = 'relative';
+
+      var hint = document.createElement('span');
+      hint.className = 'pj-playhint';
+      box.appendChild(hint);
+
+      function sync() {
+        hint.innerHTML = v.paused ? ICON_PLAY : ICON_PAUSE;
+        hint.classList.toggle('is-shown', v.paused);
+        box.setAttribute('aria-label', (v.paused ? 'Запустить движение кадра' : 'Остановить движение кадра'));
+      }
+      function toggle(e) {
+        if (e) e.preventDefault();
+        if (v.paused) { v.dataset.hold = ''; pjPlay(v); }
+        else { v.dataset.hold = '1'; v.pause(); }
+        sync();
+      }
+
+      box.setAttribute('role', 'button');
+      if (!box.hasAttribute('tabindex')) box.setAttribute('tabindex', '0');
+      box.addEventListener('click', toggle);
+      box.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') toggle(e);
+      });
+      v.addEventListener('play', sync);
+      v.addEventListener('pause', sync);
+      sync();
     }
-    btn.addEventListener('click', function () {
-      off = !off;
-      try { localStorage.setItem(STORE, off ? 'off' : 'on'); } catch (e) {}
-      if (off) stopAll(); else kick();
-      label();
-    });
-    label();
-    root.appendChild(btn);
+    $$('video').forEach(makeToggle);
 
     if (off) { stopAll(); return; }
 
