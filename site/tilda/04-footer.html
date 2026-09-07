@@ -13,6 +13,25 @@
   var $  = function (s, c) { return (c || root).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || root).querySelectorAll(s)); };
 
+  /* ---------- 0. Реальная высота шапки ----------
+     Под шапку подстроена липкая сцена эпизодов. Если высоту задать
+     числом, при переносе меню или системном увеличении шрифта сцена
+     уедет под меню — поэтому меряем и записываем в переменную. */
+  (function navHeight() {
+    var nav = document.getElementById('pj-nav');
+    if (!nav) return;
+    var last = 0;
+    function measure() {
+      var h = Math.round(nav.getBoundingClientRect().height);
+      if (h && h !== last) { last = h; root.style.setProperty('--navh', h + 'px'); }
+    }
+    measure();
+    window.addEventListener('resize', measure);
+    window.addEventListener('load', measure);
+    if ('ResizeObserver' in window) new ResizeObserver(measure).observe(nav);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+  })();
+
   /* ---------- 1. Обратный отсчёт до открытия ---------- */
   (function countdown() {
     var box = document.getElementById('pj-count');
