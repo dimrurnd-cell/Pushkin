@@ -25,43 +25,25 @@
 
   <!-- ══════════ ПРОЛОГ: первый экран целиком ══════════ -->
   <header class="pj-hero pj-bleed">
-
-    <!-- три экрана выставки, живые -->
-    <div class="pj-hero__tri" aria-hidden="true">
-      <div class="pj-hero__panel pj-hero__panel--l">
-        <video class="pj-hero__v" src="assets/video/art-15.mp4" poster="assets/art/mid/art-15.jpg"
-               autoplay muted loop playsinline preload="auto"></video>
-      </div>
-      <div class="pj-hero__panel pj-hero__panel--c">
-        <video class="pj-hero__v" src="assets/video/art-01.mp4" poster="assets/art/mid/art-01.webp"
-               autoplay muted loop playsinline preload="auto"></video>
-      </div>
-      <div class="pj-hero__panel pj-hero__panel--r">
-        <video class="pj-hero__v" src="assets/video/art-16.mp4" poster="assets/art/mid/art-16.jpg"
-               autoplay muted loop playsinline preload="auto"></video>
-      </div>
-    </div>
-
-    <div class="pj-hero__scrim" aria-hidden="true"></div>
     <canvas class="pj-hero__snow" id="pj-snow" aria-hidden="true"></canvas>
 
-    <div class="pj-hero__top">
-      <span class="pj-slug">Екатеринбург · Свердловская киностудия</span>
-      <span class="pj-slug pj-slug--dim">27 января 1837 · 15:30</span>
-    </div>
-
     <div class="pj-hero__in">
-      <h1 class="pj-title">
+      <div class="pj-hero__top pj-anim pj-anim--1">
+        <span class="pj-slug">Екатеринбург · Свердловская киностудия</span>
+        <span class="pj-hand">27 января 1837, половина четвёртого</span>
+      </div>
+
+      <h1 class="pj-title pj-anim pj-anim--2">
         <span class="pj-title__l1">Пушкин.</span>
         <span class="pj-title__l2">Живой</span>
       </h1>
 
-      <p class="pj-hero__line">
+      <p class="pj-hero__line pj-anim pj-anim--3">
         Сорок минут между 1799 и 1837 годом.<br>
         Фильм идёт сразу на трёх экранах — вы внутри кадра, а не перед ним.
       </p>
 
-      <div class="pj-hero__bottom">
+      <div class="pj-hero__bottom pj-anim pj-anim--3">
         <span class="pj-hero__dates">5 октября — 29 ноября 2026</span>
         <div class="pj-cta">
           <a class="pj-btn pj-btn--solid" href="#bilety">Купить билет</a>
@@ -70,8 +52,24 @@
       </div>
     </div>
 
+    <!-- три вклейки: Москва, зима 1837-го, Петербург -->
+    <div class="pj-hero__tri pj-anim pj-anim--4">
+      <figure class="pj-hero__panel pj-hero__panel--l">
+        <video class="pj-hero__v" src="assets/video/art-15.mp4" poster="assets/art/mid/art-15.jpg"
+               autoplay muted loop playsinline preload="auto"></video>
+      </figure>
+      <figure class="pj-hero__panel pj-hero__panel--c">
+        <video class="pj-hero__v" src="assets/video/art-01.mp4" poster="assets/art/mid/art-01.webp"
+               autoplay muted loop playsinline preload="auto"></video>
+      </figure>
+      <figure class="pj-hero__panel pj-hero__panel--r">
+        <video class="pj-hero__v" src="assets/video/art-16.mp4" poster="assets/art/mid/art-16.jpg"
+               autoplay muted loop playsinline preload="auto"></video>
+      </figure>
+    </div>
+
     <a class="pj-scroll" href="#o-vystavke" aria-label="К описанию выставки">
-      <span class="pj-scroll__t">Пролог · 1837</span>
+      <span class="pj-scroll__t">листайте</span>
       <span class="pj-scroll__l" aria-hidden="true"></span>
     </a>
   </header>
@@ -649,6 +647,7 @@
       <div class="pj-sechead__row">
         <span class="pj-slug">Расписание</span>
         <span class="pj-slug pj-slug--dim">Ежедневно · 13 сеансов · фильм 40 минут</span>
+        <span class="pj-slug pj-slug--dim">Время екатеринбургское, UTC+5</span>
       </div>
       <h2 class="pj-h2">Сеансы</h2>
     </div>
