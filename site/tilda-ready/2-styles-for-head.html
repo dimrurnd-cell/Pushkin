@@ -643,4 +643,51 @@
 /* раздел эпизодов на своём фоне, чтобы не сливался с остальным листом */
 .pj-eps-sec { background-color: var(--paper); border-block: 1px solid var(--line-2); }
 
+/* ---------- правки по полному снимку страницы ---------- */
+
+/* Подписи под вклейками — обычным шрифтом, не почерком.
+   В атрибуции есть годы, а рукописный шрифт делает цифры
+   двусмысленными: «1911» читается как «1111». Для музейной
+   подписи это недопустимо. Почерк остаётся там, где цифр нет. */
+.pj-screen__cap {
+  font-family: var(--f-body);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  letter-spacing: .005em;
+  padding: 30px 14px 12px;
+}
+.pj-table__na { font-family: var(--f-body); font-size: 0.8125rem; font-style: italic; }
+
+/* Первый экран: вклейки были размером с почтовую марку в пустом поле.
+   Заголовок ужат, кадры выросли — они здесь главные. */
+.pj-hero { min-height: 0; padding-block: clamp(34px, 6vh, 76px); }
+.pj-title__l1, .pj-title__l2 { font-size: clamp(3rem, 10.5vw, 9.5rem); }
+.pj-hero__tri { grid-template-columns: 1fr 2.1fr 1fr; margin-top: clamp(28px, 4vh, 52px); }
+.pj-hero__panel { aspect-ratio: 4 / 5; }
+.pj-hero__panel--c { aspect-ratio: 3 / 2; }
+
+/* Сетка сеансов: auto-fit давал 11 в первой строке и 2 во второй.
+   Фиксированные колонки — строки ровные. */
+.pj-ses { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+@media (max-width: 1180px) { .pj-ses { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+@media (max-width: 760px)  { .pj-ses { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 460px)  { .pj-ses { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.pj-ses__n { line-height: 1.35; }
+
+/* Поля были слишком узкими: надчерк из трёх слов ломался на четыре строки */
+.pj { --margin: clamp(120px, 17vw, 280px); }
+
+/* Полотна: 47 марок в семь колонок читались как контрольный лист.
+   Плитки крупнее, подпись видна без наведения. */
+.pj-gal--art { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: clamp(16px, 2vw, 30px); }
+.pj-gal--art .pj-gal__i { aspect-ratio: 4 / 5; }
+.pj-gal__cap {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 3;
+  padding: 34px 12px 11px;
+  font-family: var(--f-body); font-size: 0.75rem; line-height: 1.35;
+  color: #EFEFE9;
+  background: linear-gradient(transparent, rgba(20,17,11,.88) 58%);
+  text-align: left;
+}
+
 </style>
