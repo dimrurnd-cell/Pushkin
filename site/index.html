@@ -89,6 +89,7 @@
   --panel:   #EDEEE9;
   --line:    #BDBFB6;   /* линовка, хайрлайны */
   --line-2:  #CFD1C9;
+  --field:   #7E796C;   /* границы полей и кнопок: 3.39:1 на листе, WCAG 1.4.11 */
 
   /* — железистые чернила — */
   --snow:    #2A2118;   /* основной текст */
@@ -129,6 +130,7 @@
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: clip;
+  touch-action: manipulation;
 }
 
 .pj img { max-width: 100%; display: block; }
@@ -371,7 +373,7 @@
 .pj-btn:hover { background: var(--candle); color: var(--void); }
 .pj-btn--solid { background: var(--candle); color: #F2F1EC; }
 .pj-btn--solid:hover { background: var(--candle-d); border-color: var(--candle-d); color: #F2F1EC; }
-.pj-btn--ghost { border-color: var(--line); color: var(--snow); }
+.pj-btn--ghost { border-color: var(--field); color: var(--snow); }
 .pj-btn--ghost:hover { border-color: var(--snow); background: rgba(42,33,24,.05); color: var(--snow); }
 
 /* ---------- О выставке ---------- */
@@ -494,7 +496,7 @@
 .pj-calc { border: 1px solid var(--line); background: var(--paper); padding: clamp(22px, 2.8vw, 32px); display: grid; gap: 18px; align-content: start; }
 .pj-field { display: grid; gap: 8px; }
 .pj-field > label { font-family: var(--f-label); font-size: 0.875rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute); }
-.pj-seg { display: flex; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.pj-seg { display: flex; gap: 1px; background: var(--field); border: 1px solid var(--field); }
 .pj-seg button { flex: 1; min-height: 48px; padding: 11px 8px; background: var(--void); font-family: var(--f-label); font-size: 0.9375rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); transition: background-color .2s, color .2s; }
 .pj-seg button[aria-pressed="true"] { background: var(--candle); color: #F2F1EC; }
 .pj-select, .pj-input, .pj-textarea {
@@ -504,7 +506,7 @@
 }
 .pj-select { background-image: linear-gradient(45deg, transparent 50%, var(--dim) 50%), linear-gradient(135deg, var(--dim) 50%, transparent 50%); background-position: right 18px center, right 12px center; background-size: 6px 6px, 6px 6px; background-repeat: no-repeat; padding-right: 40px; }
 .pj-input::placeholder, .pj-textarea::placeholder { color: var(--mute); }
-.pj-stepper { display: flex; align-items: stretch; border: 1px solid var(--line); width: fit-content; }
+.pj-stepper { display: flex; align-items: stretch; border: 1px solid var(--field); width: fit-content; }
 .pj-stepper button { width: 48px; min-height: 48px; background: var(--void); font-size: 1.15rem; color: var(--dim); }
 .pj-stepper button:hover { color: var(--candle); }
 .pj-stepper output { min-width: 64px; display: grid; place-items: center; font-family: var(--f-display); font-weight: 600; font-size: 1.25rem; font-variant-numeric: tabular-nums; background: var(--paper); }
@@ -574,9 +576,9 @@
 
 /* переключатель движения — для тех, кого укачивает от видео */
 .pj-motion {
-  position: fixed; right: 14px; bottom: 14px; z-index: 60;
+  position: fixed; left: 14px; bottom: 14px; z-index: 60;
   min-height: 44px; padding: 10px 16px;
-  background: rgba(226,228,222,.94); border: 1px solid var(--line);
+  background: rgba(226,228,222,.94); border: 1px solid var(--field);
   font-family: var(--f-label); font-size: 0.8125rem; font-weight: 700;
   letter-spacing: .14em; text-transform: uppercase; color: var(--dim);
   backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
@@ -625,6 +627,26 @@
 .pj-anim--4 { animation-delay: .34s; }
 @media (prefers-reduced-motion: reduce) { .pj-anim { animation: none; } }
 
+/* ---------- доступность ---------- */
+/* якорь не должен уезжать под липкую шапку — и при табуляции тоже */
+.pj [id] { scroll-margin-top: calc(var(--navh) + 14px); }
+
+/* ссылка «к содержанию» — первое, что получает фокус с клавиатуры */
+.pj-skip {
+  position: absolute; left: 8px; top: 8px; z-index: 100;
+  transform: translateY(-160%);
+  padding: 12px 20px; min-height: 44px;
+  display: inline-flex; align-items: center;
+  background: var(--candle); color: #F2F1EC;
+  font-family: var(--f-label); font-size: 0.9375rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  transition: transform .18s ease;
+}
+.pj-skip:focus-visible { transform: none; }
+
+/* точка на карте: видимый кружок маленький, зона нажатия — 28 px */
+.pj-map__hit { fill: transparent; stroke: none; }
+
 </style>
 </head>
 <body style="margin:0;background:#06080F">
@@ -634,6 +656,8 @@
      ============================================================ -->
 
 <div class="pj" id="pj">
+
+  <a class="pj-skip" href="#o-vystavke">К содержанию</a>
 
   <!-- ══════════ НАВИГАЦИЯ ══════════ -->
   <nav class="pj-nav" id="pj-nav" aria-label="Разделы страницы">
@@ -1004,17 +1028,17 @@
           </g>
           <polyline class="pj-map__route" points="545,210 262,122 234,97 439,403 766,523 410,510 185,443 262,457 193,177 545,210 860,230 234,97 200,74"></polyline>
           <g id="pj-map-pts">
-            <g class="pj-map__pt is-on" tabindex="0" role="button" data-y="1799—1811" data-t="Москва" data-d="Родился 26 мая 1799 года в Немецкой слободе. Учился плохо, читал запоем. Безусловно любили его только сестра Оля и няня."><circle cx="545" cy="210" r="6"></circle><text x="559" y="215">Москва</text></g>
-            <g class="pj-map__pt" tabindex="0" role="button" data-y="1811—1817" data-t="Царское Село" data-d="Двенадцатилетний мальчик въезжает в Царское Село. Подъём в 6:00, отбой в 22:00, шесть лет. Здесь он впервые понимает, что он поэт."><circle cx="262" cy="122" r="6"></circle><text x="276" y="127">Царское Село</text></g>
-            <g class="pj-map__pt" tabindex="0" role="button" data-y="1817—1820" data-t="Петербург" data-d="Коллегия иностранных дел, жалованье 700 рублей в год, присутствие дважды в неделю. Остальное время — театр, карты и стихи."><circle cx="234" cy="97" r="6"></circle><text x="248" y="102">Петербург</text></g>
-            <g class="pj-map__pt" tabindex="0" role="button" data-y="май 1820" data-t="Екатеринослав" data-d="Купался в Днепре и тяжело заболел. Мимо проездом оказался генерал Раевский с семьёй — и забрал поэта с собой на воды."><circle cx="439" cy="403" r="5"></circle><text x="453" y="408">Екатеринослав</text></g>
-            <g class="pj-map__pt" tabindex="0" role="button" data-y="1820" data-t="Кавказ" data-d="Минеральные воды, Военно-Грузинская дорога, аулы в горах. Другой воздух — и другой Пушкин: вольный, пылкий."><circle cx="766" cy="523" r="5"></circle><text x="780" y="528">Кавказ</text></g>
-            <g class="pj-map__pt" tabindex="0" role="button" data-y="1820" data-t="Гурзуф" data-d="Крым, море, кипарисы. Айвазовский напишет его на этом берегу спустя шестьдесят семь лет."><circle cx="410" cy="510" r="5"></circle><text x="424" y="515">Гурзуф</text></g>
-            <g class="pj-map__pt" tabindex="0" role="button" data-y="1820—1823" data-t="Кишинёв" data-d="Маленькая комната, свеча, степь за окном. Ночами пишется «Кавказский пленник»."><circle cx="185" cy="443" r="5"></circle><text x="199" y="448">Кишинёв</text></g>
-            <g class="pj-map__pt" tabindex="0" role="button" data-y="1823—1824" data-t="Одесса" data-d="Порт, опера, море и служба, которая закончится высылкой в псковскую глушь."><circle cx="262" cy="457" r="5"></circle><text x="276" y="462">Одесса</text></g>
-            <g class="pj-map__pt" tabindex="0" role="button" data-y="1824—1826" data-t="Михайловское" data-d="Ни столицы, ни моря, ни друзей. Только сосны, няня и работа: главы «Онегина», «Борис Годунов», «Пророк», «Я помню чудное мгновенье…»"><circle cx="193" cy="177" r="6"></circle><text x="207" y="182">Михайловское</text></g>
-            <g class="pj-map__pt" tabindex="0" role="button" data-y="осень 1830" data-t="Болдино" data-d="Ехал на три недели оформить бумаги под свадьбу — застрял на всю осень из-за холерных карантинов. Так появились «Повести Белкина»."><circle cx="860" cy="230" r="6"></circle><text x="846" y="235" text-anchor="end">Болдино</text></g>
-            <g class="pj-map__pt pj-map__pt--end" tabindex="0" role="button" data-y="27 января 1837" data-t="Чёрная речка" data-d="Близ Комендантской дачи, 16:30. Предсмертные страдания продолжались сорок три часа."><circle cx="200" cy="74" r="6"></circle><text x="186" y="79" text-anchor="end">Чёрная речка</text></g>
+            <g class="pj-map__pt is-on" tabindex="0" role="button" data-y="1799—1811" data-t="Москва" aria-label="Москва, 1799—1811" data-d="Родился 26 мая 1799 года в Немецкой слободе. Учился плохо, читал запоем. Безусловно любили его только сестра Оля и няня."><circle class="pj-map__hit" cx="545" cy="210" r="14"></circle><circle cx="545" cy="210" r="6"></circle><text x="559" y="215">Москва</text></g>
+            <g class="pj-map__pt" tabindex="0" role="button" data-y="1811—1817" data-t="Царское Село" aria-label="Царское Село, 1811—1817" data-d="Двенадцатилетний мальчик въезжает в Царское Село. Подъём в 6:00, отбой в 22:00, шесть лет. Здесь он впервые понимает, что он поэт."><circle class="pj-map__hit" cx="262" cy="122" r="14"></circle><circle cx="262" cy="122" r="6"></circle><text x="276" y="127">Царское Село</text></g>
+            <g class="pj-map__pt" tabindex="0" role="button" data-y="1817—1820" data-t="Петербург" aria-label="Петербург, 1817—1820" data-d="Коллегия иностранных дел, жалованье 700 рублей в год, присутствие дважды в неделю. Остальное время — театр, карты и стихи."><circle class="pj-map__hit" cx="234" cy="97" r="14"></circle><circle cx="234" cy="97" r="6"></circle><text x="248" y="102">Петербург</text></g>
+            <g class="pj-map__pt" tabindex="0" role="button" data-y="май 1820" data-t="Екатеринослав" aria-label="Екатеринослав, май 1820" data-d="Купался в Днепре и тяжело заболел. Мимо проездом оказался генерал Раевский с семьёй — и забрал поэта с собой на воды."><circle class="pj-map__hit" cx="439" cy="403" r="14"></circle><circle cx="439" cy="403" r="5"></circle><text x="453" y="408">Екатеринослав</text></g>
+            <g class="pj-map__pt" tabindex="0" role="button" data-y="1820" data-t="Кавказ" aria-label="Кавказ, 1820" data-d="Минеральные воды, Военно-Грузинская дорога, аулы в горах. Другой воздух — и другой Пушкин: вольный, пылкий."><circle class="pj-map__hit" cx="766" cy="523" r="14"></circle><circle cx="766" cy="523" r="5"></circle><text x="780" y="528">Кавказ</text></g>
+            <g class="pj-map__pt" tabindex="0" role="button" data-y="1820" data-t="Гурзуф" aria-label="Гурзуф, 1820" data-d="Крым, море, кипарисы. Айвазовский напишет его на этом берегу спустя шестьдесят семь лет."><circle class="pj-map__hit" cx="410" cy="510" r="14"></circle><circle cx="410" cy="510" r="5"></circle><text x="424" y="515">Гурзуф</text></g>
+            <g class="pj-map__pt" tabindex="0" role="button" data-y="1820—1823" data-t="Кишинёв" aria-label="Кишинёв, 1820—1823" data-d="Маленькая комната, свеча, степь за окном. Ночами пишется «Кавказский пленник»."><circle class="pj-map__hit" cx="185" cy="443" r="14"></circle><circle cx="185" cy="443" r="5"></circle><text x="199" y="448">Кишинёв</text></g>
+            <g class="pj-map__pt" tabindex="0" role="button" data-y="1823—1824" data-t="Одесса" aria-label="Одесса, 1823—1824" data-d="Порт, опера, море и служба, которая закончится высылкой в псковскую глушь."><circle class="pj-map__hit" cx="262" cy="457" r="14"></circle><circle cx="262" cy="457" r="5"></circle><text x="276" y="462">Одесса</text></g>
+            <g class="pj-map__pt" tabindex="0" role="button" data-y="1824—1826" data-t="Михайловское" aria-label="Михайловское, 1824—1826" data-d="Ни столицы, ни моря, ни друзей. Только сосны, няня и работа: главы «Онегина», «Борис Годунов», «Пророк», «Я помню чудное мгновенье…»"><circle class="pj-map__hit" cx="193" cy="177" r="14"></circle><circle cx="193" cy="177" r="6"></circle><text x="207" y="182">Михайловское</text></g>
+            <g class="pj-map__pt" tabindex="0" role="button" data-y="осень 1830" data-t="Болдино" aria-label="Болдино, осень 1830" data-d="Ехал на три недели оформить бумаги под свадьбу — застрял на всю осень из-за холерных карантинов. Так появились «Повести Белкина»."><circle class="pj-map__hit" cx="860" cy="230" r="14"></circle><circle cx="860" cy="230" r="6"></circle><text x="846" y="235" text-anchor="end">Болдино</text></g>
+            <g class="pj-map__pt pj-map__pt--end" tabindex="0" role="button" data-y="27 января 1837" data-t="Чёрная речка" aria-label="Чёрная речка, 27 января 1837" data-d="Близ Комендантской дачи, 16:30. Предсмертные страдания продолжались сорок три часа."><circle class="pj-map__hit" cx="200" cy="74" r="14"></circle><circle cx="200" cy="74" r="6"></circle><text x="186" y="79" text-anchor="end">Чёрная речка</text></g>
           </g>
         </svg>
       </figure>

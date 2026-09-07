@@ -26,6 +26,7 @@
   --panel:   #EDEEE9;
   --line:    #BDBFB6;   /* линовка, хайрлайны */
   --line-2:  #CFD1C9;
+  --field:   #7E796C;   /* границы полей и кнопок: 3.39:1 на листе, WCAG 1.4.11 */
 
   /* — железистые чернила — */
   --snow:    #2A2118;   /* основной текст */
@@ -66,6 +67,7 @@
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: clip;
+  touch-action: manipulation;
 }
 
 .pj img { max-width: 100%; display: block; }
@@ -308,7 +310,7 @@
 .pj-btn:hover { background: var(--candle); color: var(--void); }
 .pj-btn--solid { background: var(--candle); color: #F2F1EC; }
 .pj-btn--solid:hover { background: var(--candle-d); border-color: var(--candle-d); color: #F2F1EC; }
-.pj-btn--ghost { border-color: var(--line); color: var(--snow); }
+.pj-btn--ghost { border-color: var(--field); color: var(--snow); }
 .pj-btn--ghost:hover { border-color: var(--snow); background: rgba(42,33,24,.05); color: var(--snow); }
 
 /* ---------- О выставке ---------- */
@@ -431,7 +433,7 @@
 .pj-calc { border: 1px solid var(--line); background: var(--paper); padding: clamp(22px, 2.8vw, 32px); display: grid; gap: 18px; align-content: start; }
 .pj-field { display: grid; gap: 8px; }
 .pj-field > label { font-family: var(--f-label); font-size: 0.875rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute); }
-.pj-seg { display: flex; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.pj-seg { display: flex; gap: 1px; background: var(--field); border: 1px solid var(--field); }
 .pj-seg button { flex: 1; min-height: 48px; padding: 11px 8px; background: var(--void); font-family: var(--f-label); font-size: 0.9375rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); transition: background-color .2s, color .2s; }
 .pj-seg button[aria-pressed="true"] { background: var(--candle); color: #F2F1EC; }
 .pj-select, .pj-input, .pj-textarea {
@@ -441,7 +443,7 @@
 }
 .pj-select { background-image: linear-gradient(45deg, transparent 50%, var(--dim) 50%), linear-gradient(135deg, var(--dim) 50%, transparent 50%); background-position: right 18px center, right 12px center; background-size: 6px 6px, 6px 6px; background-repeat: no-repeat; padding-right: 40px; }
 .pj-input::placeholder, .pj-textarea::placeholder { color: var(--mute); }
-.pj-stepper { display: flex; align-items: stretch; border: 1px solid var(--line); width: fit-content; }
+.pj-stepper { display: flex; align-items: stretch; border: 1px solid var(--field); width: fit-content; }
 .pj-stepper button { width: 48px; min-height: 48px; background: var(--void); font-size: 1.15rem; color: var(--dim); }
 .pj-stepper button:hover { color: var(--candle); }
 .pj-stepper output { min-width: 64px; display: grid; place-items: center; font-family: var(--f-display); font-weight: 600; font-size: 1.25rem; font-variant-numeric: tabular-nums; background: var(--paper); }
@@ -511,9 +513,9 @@
 
 /* переключатель движения — для тех, кого укачивает от видео */
 .pj-motion {
-  position: fixed; right: 14px; bottom: 14px; z-index: 60;
+  position: fixed; left: 14px; bottom: 14px; z-index: 60;
   min-height: 44px; padding: 10px 16px;
-  background: rgba(226,228,222,.94); border: 1px solid var(--line);
+  background: rgba(226,228,222,.94); border: 1px solid var(--field);
   font-family: var(--f-label); font-size: 0.8125rem; font-weight: 700;
   letter-spacing: .14em; text-transform: uppercase; color: var(--dim);
   backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
@@ -561,3 +563,23 @@
 .pj-anim--3 { animation-delay: .24s; }
 .pj-anim--4 { animation-delay: .34s; }
 @media (prefers-reduced-motion: reduce) { .pj-anim { animation: none; } }
+
+/* ---------- доступность ---------- */
+/* якорь не должен уезжать под липкую шапку — и при табуляции тоже */
+.pj [id] { scroll-margin-top: calc(var(--navh) + 14px); }
+
+/* ссылка «к содержанию» — первое, что получает фокус с клавиатуры */
+.pj-skip {
+  position: absolute; left: 8px; top: 8px; z-index: 100;
+  transform: translateY(-160%);
+  padding: 12px 20px; min-height: 44px;
+  display: inline-flex; align-items: center;
+  background: var(--candle); color: #F2F1EC;
+  font-family: var(--f-label); font-size: 0.9375rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  transition: transform .18s ease;
+}
+.pj-skip:focus-visible { transform: none; }
+
+/* точка на карте: видимый кружок маленький, зона нажатия — 28 px */
+.pj-map__hit { fill: transparent; stroke: none; }
